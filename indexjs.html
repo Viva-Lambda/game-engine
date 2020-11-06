@@ -1,0 +1,32 @@
+<!doctype>
+<html>
+
+<head>
+    <title>JS Oyun Motoru Projesi</title>
+</head>
+
+<body onload="new Oyunum('GLCanvas');">
+    <canvas id="GLCanvas" width="640" height="480">
+        Tarayiciniz html5 kanvasini desteklemiyor
+    </canvas>
+    <script type="x-shader/x-vertex" id="NoktaCizici">
+        attribute vec3 kareKoordinati;
+        void main(){
+            gl_Position = vec4(kareKoordinati, 1.0);
+        }
+    </script>
+    <script type="x-shader/x-fragment" id="RenkVerici">
+        void main(){
+        gl_FragColor = vec4(0.1, 0.8, 0.0, 1.0);
+        }
+    </script>
+    <!-- Motor Kodu baslar -->
+    <script type="text/javascript" src="./srcjs/motor/AnaMotor.js"></script>
+    <script type="text/javascript" src="./srcjs/motor/VertexBuffer.js"></script>
+    <script type="text/javascript" src="./srcjs/motor/BasitCizer.js"></script>
+    <!-- Motor Kodu biter -->
+    <!-- Oyunum Kodu baslar -->
+    <script type="text/javascript" src="./srcjs/oyun/Oyunum.js"></script>
+</body>
+
+</html>
