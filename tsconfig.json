@@ -1,32 +1,26 @@
 {
-  "compilerOptions": {
-    "baseUrl": "./src",
-    "paths": {
-      "~/*": ["./*"]
+    "compilerOptions": {
+        "allowJs": false,
+        "noImplicitReturns": true,
+        "noFallthroughCasesInSwitch": true,
+        "noEmitOnError": true,
+        "noErrorTruncation": true,
+        "noUnusedParameters": true,
+        "noUnusedLocals": true,
+        "alwaysStrict": true,
+        "strict": true,
+        "outDir": "./build",
+        "removeComments": true,
+        "preserveConstEnums": true,
+        "target": "es6",
+        "module": "es6",
+        "sourceMap": true,
+        "baseUrl": "src",
+        "charset": "utf-8",
+        "diagnostics": true
     },
-    "typeRoots": ["node_modules/@types"],
-    "target": "ES2015", 
-    "module": "commonjs",                   
-    "lib": [ "es2015", "dom" ],
-    "strict": true,                      
-    "noImplicitAny": true,               
-    "strictNullChecks": true,            
-    "strictFunctionTypes": true,         
-    "strictBindCallApply": true,         
-    "strictPropertyInitialization": true,
-    "noImplicitThis": true,              
-    "alwaysStrict": true,                
-    "noFallthroughCasesInSwitch": true,  
-    "moduleResolution": "node",          
-    "esModuleInterop": true,                 
-    "skipLibCheck": true,                     
-    "forceConsistentCasingInFileNames": true  
-  },
-  "include": [
-    "src/**/*"
-  ],
-  "exclude": [
-    ".git",
-    "node_modules"
-  ]
+    "include": [
+        "srcts/**/*"
+    ],
+    "exclude": ["node_modules"]
 }

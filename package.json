@@ -1,26 +1,25 @@
 {
   "name": "weboyunmotoru",
   "version": "1.0.0",
-  "description": "Javascript - Typescript'te yazilmis oyun motoru",
+  "description": "2.5 D oyun motoru hem js hem ts",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
   "scripts": {
-    "start": "parcel ./public/index.html",
-    "build": "parcel build ./public/index.html"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://gitlab.com/QmAuber/weboyunmotoru.git"
+    "url": "git+ssh://git@gitlab.com/QmAuber/weboyunmotoru.git"
   },
-  "author": "qmAuber",
+  "author": "Qm Auber",
   "license": "MIT",
   "bugs": {
     "url": "https://gitlab.com/QmAuber/weboyunmotoru/issues"
   },
   "homepage": "https://gitlab.com/QmAuber/weboyunmotoru#readme",
-  "dependencies": {},
   "devDependencies": {
-    "glslify-bundle": "^5.1.1",
-    "glslify-deps": "^1.3.1",
-    "parcel-bundler": "^1.12.4",
     "typescript": "^4.0.5"
   }
 }

@@ -30,3 +30,5 @@ export class VertexBuffer {
                   gl.STATIC_DRAW);
   }
 }
+
+gMotor.VertexBuffer = new VertexBuffer();
