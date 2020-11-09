@@ -1,0 +1,26 @@
+{
+    "compilerOptions": {
+        "allowJs": false,
+        "noImplicitReturns": true,
+        "noFallthroughCasesInSwitch": true,
+        "noEmitOnError": true,
+        "noErrorTruncation": true,
+        "noUnusedParameters": true,
+        "noUnusedLocals": true,
+        "alwaysStrict": true,
+        "strict": true,
+        "outDir": "./build",
+        "removeComments": true,
+        "preserveConstEnums": true,
+        "target": "es6",
+        "module": "es6",
+        "sourceMap": true,
+        "baseUrl": "src",
+        "charset": "utf-8",
+        "diagnostics": true
+    },
+    "include": [
+        "srcts/**/*"
+    ],
+    "exclude": ["node_modules"]
+}
