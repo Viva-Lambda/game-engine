@@ -30,3 +30,4 @@ export class AnaMotor {
     this.mGL.clear(this.mGL.COLOR_BUFFER_BIT);
   }
 }
+gMotor.AnaMotor = new AnaMotor();
