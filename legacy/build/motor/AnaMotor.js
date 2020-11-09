@@ -1,6 +1,4 @@
-import {
-    gMotor
-} from "./Motor.js";
+import { gMotor } from "./Motor.js";
 export class AnaMotor {
     constructor() {
         this._mGL = null;
@@ -17,9 +15,7 @@ export class AnaMotor {
         this.mGL = gl;
         gMotor.VertexBuffer.baslat();
     }
-    set mGL(gl) {
-        this._mGL = gl;
-    }
+    set mGL(gl) { this._mGL = gl; }
     get mGL() {
         if (this._mGL == null) {
             throw new Error("baglam degeri null");
