@@ -1,6 +1,6 @@
 //
-import {AnaMotor} from "./AnaMotor.js";
-import {VertexBuffer} from "./VertexBuffer.js";
+import {AnaMotor} from "./ana/AnaMotor.js";
+import {VertexBuffer} from "./ana/VertexBuffer.js";
 
 export class Motor {
   _anaMotor: AnaMotor | null = null;

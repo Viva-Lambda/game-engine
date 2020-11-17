@@ -1,5 +1,5 @@
 // vertext buffer objesi
-import {gMotor} from "./Motor.js";
+import {gMotor} from "../Motor.js";
 
 export class VertexBuffer {
   _gKareNoktaBuffer: WebGLBuffer | null = null;

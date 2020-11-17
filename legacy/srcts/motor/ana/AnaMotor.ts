@@ -1,6 +1,6 @@
 // ana motor diger unsurlari tasiyacak globali olusturur.
-import {gMotor} from "./Motor.js";
-import {V3} from "./yardimcilar.js";
+import {gMotor} from "../Motor.js";
+import {V4} from "../../lib/Matrix.js";
 
 export class AnaMotor {
   _mGL: WebGLRenderingContext | null = null;
@@ -25,7 +25,7 @@ export class AnaMotor {
     }
     return this._mGL;
   }
-  kanvasTemizle(renk: V3) {
+  kanvasTemizle(renk: V4) {
     this.mGL.clearColor(renk.x, renk.y, renk.z, renk.w);
     this.mGL.clear(this.mGL.COLOR_BUFFER_BIT);
   }

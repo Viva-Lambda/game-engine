@@ -1,10 +1,18 @@
 // basit cizer objesi
 import {gMotor} from "./Motor.js";
+import {V4} from "../lib/Matrix.js";
+import {
+  UniformInfo,
+  AttribInfo,
+  attribInfoYap,
+  uniformInfoYap
+} from "../motor/yardimcilar.js";
 
 export class BasitCizer {
   //
   _derlenenCizici: WebGLProgram | null = null;
-  _gCizerKordinatKonumu: GLint | null = null;
+  gCizerKordinatInfo: AttribInfo;
+  pikselRengiInfo: UniformInfo;
   constructor(noktaCiziciId: string, renklendiriciId: string) {
     //
     var gl: WebGLRenderingContext = gMotor.AnaMotor.mGL;
@@ -23,20 +31,31 @@ export class BasitCizer {
     if (!gl.getProgramParameter(this.derlenenCizici, gl.LINK_STATUS)) {
       throw new Error("Cizici linklemede hata olustu");
     }
-    this.gCizerKordinatKonumu =
-        gl.getAttribLocation(this.derlenenCizici, "kareKoordinati");
+    let kordinatAdi = "kareKoordinati";
+    let gCizerKordinatKonumu =
+        gl.getAttribLocation(this.derlenenCizici, kordinatAdi);
+    if (gCizerKordinatKonumu === null) {
+      throw new Error("ilgili kordinat adi: " + kordinatAdi + " bulunamadi");
+    }
+    this.gCizerKordinatInfo = attribInfoYap(kordinatAdi, gCizerKordinatKonumu,
+                                            3, gl.FLOAT, false, 0, 0);
 
     gl.bindBuffer(gl.ARRAY_BUFFER, gMotor.VertexBuffer.glVertexRefAl());
 
-    gl.vertexAttribPointer(this.gCizerKordinatKonumu, 3, gl.FLOAT, false, 0, 0);
-  }
-  get gCizerKordinatKonumu(): GLint {
-    if (this._gCizerKordinatKonumu === null) {
-      throw new Error("Nokta nitelik konumu null degerinde");
+    gl.vertexAttribPointer(
+        this.gCizerKordinatInfo.konum, this.gCizerKordinatInfo.boyut,
+        this.gCizerKordinatInfo.tip, this.gCizerKordinatInfo.normalizeMi,
+        this.gCizerKordinatInfo.adim, this.gCizerKordinatInfo.uzaklik);
+    //
+    let pikselAdi = "uPikselRengi";
+    let pixKonumu: WebGLUniformLocation | null =
+        gl.getUniformLocation(this.derlenenCizici, pikselAdi);
+
+    if (pixKonumu === null) {
+      throw new Error("Piksel konumu bulunamadi");
     }
-    return this._gCizerKordinatKonumu;
+    this.pikselRengiInfo = uniformInfoYap(pikselAdi, pixKonumu);
   }
-  set gCizerKordinatKonumu(g: GLint) { this._gCizerKordinatKonumu = g; }
   get derlenenCizici(): WebGLProgram {
     if (this._derlenenCizici === null) {
       throw new Error("derlenen cizici/shader null");
@@ -44,19 +63,21 @@ export class BasitCizer {
     return this._derlenenCizici;
   }
   set derlenenCizici(s: WebGLProgram) { this._derlenenCizici = s; }
-  ciziciYukleDerle(elId: string, ciziciTipi: GLenum): WebGLShader {
+  ciziciYukleDerle(dosyaYolu: string, ciziciTipi: GLenum): WebGLShader {
     var gl: WebGLRenderingContext = gMotor.AnaMotor.mGL;
-    let ciziciMetniEl: HTMLElement | null = document.getElementById(elId);
-    if (ciziciMetniEl === null) {
-      throw new Error("cizici/shader metni bulunamadi: " + elId);
+    let xmlSorgu = new XMLHttpRequest();
+    xmlSorgu.open("GET", dosyaYolu, false);
+    let ciziciKaynagi: string | null = null;
+
+    try {
+      xmlSorgu.send();
+    } catch (err) {
+      throw new Error("dosya yolundaki çizim kodu yuklenemedi: " + dosyaYolu);
     }
-    let ciziciMetniNode: Node | null = ciziciMetniEl.firstChild;
-    if (ciziciMetniNode === null) {
-      throw new Error("cizici/shader elemaninin altinda bir sey yok: " + elId);
-    }
-    let ciziciKaynagi: string | null = ciziciMetniNode.textContent;
-    if (ciziciKaynagi == null) {
-      throw new Error("Cizici kaynagi bos metin: " + ciziciKaynagi);
+    ciziciKaynagi = xmlSorgu.responseText;
+    if (ciziciKaynagi === null) {
+      throw new Error("dosya yolundaki çizim kodu metin içermiyor: " +
+                      dosyaYolu);
     }
 
     var cizici: WebGLShader | null = gl.createShader(ciziciTipi);
@@ -72,9 +93,10 @@ export class BasitCizer {
     }
     return cizici;
   }
-  ciziciAktif(): void {
+  ciziciAktif(renk: V4): void {
     var gl: WebGLRenderingContext = gMotor.AnaMotor.mGL;
     gl.useProgram(this.derlenenCizici);
-    gl.enableVertexAttribArray(this.gCizerKordinatKonumu);
+    gl.enableVertexAttribArray(this.gCizerKordinatInfo.konum);
+    gl.uniform4fv(this.pikselRengiInfo.konum, renk.arr);
   }
 }

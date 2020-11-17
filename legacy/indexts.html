@@ -11,17 +11,6 @@
     <canvas id="GLCanvas" width="640" height="480">
         Tarayiciniz html5 kanvasini desteklemiyor
     </canvas>
-    <script type="x-shader/x-vertex" id="NoktaCizici">
-        attribute vec3 kareKoordinati;
-        void main(){
-            gl_Position = vec4(kareKoordinati, 1.0);
-        }
-    </script>
-    <script type="x-shader/x-fragment" id="RenkVerici">
-        void main(){
-        gl_FragColor = vec4(0.1, 0.8, 0.0, 1.0);
-        }
-    </script>
     <!-- Motor Kodu baslar -->
     <script type="module" src="./build/motor/AnaMotor.js"></script>
     <script type="module" src="./build/motor/VertexBuffer.js"></script>
