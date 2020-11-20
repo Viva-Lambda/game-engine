@@ -62,7 +62,8 @@ export class Donusturme {
   }
   boyutMatAl(): Mat4 {
     let boyutMat = new Mat4();
-    boyutMat.caprazDoldur(this.boyut.arr);
+    let boyutVek = this.boyut.genislet();
+    boyutMat.caprazDoldur(boyutVek.arr);
     return boyutMat;
   }
   dereceKoy(x: number) { this.radyan = derece2Radyan(x); }

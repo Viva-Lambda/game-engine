@@ -1,6 +1,6 @@
 // basit cizer objesi
 import {gMotor} from "./Motor.js";
-import {V4} from "../lib/Matrix.js";
+import {V4, Mat4} from "../lib/Matrix.js";
 import {
   UniformInfo,
   AttribInfo,
@@ -13,6 +13,7 @@ export class BasitCizer {
   _derlenenCizici: WebGLProgram | null = null;
   gCizerKordinatInfo: AttribInfo;
   pikselRengiInfo: UniformInfo;
+  modelMatInfo: UniformInfo;
   constructor(noktaCiziciId: string, renklendiriciId: string) {
     //
     var gl: WebGLRenderingContext = gMotor.AnaMotor.mGL;
@@ -55,6 +56,13 @@ export class BasitCizer {
       throw new Error("Piksel konumu bulunamadi");
     }
     this.pikselRengiInfo = uniformInfoYap(pikselAdi, pixKonumu);
+    let modelAdi = "uModelDonustur";
+    let matKonumu: WebGLUniformLocation | null =
+        gl.getUniformLocation(this.derlenenCizici, modelAdi);
+    if (matKonumu === null) {
+      throw new Error("Model matrisi konumu bulunamadi");
+    }
+    this.modelMatInfo = uniformInfoYap(modelAdi, matKonumu);
   }
   get derlenenCizici(): WebGLProgram {
     if (this._derlenenCizici === null) {
@@ -98,5 +106,9 @@ export class BasitCizer {
     gl.useProgram(this.derlenenCizici);
     gl.enableVertexAttribArray(this.gCizerKordinatInfo.konum);
     gl.uniform4fv(this.pikselRengiInfo.konum, renk.arr);
+  }
+  modelMatKoy(mat: Mat4): void {
+    var gl: WebGLRenderingContext = gMotor.AnaMotor.mGL;
+    gl.uniformMatrix4fv(this.modelMatInfo.konum, false, mat.listeAl());
   }
 }

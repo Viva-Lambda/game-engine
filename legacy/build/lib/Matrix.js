@@ -638,6 +638,16 @@ class Mat {
     static bolSayi(mat, s) {
         return Mat.sayiIslemi(mat, s, "bolme");
     }
+    listeAl() {
+        let vekliste = this.arr;
+        var liste = [];
+        for (var vekarr of vekliste) {
+            for (var v of vekarr) {
+                liste.push(v);
+            }
+        }
+        return liste;
+    }
 }
 export class Mat2 extends Mat {
     constructor() {

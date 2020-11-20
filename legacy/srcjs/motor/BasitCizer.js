@@ -81,7 +81,6 @@ BasitCizer.prototype.ciziciAktif = function(renk) {
     gl.uniform4fv(this.pikselRengi, renk);
 }
 BasitCizer.prototype.modelMatKoy = function(mat) {
-    console.log(mat);
     var gl = gMotor.AnaMotor.glAl();
     gl.uniformMatrix4fv(this.modelMatKonumu, false, mat);
 };

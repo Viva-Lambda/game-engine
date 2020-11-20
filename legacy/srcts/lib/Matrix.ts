@@ -495,6 +495,7 @@ abstract class Mat {
   abstract kopyala(): Mat;
   abstract set arr(arr: Array<Array<number>>);
   abstract get arr(): Array<Array<number>>;
+
   static mapfn(mat: Mat, fn: (n: number) => number): Array<Array<number>> {
     let a = mat.arr;
     return a.map((ar) => { return ar.map(fn); });
@@ -543,8 +544,7 @@ abstract class Mat {
   caprazDoldur(s: number | Array<number>| V): void {
     this.arr = Mat.caprazDoldur(this, s);
   }
-  static hucreKoy(mat: Mat, strNo: number, stnNo: number,
-                  v: number): Mat {
+  static hucreKoy(mat: Mat, strNo: number, stnNo: number, v: number): Mat {
     let arr = mat.arr;
     arr[strNo][stnNo] = v;
     mat.arr = arr;
@@ -553,12 +553,10 @@ abstract class Mat {
   hucreKoy(strNo: number, stnNo: number, v: number) {
     this.arr = Mat.hucreKoy(this, strNo, stnNo, v).arr;
   }
-  static satirKoy(mat: Mat, strNo: number,
-                  satir: V | Array<number>): Mat {
+  static satirKoy(mat: Mat, strNo: number, satir: V | Array<number>): Mat {
     return Mat.satirSutunKoy(mat, strNo, satir, true);
   };
-  static sutunKoy(mat: Mat, stnNo: number,
-                  sutun: V | Array<number>): Mat {
+  static sutunKoy(mat: Mat, stnNo: number, sutun: V | Array<number>): Mat {
     return Mat.satirSutunKoy(mat, stnNo, sutun, false);
   };
   sutunKoy(stnNo: number, sutun: V | Array<number>): void {
@@ -713,7 +711,7 @@ abstract class Mat {
     return sonuc;
   }
   static sayiIslemi(mat: Mat, s: number, islemTipi: "toplama" | "cikarma" |
-                                                "carpma" | "bolme"): Mat {
+                                             "carpma" | "bolme"): Mat {
     let matarr: Array<Array<number>> = mat.arr;
     let kpya = mat.kopyala();
     for (var i = 0; i < mat.satir_sayisi; i++) {
@@ -755,6 +753,16 @@ abstract class Mat {
   }
   static bolSayi(mat: Mat, s: number): Mat {
     return Mat.sayiIslemi(mat, s, "bolme");
+  }
+  listeAl(): Array<number> {
+    let vekliste = this.arr;
+    var liste: Array<number> = [];
+    for (var vekarr of vekliste) {
+      for (var v of vekarr) {
+        liste.push(v);
+      }
+    }
+    return liste;
   }
 }
 export class Mat2 extends Mat {

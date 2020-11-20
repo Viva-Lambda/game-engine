@@ -31,6 +31,12 @@ export class BasitCizer {
             throw new Error("Piksel konumu bulunamadi");
         }
         this.pikselRengiInfo = uniformInfoYap(pikselAdi, pixKonumu);
+        let modelAdi = "uModelDonustur";
+        let matKonumu = gl.getUniformLocation(this.derlenenCizici, modelAdi);
+        if (matKonumu === null) {
+            throw new Error("Model matrisi konumu bulunamadi");
+        }
+        this.modelMatInfo = uniformInfoYap(modelAdi, matKonumu);
     }
     get derlenenCizici() {
         if (this._derlenenCizici === null) {
@@ -71,6 +77,10 @@ export class BasitCizer {
         gl.useProgram(this.derlenenCizici);
         gl.enableVertexAttribArray(this.gCizerKordinatInfo.konum);
         gl.uniform4fv(this.pikselRengiInfo.konum, renk.arr);
+    }
+    modelMatKoy(mat) {
+        var gl = gMotor.AnaMotor.mGL;
+        gl.uniformMatrix4fv(this.modelMatInfo.konum, false, mat.listeAl());
     }
 }
 //# sourceMappingURL=BasitCizer.js.map
