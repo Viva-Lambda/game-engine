@@ -1,12 +1,8 @@
 "use strict";
-var gMotor = gMotor | {};
+var gMotor = gMotor || {};
 
-gMotor.OyunDongusu = (function() {
-    var genel = {
-        baslat: baslat
-    };
-    return genel;
-}());
+
+
 
 var FPS = 60; // saniyede kaç kare
 var MPF = 1000 / FPS; // bir kare kaç milisaniye.
@@ -40,7 +36,6 @@ var _donguCalistir = function() {
 
     }
 }
-
 var baslat = function(oyun) {
     oyunum = oyun;
 
@@ -52,3 +47,9 @@ var baslat = function(oyun) {
         _donguCalistir.call(oyunum);
     });
 }
+gMotor.OyunDongusu = (function() {
+    var genel = {
+        baslat: baslat
+    };
+    return genel;
+}());

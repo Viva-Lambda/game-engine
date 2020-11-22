@@ -14,6 +14,16 @@ Donustur.prototype.konumKoy = function(x, y) {
 Donustur.prototype.konumXKoy = function(x) {
     this.konum[0] = x;
 }
+Donustur.prototype.konumXArti = function(x) {
+    var xkonum = this.konumXAl();
+    xkonum += x;
+    this.konumXKoy(xkonum);
+}
+Donustur.prototype.konumYArti = function(x) {
+    var ykonum = this.konumYAl();
+    ykonum += x;
+    this.konumYKoy(ykonum);
+}
 Donustur.prototype.konumYKoy = function(y) {
     this.konum[1] = y;
 }
@@ -40,6 +50,24 @@ Donustur.prototype.boyutXAl = function(x) {
 Donustur.prototype.boyutYAl = function(y) {
     return this.boyut[1];
 };
+Donustur.prototype.boyutArti = function(x) {
+    var xb = this.boyutXAl();
+    var yb = this.boyutYAl();
+    xb += x;
+    yb += x;
+    this.boyutKoy(xb, yb);
+}
+Donustur.prototype.boyutXArti = function(x) {
+    var xb = this.boyutXAl();
+    xb += x;
+    this.boyutXKoy(xb);
+}
+Donustur.prototype.boyutYArti = function(x) {
+    var xb = this.boyutYAl();
+    xb += x;
+    this.boyutYKoy(xb);
+}
+
 
 Donustur.prototype.radyanKoy = function(r) {
     this.radyan = r;
@@ -50,19 +78,22 @@ Donustur.prototype.radyanKoy = function(r) {
 Donustur.prototype.dereceKoy = function(d) {
     this.radyanKoy(d * Math.PI / 180.0);
 };
+Donustur.prototype.dereceAl = function() {
+    return this.radyan * 180.0 / Math.PI;
+}
+Donustur.prototype.dereceArti = function(d) {
+    var derece = this.dereceAl();
+    derece += d;
+    this.dereceKoy(derece);
+}
 Donustur.prototype.modelMatAl = function() {
     var modelMat = mat4.create();
-    console.log(this.konum);
     mat4.translate(modelMat, modelMat, vec3.fromValues(this.konumXAl(),
         this.konumYAl(),
         0.0));
-    console.log(this.radyan);
     mat4.rotateZ(modelMat, modelMat, this.radyan);
-    console.log(this.boyut);
     mat4.scale(modelMat, modelMat, vec3.fromValues(this.boyutXAl(),
         this.boyutYAl(),
         1.0));
-    console.log("modelmat al matrisi");
-    console.log(modelMat);
     return modelMat;
 };

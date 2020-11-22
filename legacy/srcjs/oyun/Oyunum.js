@@ -2,65 +2,74 @@
 
 function Oyunum(kanvasId) {
     this.cizer = null;
-    gMotor.AnaMotor.glBaslat(kanvasId);
-    var gl = gMotor.AnaMotor.glAl();
-
-    this.kamera = new Kamera(vec2.fromValues(20, 60), 20, [20, 40, 600, 300]);
-
-    this.cizer = new BasitCizer("./srcjs/glsl/basitvs.vert",
-        "./srcjs/glsl/degisikrenk.frag");
+    this.kamera = null;
 
     // cizilebilirleri olustur
-    this.beyazKare = new Cizilebilir(this.cizer);
-    this.beyazKare.renkKoy([0, 1, 1, 1]);
+    this.beyazKare = null;
+    this.kirmiziKare = null;
+    //
+    gMotor.AnaMotor.glBaslat(kanvasId);
 
+    this.oyunuBaslat();
+}
+
+Oyunum.prototype.oyunuBaslat = function() {
+    // kamera olustur
+    this.kamera = new Kamera(
+        vec2.fromValues(20, 60),
+        20,
+        [20, 40, 600, 300]
+    );
+    this.kamera.arkaPlanRengiKoy([0.8, 0.8, 0.8, 1.0]);
+
+    // cizer olustur
+    this.cizer = new BasitCizer(
+        "srcjs/glsl/basitvs.vert",
+        "srcjs/glsl/degisikrenk.frag"
+    );
+
+    // cizilebilirleri olustur
     this.kirmiziKare = new Cizilebilir(this.cizer);
-    this.kirmiziKare.renkKoy([1, 0, 0, 1]);
+    this.kirmiziKare.renkKoy([0.8, 0.1, 0.1, 1.0]);
 
-    //
-    this.solUstKare = new Cizilebilir(this.cizer);
-    this.solUstKare.renkKoy([0.9, 0.1, 0.1, 1]);
-    //
-    this.solAltKare = new Cizilebilir(this.cizer);
-    this.solAltKare.renkKoy([0.1, 0.1, 0.1, 1]);
+    this.beyazKare = new Cizilebilir(this.cizer);
+    this.beyazKare.renkKoy([0.8, 0.8, 0.7, 1.0]);
 
-    // sag 
-    this.sagUstKare = new Cizilebilir(this.cizer);
-    this.sagUstKare.renkKoy([0.1, 0.8, 0.1, 1.0]);
-    //
-    this.sagAltKare = new Cizilebilir(this.cizer);
-    this.sagAltKare.renkKoy([0.1, 0.1, 0.8, 1.0]);
-
-    // kanvas temizle
-    gMotor.AnaMotor.kanvasTemizle([0.9, 0.9, 0.9, 1]);
-
-    //
-    this.kamera.bakmaProjMatKur();
-    var bakmaProjMat = this.kamera.bakmaProjMatAl();
-
-    //
-
-    // matrisleri olustur
+    // bir yere koy objeleri
     this.beyazKare.donustur.konumKoy(20, 60);
     this.beyazKare.donustur.radyanKoy(0.2);
     this.beyazKare.donustur.boyutKoy(5, 5);
-    // beyaz çiz
-    this.beyazKare.ciz(bakmaProjMat);
-
-    this.kirmiziKare.donustur.konumKoy(20, 60);
-    this.kirmiziKare.donustur.boyutKoy(2, 2);
-    // kirmizi çiz
-    this.kirmiziKare.ciz(bakmaProjMat);
-
-    // sol ust
-    this.solUstKare.donustur.konumKoy(10, 65);
-    this.solUstKare.ciz(bakmaProjMat);
-
-    // sag ust
-    this.sagUstKare.donustur.konumKoy(30, 65);
-    this.sagUstKare.ciz(bakmaProjMat);
 
     //
-    this.solAltKare.donustur.konumKoy(30, 55);
-    this.solAltKare.ciz(bakmaProjMat);
+    this.kirmiziKare.donustur.konumKoy(20, 60);
+    this.kirmiziKare.donustur.radyanKoy(-0.2);
+    this.kirmiziKare.donustur.boyutKoy(2, 2);
+
+    gMotor.OyunDongusu.baslat(this);
+}
+
+Oyunum.prototype.guncelle = function() {
+    var beyazDonustur = this.beyazKare.donustur;
+    var deltaX = 0.05;
+    if (beyazDonustur.konumXAl() > 30) {
+        beyazDonustur.konumKoy(10, 60);
+    }
+    beyazDonustur.konumXArti(1);
+    beyazDonustur.dereceArti(1);
+
+    var kirmiziDonustur = this.kirmiziKare.donustur;
+    if (kirmiziDonustur.boyutXAl() > 5) {
+        kirmiziDonustur.boyutKoy(2, 2);
+    }
+    kirmiziDonustur.boyutArti(0.05);
+}
+
+Oyunum.prototype.ciz = function() {
+    //
+    gMotor.AnaMotor.kanvasTemizle([0.9, 0.9, 0.9, 1.0]);
+
+    this.kamera.bakmaProjMatKur();
+
+    this.kirmiziKare.ciz(this.kamera.bakmaProjMatAl());
+    this.beyazKare.ciz(this.kamera.bakmaProjMatAl());
 }
