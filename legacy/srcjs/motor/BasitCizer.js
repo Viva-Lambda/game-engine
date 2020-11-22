@@ -6,6 +6,7 @@ function BasitCizer(noktaCiziciId, renklendiriciId) {
     this.gCizerKordinatKonumu = null;
     this.pikselRengi = null;
     this.modelMatKonumu = null;
+    this.bakmaMatKonumu = null;
     //
 
     var gl = gMotor.AnaMotor.glAl();
@@ -38,6 +39,8 @@ function BasitCizer(noktaCiziciId, renklendiriciId) {
         "uPikselRengi");
     this.modelMatKonumu = gl.getUniformLocation(this.derlenenCizici,
         "uModelDonustur");
+    this.bakmaMatKonumu = gl.getUniformLocation(this.derlenenCizici,
+        "uBakmaProj");
 }
 
 BasitCizer.prototype.ciziciYukleDerle = function(dosyaYolu, ciziciTipi) {
@@ -74,10 +77,12 @@ BasitCizer.prototype.ciziciYukleDerle = function(dosyaYolu, ciziciTipi) {
     return derlenenCizici;
 }
 
-BasitCizer.prototype.ciziciAktif = function(renk) {
+BasitCizer.prototype.ciziciAktif = function(renk, bpMat) {
     var gl = gMotor.AnaMotor.glAl();
     gl.useProgram(this.derlenenCizici);
     gl.enableVertexAttribArray(this.gCizerKordinatKonumu);
+    //
+    gl.uniformMatrix4fv(this.bakmaMatKonumu, false, bpMat);
     gl.uniform4fv(this.pikselRengi, renk);
 }
 BasitCizer.prototype.modelMatKoy = function(mat) {
