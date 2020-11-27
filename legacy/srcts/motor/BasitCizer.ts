@@ -1,11 +1,12 @@
 // basit cizer objesi
 import {gMotor} from "./Motor.js";
-import {V4, Mat4} from "../lib/Matrix.js";
+import {GLM} from "gl-matrix";
 import {
   UniformInfo,
   AttribInfo,
   attribInfoYap,
-  uniformInfoYap
+  uniformInfoYap,
+  glmdenListeAl
 } from "../motor/yardimcilar.js";
 
 export class BasitCizer {
@@ -14,6 +15,7 @@ export class BasitCizer {
   gCizerKordinatInfo: AttribInfo;
   pikselRengiInfo: UniformInfo;
   modelMatInfo: UniformInfo;
+  bakmaMatInfo: UniformInfo;
   constructor(noktaCiziciId: string, renklendiriciId: string) {
     //
     var gl: WebGLRenderingContext = gMotor.AnaMotor.mGL;
@@ -63,6 +65,12 @@ export class BasitCizer {
       throw new Error("Model matrisi konumu bulunamadi");
     }
     this.modelMatInfo = uniformInfoYap(modelAdi, matKonumu);
+    let bakmaMatAdi = "uBakmaProj";
+    matKonumu = gl.getUniformLocation(this.derlenenCizici, bakmaMatAdi);
+    if (matKonumu === null) {
+      throw new Error("Bakma matrisi konumu bulunamadi");
+    }
+    this.bakmaMatInfo = uniformInfoYap(bakmaMatAdi, matKonumu);
   }
   get derlenenCizici(): WebGLProgram {
     if (this._derlenenCizici === null) {
@@ -101,14 +109,17 @@ export class BasitCizer {
     }
     return cizici;
   }
-  ciziciAktif(renk: V4): void {
+  ciziciAktif(renk: GLM.IArray, bpMat: GLM.IArray): void {
     var gl: WebGLRenderingContext = gMotor.AnaMotor.mGL;
     gl.useProgram(this.derlenenCizici);
     gl.enableVertexAttribArray(this.gCizerKordinatInfo.konum);
-    gl.uniform4fv(this.pikselRengiInfo.konum, renk.arr);
+    // piksel rengi
+    gl.uniform4fv(this.pikselRengiInfo.konum, glmdenListeAl(renk));
+    // projeksiyon matrisi
+    gl.uniformMatrix4fv(this.bakmaMatInfo.konum, false, glmdenListeAl(bpMat));
   }
-  modelMatKoy(mat: Mat4): void {
+  modelMatKoy(mat: GLM.IArray): void {
     var gl: WebGLRenderingContext = gMotor.AnaMotor.mGL;
-    gl.uniformMatrix4fv(this.modelMatInfo.konum, false, mat.listeAl());
+    gl.uniformMatrix4fv(this.modelMatInfo.konum, false, glmdenListeAl(mat));
   }
 }
