@@ -2,6 +2,7 @@ export class Motor {
     constructor() {
         this._anaMotor = null;
         this._vertexBuffer = null;
+        this._oyunDongusu = null;
     }
     set AnaMotor(amotor) { this._anaMotor = amotor; }
     get AnaMotor() {
@@ -16,6 +17,13 @@ export class Motor {
             throw new Error("vertex buffer null");
         }
         return this._vertexBuffer;
+    }
+    set OyunDongusu(s) { this._oyunDongusu = s; }
+    get OyunDongusu() {
+        if (this._oyunDongusu == null) {
+            throw new Error("Oyun dongusu null");
+        }
+        return this._oyunDongusu;
     }
 }
 export var gMotor = new Motor();

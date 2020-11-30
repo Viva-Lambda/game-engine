@@ -1,6 +1,5 @@
 // basit cizer objesi
 import {gMotor} from "./Motor.js";
-import {GLM} from "gl-matrix";
 import {
   UniformInfo,
   AttribInfo,
@@ -8,6 +7,8 @@ import {
   uniformInfoYap,
   glmdenListeAl
 } from "../motor/yardimcilar.js";
+
+import {GLM} from "gl-matrix";
 
 export class BasitCizer {
   //

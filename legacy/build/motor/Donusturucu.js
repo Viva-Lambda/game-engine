@@ -1,17 +1,37 @@
-import { V3, derece2Radyan, Mat4 } from "../lib/Matrix.js";
+import { vec3, vec4, mat4 } from "gl-matrix";
+import { derece2Radyan } from "../motor/yardimcilar.js";
 export class Donusturme {
     constructor() {
-        this.konum = new V3(0, 0, 0);
-        this.boyut = new V3(1, 1, 1);
+        this.konum = vec4.fromValues(0, 0, 0, 0);
+        this.boyut = vec4.fromValues(1, 1, 1, 1);
         this.radyan = 0.0;
     }
-    konumKoy(x, y) {
-        this.konum.x = x;
-        this.konum.y = y;
+    konumKoy(x, y) { this.konum = vec4.fromValues(x, y, 0, 0); }
+    konumAl() { return this.konum; }
+    konumXAl() { return this.konum[0]; }
+    konumYAl() { return this.konum[1]; }
+    konumZAl() { return this.konum[2]; }
+    konumXKoy(x) { this.konum[0] = x; }
+    konumYKoy(y) { this.konum[1] = y; }
+    konumZKoy(z) { this.konum[2] = z; }
+    konumXArti(x) { this.konum[0] += x; }
+    konumYArti(x) { this.konum[1] += x; }
+    konumZArti(x) { this.konum[2] += x; }
+    boyutAl() { return this.boyut; }
+    boyutKoy(x, y) { this.boyut = vec4.fromValues(x, y, 1, 1); }
+    boyutXAl() { return this.boyut[0]; }
+    boyutYAl() { return this.boyut[1]; }
+    boyutZAl() { return this.boyut[2]; }
+    boyutXKoy(x) { this.boyut[0] = x; }
+    boyutYKoy(y) { this.boyut[1] = y; }
+    boyutZKoy(z) { this.boyut[2] = z; }
+    boyutXArti(x) { this.boyut[0] += x; }
+    boyutYArti(x) { this.boyut[1] += x; }
+    boyutZArti(x) { this.boyut[2] += x; }
+    boyutArti(x) {
+        this.boyutXArti(x);
+        this.boyutYArti(x);
     }
-    konumAl() { return new V3(this.konum.x, this.konum.y, 0); }
-    boyutAl() { return new V3(this.boyut.x, this.boyut.y, 1); }
-    boyutKoy(x, y) { this.boyut = new V3(x, y, 1); }
     radyanKoy(x) {
         this.radyan = x;
         while (this.radyan > 2 * Math.PI) {
@@ -21,60 +41,14 @@ export class Donusturme {
             this.radyan += (2 * Math.PI);
         }
     }
-    yerDegistirmeMatAl() {
-        let yerDegistirmeMat = new Mat4();
-        let ykonum = this.konum.genislet();
-        ykonum.w = 1.0;
-        yerDegistirmeMat.satirKoy(3, ykonum);
-        return yerDegistirmeMat;
-    }
-    dondurZMatAl() {
-        let dmz = new Mat4();
-        let costheta = Math.cos(this.radyan);
-        let sintheta = Math.sin(this.radyan);
-        dmz.hucreKoy(0, 0, costheta);
-        dmz.hucreKoy(0, 1, -sintheta);
-        dmz.hucreKoy(1, 0, sintheta);
-        dmz.hucreKoy(1, 1, costheta);
-        return dmz;
-    }
-    dondurYMatAl() {
-        let dmz = new Mat4();
-        let costheta = Math.cos(this.radyan);
-        let sintheta = Math.sin(this.radyan);
-        dmz.hucreKoy(0, 0, costheta);
-        dmz.hucreKoy(0, 2, sintheta);
-        dmz.hucreKoy(2, 0, -sintheta);
-        dmz.hucreKoy(2, 2, costheta);
-        return dmz;
-    }
-    dondurXMatAl() {
-        let dmz = new Mat4();
-        let costheta = Math.cos(this.radyan);
-        let sintheta = Math.sin(this.radyan);
-        dmz.hucreKoy(1, 1, costheta);
-        dmz.hucreKoy(1, 2, -sintheta);
-        dmz.hucreKoy(2, 1, sintheta);
-        dmz.hucreKoy(2, 2, costheta);
-        return dmz;
-    }
-    boyutMatAl() {
-        let boyutMat = new Mat4();
-        let boyutVek = this.boyut.genislet();
-        boyutMat.caprazDoldur(boyutVek.arr);
-        return boyutMat;
-    }
     dereceKoy(x) { this.radyan = derece2Radyan(x); }
+    dereceAl() { return this.radyan * 180.0 / Math.PI; }
+    dereceArti(d) { this.radyan += derece2Radyan(d); }
     modelMatAl() {
-        let modelMat = new Mat4();
-        let yerMat = this.yerDegistirmeMatAl();
-        yerMat.ic(modelMat);
-        let dondurZMat = this.dondurZMatAl();
-        dondurZMat.ic(yerMat);
-        let boyutMat = this.boyutMatAl();
-        boyutMat.ic(dondurZMat);
-        modelMat = boyutMat;
-        console.log(modelMat);
+        let modelMat = mat4.create();
+        mat4.translate(modelMat, modelMat, vec3.fromValues(this.konumXAl(), this.konumYAl(), this.konumZAl()));
+        mat4.rotateZ(modelMat, modelMat, this.radyan);
+        mat4.scale(modelMat, modelMat, vec3.fromValues(this.konumXAl(), this.boyutYAl(), this.boyutZAl()));
         return modelMat;
     }
 }

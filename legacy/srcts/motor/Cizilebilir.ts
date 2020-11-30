@@ -1,7 +1,7 @@
 // çizilebilir butun objelerin anasi
+import {vec4, GLM} from "gl-matrix";
 import {BasitCizer} from "./BasitCizer.js";
 import {Donusturme} from "./Donusturucu.js";
-import {vec4, GLM} from "gl-matrix";
 import {vecMatBoyutKontrol} from "../motor/yardimcilar.js";
 import {gMotor} from "../motor/Motor.js";
 

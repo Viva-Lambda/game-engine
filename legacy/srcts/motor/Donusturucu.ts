@@ -1,6 +1,6 @@
 // objelerin yerini degistirir, dondurur, buyutup kuçultur
 import {vec3, vec4, mat4, GLM} from "gl-matrix";
-import {derece2Radyan, vecMatBoyutKontrol} from "../motor/yardimcilar.js";
+import {derece2Radyan} from "../motor/yardimcilar.js";
 
 export class Donusturme {
   konum: GLM.IArray = vec4.fromValues(0, 0, 0, 0);
@@ -35,6 +35,10 @@ export class Donusturme {
   boyutXArti(x: number) { this.boyut[0] += x; }
   boyutYArti(x: number) { this.boyut[1] += x; }
   boyutZArti(x: number) { this.boyut[2] += x; }
+  boyutArti(x: number) {
+    this.boyutXArti(x);
+    this.boyutYArti(x);
+  }
 
   radyanKoy(x: number) {
     this.radyan = x;

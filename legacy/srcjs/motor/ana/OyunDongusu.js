@@ -1,9 +1,6 @@
 "use strict";
 var gMotor = gMotor || {};
 
-
-
-
 var FPS = 60; // saniyede kaç kare
 var MPF = 1000 / FPS; // bir kare kaç milisaniye.
 
@@ -33,12 +30,10 @@ var _donguCalistir = function() {
             gecikenSure -= MPF;
         }
         this.ciz();
-
     }
 }
 var baslat = function(oyun) {
     oyunum = oyun;
-
     // kare sifirla
     oncekiSure = Date.now();
     gecikenSure = 0.0;

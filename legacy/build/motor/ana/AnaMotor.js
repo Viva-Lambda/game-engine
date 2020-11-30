@@ -1,4 +1,5 @@
 import { gMotor } from "../Motor.js";
+import { vecMatBoyutKontrol } from "../yardimcilar.js";
 export class AnaMotor {
     constructor() {
         this._mGL = null;
@@ -23,7 +24,8 @@ export class AnaMotor {
         return this._mGL;
     }
     kanvasTemizle(renk) {
-        this.mGL.clearColor(renk.x, renk.y, renk.z, renk.w);
+        vecMatBoyutKontrol(renk, 4, "renk vec4 degil");
+        this.mGL.clearColor(renk[0], renk[1], renk[2], renk[3]);
         this.mGL.clear(this.mGL.COLOR_BUFFER_BIT);
     }
 }

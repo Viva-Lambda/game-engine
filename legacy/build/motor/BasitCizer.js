@@ -1,5 +1,5 @@
 import { gMotor } from "./Motor.js";
-import { attribInfoYap, uniformInfoYap } from "../motor/yardimcilar.js";
+import { attribInfoYap, uniformInfoYap, glmdenListeAl } from "../motor/yardimcilar.js";
 export class BasitCizer {
     constructor(noktaCiziciId, renklendiriciId) {
         this._derlenenCizici = null;
@@ -37,6 +37,12 @@ export class BasitCizer {
             throw new Error("Model matrisi konumu bulunamadi");
         }
         this.modelMatInfo = uniformInfoYap(modelAdi, matKonumu);
+        let bakmaMatAdi = "uBakmaProj";
+        matKonumu = gl.getUniformLocation(this.derlenenCizici, bakmaMatAdi);
+        if (matKonumu === null) {
+            throw new Error("Bakma matrisi konumu bulunamadi");
+        }
+        this.bakmaMatInfo = uniformInfoYap(bakmaMatAdi, matKonumu);
     }
     get derlenenCizici() {
         if (this._derlenenCizici === null) {
@@ -72,15 +78,16 @@ export class BasitCizer {
         }
         return cizici;
     }
-    ciziciAktif(renk) {
+    ciziciAktif(renk, bpMat) {
         var gl = gMotor.AnaMotor.mGL;
         gl.useProgram(this.derlenenCizici);
         gl.enableVertexAttribArray(this.gCizerKordinatInfo.konum);
-        gl.uniform4fv(this.pikselRengiInfo.konum, renk.arr);
+        gl.uniform4fv(this.pikselRengiInfo.konum, glmdenListeAl(renk));
+        gl.uniformMatrix4fv(this.bakmaMatInfo.konum, false, glmdenListeAl(bpMat));
     }
     modelMatKoy(mat) {
         var gl = gMotor.AnaMotor.mGL;
-        gl.uniformMatrix4fv(this.modelMatInfo.konum, false, mat.listeAl());
+        gl.uniformMatrix4fv(this.modelMatInfo.konum, false, glmdenListeAl(mat));
     }
 }
 //# sourceMappingURL=BasitCizer.js.map
