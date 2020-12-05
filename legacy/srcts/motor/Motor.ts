@@ -3,6 +3,7 @@ import {AnaMotor} from "./ana/AnaMotor.js";
 import {VertexBuffer} from "./ana/VertexBuffer.js";
 import {OyunDongusu} from "./ana/OyunDongusu.js";
 
+/*
 export class Motor {
   _anaMotor: AnaMotor | null = null;
   _vertexBuffer: VertexBuffer | null = null;
@@ -30,5 +31,11 @@ export class Motor {
     return this._oyunDongusu;
   }
 }
+*/
+export interface Motor {
+  AnaMotor?: AnaMotor | null;
+  VertexBuffer?: VertexBuffer | null;
+  OyunDongusu?: OyunDongusu | null;
+}
 
-export var gMotor = new Motor();
+// export var gMotor = new Motor();

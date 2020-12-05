@@ -1,6 +1,8 @@
 {
     "compilerOptions": {
-        "allowJs": false,
+        "allowJs": true,
+        "allowSyntheticDefaultImports": true,
+        "esModuleInterop": true,
         "noImplicitReturns": true,
         "noFallthroughCasesInSwitch": true,
         "noEmitOnError": true,
@@ -9,18 +11,23 @@
         "noUnusedLocals": true,
         "alwaysStrict": true,
         "strict": true,
-        "outDir": "./build",
         "removeComments": true,
         "preserveConstEnums": true,
-        "target": "es6",
-        "module": "es6",
+        "target": "es5",
+        "module": "commonjs",
+        "moduleResolution": "node",
         "sourceMap": true,
-        "baseUrl": "src",
+        "baseUrl": "./",
+        "paths": {
+            "gl-matrix": [
+                "../node_modules/gl-matrix/index.d.ts"
+            ]
+        },
         "charset": "utf-8",
+        "outDir": "./build",
         "diagnostics": true
     },
     "include": [
         "srcts/**/*"
-    ],
-    "exclude": ["node_modules"]
+    ]
 }

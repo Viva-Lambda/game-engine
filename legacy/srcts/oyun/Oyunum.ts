@@ -1,11 +1,12 @@
 // oyun kodu
-import {gMotor} from "../motor/Motor.js";
-import {BasitCizer} from "../motor/BasitCizer.js";
-import {Cizilebilir} from "../motor/Cizilebilir.js";
-import {Kamera} from "../motor/Kamera.js";
-import {OyunArayuzu} from "../motor/OyunArayuzu.js";
-import {vec4, vec2} from "gl-matrix";
+// import {vec4, vec3} from "../../../node_modules/gl-matrix/gl-matrix-min.js";
 
+import {vec4} from "gl-matrix";
+import {gMotor} from "../motor/MotorNesnesi";
+import {BasitCizer} from "../motor/BasitCizer";
+import {Cizilebilir} from "../motor/Cizilebilir";
+import {Kamera} from "../motor/Kamera";
+import {OyunArayuzu} from "../motor/OyunArayuzu";
 export class Oyunum extends OyunArayuzu {
   _cizer: BasitCizer | null = null;
   _beyazKare: Cizilebilir | null = null;
@@ -14,6 +15,10 @@ export class Oyunum extends OyunArayuzu {
 
   constructor(kanvasId: string) {
     super();
+    if (gMotor.AnaMotor === null || gMotor.AnaMotor === undefined) {
+      throw new Error("ana motor null oyunum da");
+    }
+
     gMotor.AnaMotor.glBaslat(kanvasId);
 
     this.oyunuBaslat();
@@ -47,21 +52,21 @@ export class Oyunum extends OyunArayuzu {
     return this._beyazKare;
   }
   oyunuBaslat() {
-    let merkez = vec2.fromValues(20, 60);
+    let merkez = [ 20, 60, 0 ];
     let pg = 20;
     let gliste = vec4.fromValues(20, 40, 600, 300);
     this.kamera = new Kamera(merkez, pg, gliste);
-    this.kamera.arkaPlanRengi = vec4.fromValues(0.8, 0.8, 0.8, 1.0);
+    this.kamera.arkaPlanRengi = [ 0.8, 0.8, 0.8, 1.0 ];
 
     // cizer olustur
     this.cizer = new BasitCizer("./srcts/glsl/basitvs.vert",
                                 "./srcts/glsl/degisikrenk.frag");
     // cizilebilirleri olustur
     this.kirmiziKare = new Cizilebilir(this.cizer);
-    this.kirmiziKare.renkKoy(vec4.fromValues(0.8, 0.1, 0.1, 1.0));
+    this.kirmiziKare.renkKoy([ 0.8, 0.1, 0.1, 1.0 ]);
 
     this.beyazKare = new Cizilebilir(this.cizer);
-    this.beyazKare.renkKoy(vec4.fromValues(0.8, 0.8, 0.7, 1.0));
+    this.beyazKare.renkKoy([ 0.8, 0.8, 0.7, 1.0 ]);
 
     // bir yere koy objeleri
     this.beyazKare.donustur.konumKoy(20, 60);
@@ -72,6 +77,10 @@ export class Oyunum extends OyunArayuzu {
     this.kirmiziKare.donustur.konumKoy(20, 60);
     this.kirmiziKare.donustur.radyanKoy(-0.2);
     this.kirmiziKare.donustur.boyutKoy(2, 2);
+
+    if (gMotor.OyunDongusu === null || gMotor.OyunDongusu === undefined) {
+      throw new Error("OyunDongusu null oyunum da");
+    }
 
     gMotor.OyunDongusu.baslat(this);
   }
@@ -93,7 +102,11 @@ export class Oyunum extends OyunArayuzu {
   }
   ciz() {
     //
-    gMotor.AnaMotor.kanvasTemizle(vec4.fromValues(0.9, 0.9, 0.9, 1.0));
+    if (gMotor.AnaMotor === null || gMotor.AnaMotor === undefined) {
+      throw new Error("AnaMotor null oyunum da");
+    }
+
+    gMotor.AnaMotor.kanvasTemizle([ 0.9, 0.9, 0.9, 1.0 ]);
     this.kamera.bakmaProjMatKur();
     this.kirmiziKare.ciz(this.kamera.bakmaProjMat);
     this.beyazKare.ciz(this.kamera.bakmaProjMat);

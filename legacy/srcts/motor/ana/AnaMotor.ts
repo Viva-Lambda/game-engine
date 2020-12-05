@@ -1,7 +1,6 @@
 // ana motor diger unsurlari tasiyacak globali olusturur.
-import {gMotor} from "../Motor.js";
-import {GLM} from "gl-matrix";
-import {vecMatBoyutKontrol} from "../yardimcilar.js";
+import {gMotor} from "../MotorNesnesi";
+import {vec4} from "gl-matrix";
 
 export class AnaMotor {
   _mGL: WebGLRenderingContext | null = null;
@@ -17,6 +16,10 @@ export class AnaMotor {
       throw new Error("Ilgili baglam alinamadi ");
     }
     this.mGL = gl;
+    if (gMotor.VertexBuffer === null || gMotor.VertexBuffer === undefined) {
+      throw new Error("ana motor null cizer de");
+    }
+
     gMotor.VertexBuffer.baslat();
   }
   set mGL(gl: WebGLRenderingContext) { this._mGL = gl; }
@@ -26,10 +29,8 @@ export class AnaMotor {
     }
     return this._mGL;
   }
-  kanvasTemizle(renk: GLM.IArray) {
-    vecMatBoyutKontrol(renk, 4, "renk vec4 degil");
+  kanvasTemizle(renk: vec4) {
     this.mGL.clearColor(renk[0], renk[1], renk[2], renk[3]);
     this.mGL.clear(this.mGL.COLOR_BUFFER_BIT);
   }
 }
-gMotor.AnaMotor = new AnaMotor();

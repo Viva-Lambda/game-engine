@@ -1,6 +1,5 @@
 // oyun dongusu objesi
-import {gMotor} from "../Motor.js";
-import {OyunArayuzu} from "../OyunArayuzu.js";
+import {OyunArayuzu} from "../OyunArayuzu";
 
 var FPS: number = 60;         // saniyede kaç kare
 var MPF: number = 1000 / FPS; // bir kare kaç milisaniye.
@@ -52,4 +51,3 @@ export class OyunDongusu {
   baslat = baslat;
   constructor() {}
 }
-gMotor.OyunDongusu = new OyunDongusu();

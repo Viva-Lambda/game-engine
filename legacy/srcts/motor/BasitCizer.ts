@@ -1,14 +1,13 @@
 // basit cizer objesi
-import {gMotor} from "./Motor.js";
+import {gMotor} from "./MotorNesnesi";
 import {
   UniformInfo,
   AttribInfo,
   attribInfoYap,
-  uniformInfoYap,
-  glmdenListeAl
-} from "../motor/yardimcilar.js";
+  uniformInfoYap
+} from "../motor/yardimcilar";
 
-import {GLM} from "gl-matrix";
+import {vec4, mat4} from "gl-matrix";
 
 export class BasitCizer {
   //
@@ -19,6 +18,9 @@ export class BasitCizer {
   bakmaMatInfo: UniformInfo;
   constructor(noktaCiziciId: string, renklendiriciId: string) {
     //
+    if (gMotor.AnaMotor === null || gMotor.AnaMotor === undefined) {
+      throw new Error("ana motor null cizer de");
+    }
     var gl: WebGLRenderingContext = gMotor.AnaMotor.mGL;
     var noktaCizici: WebGLShader =
         this.ciziciYukleDerle(noktaCiziciId, gl.VERTEX_SHADER);
@@ -43,6 +45,10 @@ export class BasitCizer {
     }
     this.gCizerKordinatInfo = attribInfoYap(kordinatAdi, gCizerKordinatKonumu,
                                             3, gl.FLOAT, false, 0, 0);
+
+    if (gMotor.VertexBuffer === null || gMotor.VertexBuffer === undefined) {
+      throw new Error("vertex buffer null cizer de");
+    }
 
     gl.bindBuffer(gl.ARRAY_BUFFER, gMotor.VertexBuffer.glVertexRefAl());
 
@@ -81,6 +87,10 @@ export class BasitCizer {
   }
   set derlenenCizici(s: WebGLProgram) { this._derlenenCizici = s; }
   ciziciYukleDerle(dosyaYolu: string, ciziciTipi: GLenum): WebGLShader {
+    if (gMotor.AnaMotor === null || gMotor.AnaMotor === undefined) {
+      throw new Error("ana motor null cizer de");
+    }
+
     var gl: WebGLRenderingContext = gMotor.AnaMotor.mGL;
     let xmlSorgu = new XMLHttpRequest();
     xmlSorgu.open("GET", dosyaYolu, false);
@@ -110,17 +120,24 @@ export class BasitCizer {
     }
     return cizici;
   }
-  ciziciAktif(renk: GLM.IArray, bpMat: GLM.IArray): void {
+  ciziciAktif(renk: vec4, bpMat: mat4): void {
+    if (gMotor.AnaMotor === null || gMotor.AnaMotor === undefined) {
+      throw new Error("ana motor null cizer de");
+    }
+
     var gl: WebGLRenderingContext = gMotor.AnaMotor.mGL;
     gl.useProgram(this.derlenenCizici);
     gl.enableVertexAttribArray(this.gCizerKordinatInfo.konum);
     // piksel rengi
-    gl.uniform4fv(this.pikselRengiInfo.konum, glmdenListeAl(renk));
+    gl.uniform4fv(this.pikselRengiInfo.konum, renk);
     // projeksiyon matrisi
-    gl.uniformMatrix4fv(this.bakmaMatInfo.konum, false, glmdenListeAl(bpMat));
+    gl.uniformMatrix4fv(this.bakmaMatInfo.konum, false, bpMat);
   }
-  modelMatKoy(mat: GLM.IArray): void {
+  modelMatKoy(mat: mat4): void {
+    if (gMotor.AnaMotor === null || gMotor.AnaMotor === undefined) {
+      throw new Error("ana motor null cizer de");
+    }
     var gl: WebGLRenderingContext = gMotor.AnaMotor.mGL;
-    gl.uniformMatrix4fv(this.modelMatInfo.konum, false, glmdenListeAl(mat));
+    gl.uniformMatrix4fv(this.modelMatInfo.konum, false, mat);
   }
 }

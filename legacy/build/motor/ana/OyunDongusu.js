@@ -1,4 +1,6 @@
-import { gMotor } from "../Motor.js";
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.OyunDongusu = void 0;
 var FPS = 60;
 var MPF = 1000 / FPS;
 var oncekiSure = null;
@@ -32,12 +34,13 @@ var baslat = function (oyun) {
     oncekiSure = Date.now();
     gecikenSure = 0.0;
     donguCalisiyorMu = true;
-    requestAnimationFrame(() => { _donguCalistir.call(oyunum); });
+    requestAnimationFrame(function () { _donguCalistir.call(oyunum); });
 };
-export class OyunDongusu {
-    constructor() {
+var OyunDongusu = (function () {
+    function OyunDongusu() {
         this.baslat = baslat;
     }
-}
-gMotor.OyunDongusu = new OyunDongusu();
+    return OyunDongusu;
+}());
+exports.OyunDongusu = OyunDongusu;
 //# sourceMappingURL=OyunDongusu.js.map

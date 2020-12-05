@@ -1,0 +1,255 @@
+======== Resolving module './oyun/Oyunum.js' from '/media/kaan/Data7510/GitProjects/2dgameEngine/WebOyunMotoru/legacy/srcts/index.ts'. ========
+Explicitly specified module resolution kind: 'NodeJs'.
+Loading module as file / folder, candidate module location '/media/kaan/Data7510/GitProjects/2dgameEngine/WebOyunMotoru/legacy/srcts/oyun/Oyunum.js', target file type 'TypeScript'.
+File '/media/kaan/Data7510/GitProjects/2dgameEngine/WebOyunMotoru/legacy/srcts/oyun/Oyunum.js.ts' does not exist.
+File '/media/kaan/Data7510/GitProjects/2dgameEngine/WebOyunMotoru/legacy/srcts/oyun/Oyunum.js.tsx' does not exist.
+File '/media/kaan/Data7510/GitProjects/2dgameEngine/WebOyunMotoru/legacy/srcts/oyun/Oyunum.js.d.ts' does not exist.
+File name '/media/kaan/Data7510/GitProjects/2dgameEngine/WebOyunMotoru/legacy/srcts/oyun/Oyunum.js' has a '.js' extension - stripping it.
+File '/media/kaan/Data7510/GitProjects/2dgameEngine/WebOyunMotoru/legacy/srcts/oyun/Oyunum.ts' exist - use it as a name resolution result.
+======== Module name './oyun/Oyunum.js' was successfully resolved to '/media/kaan/Data7510/GitProjects/2dgameEngine/WebOyunMotoru/legacy/srcts/oyun/Oyunum.ts'. ========
+======== Resolving module 'gl-matrix' from '/media/kaan/Data7510/GitProjects/2dgameEngine/WebOyunMotoru/legacy/srcts/oyun/Oyunum.ts'. ========
+Explicitly specified module resolution kind: 'NodeJs'.
+'baseUrl' option is set to '/media/kaan/Data7510/GitProjects/2dgameEngine/WebOyunMotoru/legacy', using this value to resolve non-relative module name 'gl-matrix'.
+'paths' option is specified, looking for a pattern to match module name 'gl-matrix'.
+Module name 'gl-matrix', matched pattern 'gl-matrix'.
+Trying substitution '../node_modules/gl-matrix/index.d.ts', candidate module location: '../node_modules/gl-matrix/index.d.ts'.
+File '/media/kaan/Data7510/GitProjects/2dgameEngine/WebOyunMotoru/node_modules/gl-matrix/index.d.ts' exist - use it as a name resolution result.
+======== Module name 'gl-matrix' was successfully resolved to '/media/kaan/Data7510/GitProjects/2dgameEngine/WebOyunMotoru/node_modules/gl-matrix/index.d.ts'. ========
+======== Resolving module '../motor/MotorNesne.js' from '/media/kaan/Data7510/GitProjects/2dgameEngine/WebOyunMotoru/legacy/srcts/oyun/Oyunum.ts'. ========
+Explicitly specified module resolution kind: 'NodeJs'.
+Loading module as file / folder, candidate module location '/media/kaan/Data7510/GitProjects/2dgameEngine/WebOyunMotoru/legacy/srcts/motor/MotorNesne.js', target file type 'TypeScript'.
+File '/media/kaan/Data7510/GitProjects/2dgameEngine/WebOyunMotoru/legacy/srcts/motor/MotorNesne.js.ts' does not exist.
+File '/media/kaan/Data7510/GitProjects/2dgameEngine/WebOyunMotoru/legacy/srcts/motor/MotorNesne.js.tsx' does not exist.
+File '/media/kaan/Data7510/GitProjects/2dgameEngine/WebOyunMotoru/legacy/srcts/motor/MotorNesne.js.d.ts' does not exist.
+File name '/media/kaan/Data7510/GitProjects/2dgameEngine/WebOyunMotoru/legacy/srcts/motor/MotorNesne.js' has a '.js' extension - stripping it.
+File '/media/kaan/Data7510/GitProjects/2dgameEngine/WebOyunMotoru/legacy/srcts/motor/MotorNesne.ts' exist - use it as a name resolution result.
+======== Module name '../motor/MotorNesne.js' was successfully resolved to '/media/kaan/Data7510/GitProjects/2dgameEngine/WebOyunMotoru/legacy/srcts/motor/MotorNesne.ts'. ========
+======== Resolving module '../motor/BasitCizer.js' from '/media/kaan/Data7510/GitProjects/2dgameEngine/WebOyunMotoru/legacy/srcts/oyun/Oyunum.ts'. ========
+Explicitly specified module resolution kind: 'NodeJs'.
+Loading module as file / folder, candidate module location '/media/kaan/Data7510/GitProjects/2dgameEngine/WebOyunMotoru/legacy/srcts/motor/BasitCizer.js', target file type 'TypeScript'.
+File '/media/kaan/Data7510/GitProjects/2dgameEngine/WebOyunMotoru/legacy/srcts/motor/BasitCizer.js.ts' does not exist.
+File '/media/kaan/Data7510/GitProjects/2dgameEngine/WebOyunMotoru/legacy/srcts/motor/BasitCizer.js.tsx' does not exist.
+File '/media/kaan/Data7510/GitProjects/2dgameEngine/WebOyunMotoru/legacy/srcts/motor/BasitCizer.js.d.ts' does not exist.
+File name '/media/kaan/Data7510/GitProjects/2dgameEngine/WebOyunMotoru/legacy/srcts/motor/BasitCizer.js' has a '.js' extension - stripping it.
+File '/media/kaan/Data7510/GitProjects/2dgameEngine/WebOyunMotoru/legacy/srcts/motor/BasitCizer.ts' exist - use it as a name resolution result.
+======== Module name '../motor/BasitCizer.js' was successfully resolved to '/media/kaan/Data7510/GitProjects/2dgameEngine/WebOyunMotoru/legacy/srcts/motor/BasitCizer.ts'. ========
+======== Resolving module '../motor/Cizilebilir.js' from '/media/kaan/Data7510/GitProjects/2dgameEngine/WebOyunMotoru/legacy/srcts/oyun/Oyunum.ts'. ========
+Explicitly specified module resolution kind: 'NodeJs'.
+Loading module as file / folder, candidate module location '/media/kaan/Data7510/GitProjects/2dgameEngine/WebOyunMotoru/legacy/srcts/motor/Cizilebilir.js', target file type 'TypeScript'.
+File '/media/kaan/Data7510/GitProjects/2dgameEngine/WebOyunMotoru/legacy/srcts/motor/Cizilebilir.js.ts' does not exist.
+File '/media/kaan/Data7510/GitProjects/2dgameEngine/WebOyunMotoru/legacy/srcts/motor/Cizilebilir.js.tsx' does not exist.
+File '/media/kaan/Data7510/GitProjects/2dgameEngine/WebOyunMotoru/legacy/srcts/motor/Cizilebilir.js.d.ts' does not exist.
+File name '/media/kaan/Data7510/GitProjects/2dgameEngine/WebOyunMotoru/legacy/srcts/motor/Cizilebilir.js' has a '.js' extension - stripping it.
+File '/media/kaan/Data7510/GitProjects/2dgameEngine/WebOyunMotoru/legacy/srcts/motor/Cizilebilir.ts' exist - use it as a name resolution result.
+======== Module name '../motor/Cizilebilir.js' was successfully resolved to '/media/kaan/Data7510/GitProjects/2dgameEngine/WebOyunMotoru/legacy/srcts/motor/Cizilebilir.ts'. ========
+======== Resolving module '../motor/Kamera.js' from '/media/kaan/Data7510/GitProjects/2dgameEngine/WebOyunMotoru/legacy/srcts/oyun/Oyunum.ts'. ========
+Explicitly specified module resolution kind: 'NodeJs'.
+Loading module as file / folder, candidate module location '/media/kaan/Data7510/GitProjects/2dgameEngine/WebOyunMotoru/legacy/srcts/motor/Kamera.js', target file type 'TypeScript'.
+File '/media/kaan/Data7510/GitProjects/2dgameEngine/WebOyunMotoru/legacy/srcts/motor/Kamera.js.ts' does not exist.
+File '/media/kaan/Data7510/GitProjects/2dgameEngine/WebOyunMotoru/legacy/srcts/motor/Kamera.js.tsx' does not exist.
+File '/media/kaan/Data7510/GitProjects/2dgameEngine/WebOyunMotoru/legacy/srcts/motor/Kamera.js.d.ts' does not exist.
+File name '/media/kaan/Data7510/GitProjects/2dgameEngine/WebOyunMotoru/legacy/srcts/motor/Kamera.js' has a '.js' extension - stripping it.
+File '/media/kaan/Data7510/GitProjects/2dgameEngine/WebOyunMotoru/legacy/srcts/motor/Kamera.ts' exist - use it as a name resolution result.
+======== Module name '../motor/Kamera.js' was successfully resolved to '/media/kaan/Data7510/GitProjects/2dgameEngine/WebOyunMotoru/legacy/srcts/motor/Kamera.ts'. ========
+======== Resolving module '../motor/OyunArayuzu.js' from '/media/kaan/Data7510/GitProjects/2dgameEngine/WebOyunMotoru/legacy/srcts/oyun/Oyunum.ts'. ========
+Explicitly specified module resolution kind: 'NodeJs'.
+Loading module as file / folder, candidate module location '/media/kaan/Data7510/GitProjects/2dgameEngine/WebOyunMotoru/legacy/srcts/motor/OyunArayuzu.js', target file type 'TypeScript'.
+File '/media/kaan/Data7510/GitProjects/2dgameEngine/WebOyunMotoru/legacy/srcts/motor/OyunArayuzu.js.ts' does not exist.
+File '/media/kaan/Data7510/GitProjects/2dgameEngine/WebOyunMotoru/legacy/srcts/motor/OyunArayuzu.js.tsx' does not exist.
+File '/media/kaan/Data7510/GitProjects/2dgameEngine/WebOyunMotoru/legacy/srcts/motor/OyunArayuzu.js.d.ts' does not exist.
+File name '/media/kaan/Data7510/GitProjects/2dgameEngine/WebOyunMotoru/legacy/srcts/motor/OyunArayuzu.js' has a '.js' extension - stripping it.
+File '/media/kaan/Data7510/GitProjects/2dgameEngine/WebOyunMotoru/legacy/srcts/motor/OyunArayuzu.ts' exist - use it as a name resolution result.
+======== Module name '../motor/OyunArayuzu.js' was successfully resolved to '/media/kaan/Data7510/GitProjects/2dgameEngine/WebOyunMotoru/legacy/srcts/motor/OyunArayuzu.ts'. ========
+======== Resolving module './Motor.js' from '/media/kaan/Data7510/GitProjects/2dgameEngine/WebOyunMotoru/legacy/srcts/motor/MotorNesne.ts'. ========
+Explicitly specified module resolution kind: 'NodeJs'.
+Loading module as file / folder, candidate module location '/media/kaan/Data7510/GitProjects/2dgameEngine/WebOyunMotoru/legacy/srcts/motor/Motor.js', target file type 'TypeScript'.
+File '/media/kaan/Data7510/GitProjects/2dgameEngine/WebOyunMotoru/legacy/srcts/motor/Motor.js.ts' does not exist.
+File '/media/kaan/Data7510/GitProjects/2dgameEngine/WebOyunMotoru/legacy/srcts/motor/Motor.js.tsx' does not exist.
+File '/media/kaan/Data7510/GitProjects/2dgameEngine/WebOyunMotoru/legacy/srcts/motor/Motor.js.d.ts' does not exist.
+File name '/media/kaan/Data7510/GitProjects/2dgameEngine/WebOyunMotoru/legacy/srcts/motor/Motor.js' has a '.js' extension - stripping it.
+File '/media/kaan/Data7510/GitProjects/2dgameEngine/WebOyunMotoru/legacy/srcts/motor/Motor.ts' exist - use it as a name resolution result.
+======== Module name './Motor.js' was successfully resolved to '/media/kaan/Data7510/GitProjects/2dgameEngine/WebOyunMotoru/legacy/srcts/motor/Motor.ts'. ========
+======== Resolving module './ana/AnaMotor.js' from '/media/kaan/Data7510/GitProjects/2dgameEngine/WebOyunMotoru/legacy/srcts/motor/Motor.ts'. ========
+Explicitly specified module resolution kind: 'NodeJs'.
+Loading module as file / folder, candidate module location '/media/kaan/Data7510/GitProjects/2dgameEngine/WebOyunMotoru/legacy/srcts/motor/ana/AnaMotor.js', target file type 'TypeScript'.
+File '/media/kaan/Data7510/GitProjects/2dgameEngine/WebOyunMotoru/legacy/srcts/motor/ana/AnaMotor.js.ts' does not exist.
+File '/media/kaan/Data7510/GitProjects/2dgameEngine/WebOyunMotoru/legacy/srcts/motor/ana/AnaMotor.js.tsx' does not exist.
+File '/media/kaan/Data7510/GitProjects/2dgameEngine/WebOyunMotoru/legacy/srcts/motor/ana/AnaMotor.js.d.ts' does not exist.
+File name '/media/kaan/Data7510/GitProjects/2dgameEngine/WebOyunMotoru/legacy/srcts/motor/ana/AnaMotor.js' has a '.js' extension - stripping it.
+File '/media/kaan/Data7510/GitProjects/2dgameEngine/WebOyunMotoru/legacy/srcts/motor/ana/AnaMotor.ts' exist - use it as a name resolution result.
+======== Module name './ana/AnaMotor.js' was successfully resolved to '/media/kaan/Data7510/GitProjects/2dgameEngine/WebOyunMotoru/legacy/srcts/motor/ana/AnaMotor.ts'. ========
+======== Resolving module './ana/VertexBuffer.js' from '/media/kaan/Data7510/GitProjects/2dgameEngine/WebOyunMotoru/legacy/srcts/motor/Motor.ts'. ========
+Explicitly specified module resolution kind: 'NodeJs'.
+Loading module as file / folder, candidate module location '/media/kaan/Data7510/GitProjects/2dgameEngine/WebOyunMotoru/legacy/srcts/motor/ana/VertexBuffer.js', target file type 'TypeScript'.
+File '/media/kaan/Data7510/GitProjects/2dgameEngine/WebOyunMotoru/legacy/srcts/motor/ana/VertexBuffer.js.ts' does not exist.
+File '/media/kaan/Data7510/GitProjects/2dgameEngine/WebOyunMotoru/legacy/srcts/motor/ana/VertexBuffer.js.tsx' does not exist.
+File '/media/kaan/Data7510/GitProjects/2dgameEngine/WebOyunMotoru/legacy/srcts/motor/ana/VertexBuffer.js.d.ts' does not exist.
+File name '/media/kaan/Data7510/GitProjects/2dgameEngine/WebOyunMotoru/legacy/srcts/motor/ana/VertexBuffer.js' has a '.js' extension - stripping it.
+File '/media/kaan/Data7510/GitProjects/2dgameEngine/WebOyunMotoru/legacy/srcts/motor/ana/VertexBuffer.ts' exist - use it as a name resolution result.
+======== Module name './ana/VertexBuffer.js' was successfully resolved to '/media/kaan/Data7510/GitProjects/2dgameEngine/WebOyunMotoru/legacy/srcts/motor/ana/VertexBuffer.ts'. ========
+======== Resolving module './ana/OyunDongusu.js' from '/media/kaan/Data7510/GitProjects/2dgameEngine/WebOyunMotoru/legacy/srcts/motor/Motor.ts'. ========
+Explicitly specified module resolution kind: 'NodeJs'.
+Loading module as file / folder, candidate module location '/media/kaan/Data7510/GitProjects/2dgameEngine/WebOyunMotoru/legacy/srcts/motor/ana/OyunDongusu.js', target file type 'TypeScript'.
+File '/media/kaan/Data7510/GitProjects/2dgameEngine/WebOyunMotoru/legacy/srcts/motor/ana/OyunDongusu.js.ts' does not exist.
+File '/media/kaan/Data7510/GitProjects/2dgameEngine/WebOyunMotoru/legacy/srcts/motor/ana/OyunDongusu.js.tsx' does not exist.
+File '/media/kaan/Data7510/GitProjects/2dgameEngine/WebOyunMotoru/legacy/srcts/motor/ana/OyunDongusu.js.d.ts' does not exist.
+File name '/media/kaan/Data7510/GitProjects/2dgameEngine/WebOyunMotoru/legacy/srcts/motor/ana/OyunDongusu.js' has a '.js' extension - stripping it.
+File '/media/kaan/Data7510/GitProjects/2dgameEngine/WebOyunMotoru/legacy/srcts/motor/ana/OyunDongusu.ts' exist - use it as a name resolution result.
+======== Module name './ana/OyunDongusu.js' was successfully resolved to '/media/kaan/Data7510/GitProjects/2dgameEngine/WebOyunMotoru/legacy/srcts/motor/ana/OyunDongusu.ts'. ========
+======== Resolving module '../MotorNesne.js' from '/media/kaan/Data7510/GitProjects/2dgameEngine/WebOyunMotoru/legacy/srcts/motor/ana/AnaMotor.ts'. ========
+Explicitly specified module resolution kind: 'NodeJs'.
+Loading module as file / folder, candidate module location '/media/kaan/Data7510/GitProjects/2dgameEngine/WebOyunMotoru/legacy/srcts/motor/MotorNesne.js', target file type 'TypeScript'.
+File '/media/kaan/Data7510/GitProjects/2dgameEngine/WebOyunMotoru/legacy/srcts/motor/MotorNesne.js.ts' does not exist.
+File '/media/kaan/Data7510/GitProjects/2dgameEngine/WebOyunMotoru/legacy/srcts/motor/MotorNesne.js.tsx' does not exist.
+File '/media/kaan/Data7510/GitProjects/2dgameEngine/WebOyunMotoru/legacy/srcts/motor/MotorNesne.js.d.ts' does not exist.
+File name '/media/kaan/Data7510/GitProjects/2dgameEngine/WebOyunMotoru/legacy/srcts/motor/MotorNesne.js' has a '.js' extension - stripping it.
+File '/media/kaan/Data7510/GitProjects/2dgameEngine/WebOyunMotoru/legacy/srcts/motor/MotorNesne.ts' exist - use it as a name resolution result.
+======== Module name '../MotorNesne.js' was successfully resolved to '/media/kaan/Data7510/GitProjects/2dgameEngine/WebOyunMotoru/legacy/srcts/motor/MotorNesne.ts'. ========
+======== Resolving module 'gl-matrix' from '/media/kaan/Data7510/GitProjects/2dgameEngine/WebOyunMotoru/legacy/srcts/motor/ana/AnaMotor.ts'. ========
+Explicitly specified module resolution kind: 'NodeJs'.
+'baseUrl' option is set to '/media/kaan/Data7510/GitProjects/2dgameEngine/WebOyunMotoru/legacy', using this value to resolve non-relative module name 'gl-matrix'.
+'paths' option is specified, looking for a pattern to match module name 'gl-matrix'.
+Module name 'gl-matrix', matched pattern 'gl-matrix'.
+Trying substitution '../node_modules/gl-matrix/index.d.ts', candidate module location: '../node_modules/gl-matrix/index.d.ts'.
+File '/media/kaan/Data7510/GitProjects/2dgameEngine/WebOyunMotoru/node_modules/gl-matrix/index.d.ts' exist - use it as a name resolution result.
+======== Module name 'gl-matrix' was successfully resolved to '/media/kaan/Data7510/GitProjects/2dgameEngine/WebOyunMotoru/node_modules/gl-matrix/index.d.ts'. ========
+======== Resolving module '../MotorNesne.js' from '/media/kaan/Data7510/GitProjects/2dgameEngine/WebOyunMotoru/legacy/srcts/motor/ana/VertexBuffer.ts'. ========
+Resolution for module '../MotorNesne.js' was found in cache from location '/media/kaan/Data7510/GitProjects/2dgameEngine/WebOyunMotoru/legacy/srcts/motor/ana'.
+======== Module name '../MotorNesne.js' was successfully resolved to '/media/kaan/Data7510/GitProjects/2dgameEngine/WebOyunMotoru/legacy/srcts/motor/MotorNesne.ts'. ========
+======== Resolving module '../OyunArayuzu.js' from '/media/kaan/Data7510/GitProjects/2dgameEngine/WebOyunMotoru/legacy/srcts/motor/ana/OyunDongusu.ts'. ========
+Explicitly specified module resolution kind: 'NodeJs'.
+Loading module as file / folder, candidate module location '/media/kaan/Data7510/GitProjects/2dgameEngine/WebOyunMotoru/legacy/srcts/motor/OyunArayuzu.js', target file type 'TypeScript'.
+File '/media/kaan/Data7510/GitProjects/2dgameEngine/WebOyunMotoru/legacy/srcts/motor/OyunArayuzu.js.ts' does not exist.
+File '/media/kaan/Data7510/GitProjects/2dgameEngine/WebOyunMotoru/legacy/srcts/motor/OyunArayuzu.js.tsx' does not exist.
+File '/media/kaan/Data7510/GitProjects/2dgameEngine/WebOyunMotoru/legacy/srcts/motor/OyunArayuzu.js.d.ts' does not exist.
+File name '/media/kaan/Data7510/GitProjects/2dgameEngine/WebOyunMotoru/legacy/srcts/motor/OyunArayuzu.js' has a '.js' extension - stripping it.
+File '/media/kaan/Data7510/GitProjects/2dgameEngine/WebOyunMotoru/legacy/srcts/motor/OyunArayuzu.ts' exist - use it as a name resolution result.
+======== Module name '../OyunArayuzu.js' was successfully resolved to '/media/kaan/Data7510/GitProjects/2dgameEngine/WebOyunMotoru/legacy/srcts/motor/OyunArayuzu.ts'. ========
+======== Resolving module './MotorNesne.js' from '/media/kaan/Data7510/GitProjects/2dgameEngine/WebOyunMotoru/legacy/srcts/motor/BasitCizer.ts'. ========
+Explicitly specified module resolution kind: 'NodeJs'.
+Loading module as file / folder, candidate module location '/media/kaan/Data7510/GitProjects/2dgameEngine/WebOyunMotoru/legacy/srcts/motor/MotorNesne.js', target file type 'TypeScript'.
+File '/media/kaan/Data7510/GitProjects/2dgameEngine/WebOyunMotoru/legacy/srcts/motor/MotorNesne.js.ts' does not exist.
+File '/media/kaan/Data7510/GitProjects/2dgameEngine/WebOyunMotoru/legacy/srcts/motor/MotorNesne.js.tsx' does not exist.
+File '/media/kaan/Data7510/GitProjects/2dgameEngine/WebOyunMotoru/legacy/srcts/motor/MotorNesne.js.d.ts' does not exist.
+File name '/media/kaan/Data7510/GitProjects/2dgameEngine/WebOyunMotoru/legacy/srcts/motor/MotorNesne.js' has a '.js' extension - stripping it.
+File '/media/kaan/Data7510/GitProjects/2dgameEngine/WebOyunMotoru/legacy/srcts/motor/MotorNesne.ts' exist - use it as a name resolution result.
+======== Module name './MotorNesne.js' was successfully resolved to '/media/kaan/Data7510/GitProjects/2dgameEngine/WebOyunMotoru/legacy/srcts/motor/MotorNesne.ts'. ========
+======== Resolving module '../motor/yardimcilar.js' from '/media/kaan/Data7510/GitProjects/2dgameEngine/WebOyunMotoru/legacy/srcts/motor/BasitCizer.ts'. ========
+Explicitly specified module resolution kind: 'NodeJs'.
+Loading module as file / folder, candidate module location '/media/kaan/Data7510/GitProjects/2dgameEngine/WebOyunMotoru/legacy/srcts/motor/yardimcilar.js', target file type 'TypeScript'.
+File '/media/kaan/Data7510/GitProjects/2dgameEngine/WebOyunMotoru/legacy/srcts/motor/yardimcilar.js.ts' does not exist.
+File '/media/kaan/Data7510/GitProjects/2dgameEngine/WebOyunMotoru/legacy/srcts/motor/yardimcilar.js.tsx' does not exist.
+File '/media/kaan/Data7510/GitProjects/2dgameEngine/WebOyunMotoru/legacy/srcts/motor/yardimcilar.js.d.ts' does not exist.
+File name '/media/kaan/Data7510/GitProjects/2dgameEngine/WebOyunMotoru/legacy/srcts/motor/yardimcilar.js' has a '.js' extension - stripping it.
+File '/media/kaan/Data7510/GitProjects/2dgameEngine/WebOyunMotoru/legacy/srcts/motor/yardimcilar.ts' exist - use it as a name resolution result.
+======== Module name '../motor/yardimcilar.js' was successfully resolved to '/media/kaan/Data7510/GitProjects/2dgameEngine/WebOyunMotoru/legacy/srcts/motor/yardimcilar.ts'. ========
+======== Resolving module 'gl-matrix' from '/media/kaan/Data7510/GitProjects/2dgameEngine/WebOyunMotoru/legacy/srcts/motor/BasitCizer.ts'. ========
+Explicitly specified module resolution kind: 'NodeJs'.
+'baseUrl' option is set to '/media/kaan/Data7510/GitProjects/2dgameEngine/WebOyunMotoru/legacy', using this value to resolve non-relative module name 'gl-matrix'.
+'paths' option is specified, looking for a pattern to match module name 'gl-matrix'.
+Module name 'gl-matrix', matched pattern 'gl-matrix'.
+Trying substitution '../node_modules/gl-matrix/index.d.ts', candidate module location: '../node_modules/gl-matrix/index.d.ts'.
+File '/media/kaan/Data7510/GitProjects/2dgameEngine/WebOyunMotoru/node_modules/gl-matrix/index.d.ts' exist - use it as a name resolution result.
+======== Module name 'gl-matrix' was successfully resolved to '/media/kaan/Data7510/GitProjects/2dgameEngine/WebOyunMotoru/node_modules/gl-matrix/index.d.ts'. ========
+======== Resolving module 'gl-matrix' from '/media/kaan/Data7510/GitProjects/2dgameEngine/WebOyunMotoru/legacy/srcts/motor/Cizilebilir.ts'. ========
+Resolution for module 'gl-matrix' was found in cache from location '/media/kaan/Data7510/GitProjects/2dgameEngine/WebOyunMotoru/legacy/srcts/motor'.
+======== Module name 'gl-matrix' was successfully resolved to '/media/kaan/Data7510/GitProjects/2dgameEngine/WebOyunMotoru/node_modules/gl-matrix/index.d.ts'. ========
+======== Resolving module './BasitCizer.js' from '/media/kaan/Data7510/GitProjects/2dgameEngine/WebOyunMotoru/legacy/srcts/motor/Cizilebilir.ts'. ========
+Explicitly specified module resolution kind: 'NodeJs'.
+Loading module as file / folder, candidate module location '/media/kaan/Data7510/GitProjects/2dgameEngine/WebOyunMotoru/legacy/srcts/motor/BasitCizer.js', target file type 'TypeScript'.
+File '/media/kaan/Data7510/GitProjects/2dgameEngine/WebOyunMotoru/legacy/srcts/motor/BasitCizer.js.ts' does not exist.
+File '/media/kaan/Data7510/GitProjects/2dgameEngine/WebOyunMotoru/legacy/srcts/motor/BasitCizer.js.tsx' does not exist.
+File '/media/kaan/Data7510/GitProjects/2dgameEngine/WebOyunMotoru/legacy/srcts/motor/BasitCizer.js.d.ts' does not exist.
+File name '/media/kaan/Data7510/GitProjects/2dgameEngine/WebOyunMotoru/legacy/srcts/motor/BasitCizer.js' has a '.js' extension - stripping it.
+File '/media/kaan/Data7510/GitProjects/2dgameEngine/WebOyunMotoru/legacy/srcts/motor/BasitCizer.ts' exist - use it as a name resolution result.
+======== Module name './BasitCizer.js' was successfully resolved to '/media/kaan/Data7510/GitProjects/2dgameEngine/WebOyunMotoru/legacy/srcts/motor/BasitCizer.ts'. ========
+======== Resolving module './Donusturucu.js' from '/media/kaan/Data7510/GitProjects/2dgameEngine/WebOyunMotoru/legacy/srcts/motor/Cizilebilir.ts'. ========
+Explicitly specified module resolution kind: 'NodeJs'.
+Loading module as file / folder, candidate module location '/media/kaan/Data7510/GitProjects/2dgameEngine/WebOyunMotoru/legacy/srcts/motor/Donusturucu.js', target file type 'TypeScript'.
+File '/media/kaan/Data7510/GitProjects/2dgameEngine/WebOyunMotoru/legacy/srcts/motor/Donusturucu.js.ts' does not exist.
+File '/media/kaan/Data7510/GitProjects/2dgameEngine/WebOyunMotoru/legacy/srcts/motor/Donusturucu.js.tsx' does not exist.
+File '/media/kaan/Data7510/GitProjects/2dgameEngine/WebOyunMotoru/legacy/srcts/motor/Donusturucu.js.d.ts' does not exist.
+File name '/media/kaan/Data7510/GitProjects/2dgameEngine/WebOyunMotoru/legacy/srcts/motor/Donusturucu.js' has a '.js' extension - stripping it.
+File '/media/kaan/Data7510/GitProjects/2dgameEngine/WebOyunMotoru/legacy/srcts/motor/Donusturucu.ts' exist - use it as a name resolution result.
+======== Module name './Donusturucu.js' was successfully resolved to '/media/kaan/Data7510/GitProjects/2dgameEngine/WebOyunMotoru/legacy/srcts/motor/Donusturucu.ts'. ========
+======== Resolving module '../motor/MotorNesne.js' from '/media/kaan/Data7510/GitProjects/2dgameEngine/WebOyunMotoru/legacy/srcts/motor/Cizilebilir.ts'. ========
+Explicitly specified module resolution kind: 'NodeJs'.
+Loading module as file / folder, candidate module location '/media/kaan/Data7510/GitProjects/2dgameEngine/WebOyunMotoru/legacy/srcts/motor/MotorNesne.js', target file type 'TypeScript'.
+File '/media/kaan/Data7510/GitProjects/2dgameEngine/WebOyunMotoru/legacy/srcts/motor/MotorNesne.js.ts' does not exist.
+File '/media/kaan/Data7510/GitProjects/2dgameEngine/WebOyunMotoru/legacy/srcts/motor/MotorNesne.js.tsx' does not exist.
+File '/media/kaan/Data7510/GitProjects/2dgameEngine/WebOyunMotoru/legacy/srcts/motor/MotorNesne.js.d.ts' does not exist.
+File name '/media/kaan/Data7510/GitProjects/2dgameEngine/WebOyunMotoru/legacy/srcts/motor/MotorNesne.js' has a '.js' extension - stripping it.
+File '/media/kaan/Data7510/GitProjects/2dgameEngine/WebOyunMotoru/legacy/srcts/motor/MotorNesne.ts' exist - use it as a name resolution result.
+======== Module name '../motor/MotorNesne.js' was successfully resolved to '/media/kaan/Data7510/GitProjects/2dgameEngine/WebOyunMotoru/legacy/srcts/motor/MotorNesne.ts'. ========
+======== Resolving module 'gl-matrix' from '/media/kaan/Data7510/GitProjects/2dgameEngine/WebOyunMotoru/legacy/srcts/motor/Donusturucu.ts'. ========
+Resolution for module 'gl-matrix' was found in cache from location '/media/kaan/Data7510/GitProjects/2dgameEngine/WebOyunMotoru/legacy/srcts/motor'.
+======== Module name 'gl-matrix' was successfully resolved to '/media/kaan/Data7510/GitProjects/2dgameEngine/WebOyunMotoru/node_modules/gl-matrix/index.d.ts'. ========
+======== Resolving module '../motor/yardimcilar.js' from '/media/kaan/Data7510/GitProjects/2dgameEngine/WebOyunMotoru/legacy/srcts/motor/Donusturucu.ts'. ========
+Resolution for module '../motor/yardimcilar.js' was found in cache from location '/media/kaan/Data7510/GitProjects/2dgameEngine/WebOyunMotoru/legacy/srcts/motor'.
+======== Module name '../motor/yardimcilar.js' was successfully resolved to '/media/kaan/Data7510/GitProjects/2dgameEngine/WebOyunMotoru/legacy/srcts/motor/yardimcilar.ts'. ========
+======== Resolving module 'gl-matrix' from '/media/kaan/Data7510/GitProjects/2dgameEngine/WebOyunMotoru/legacy/srcts/motor/Kamera.ts'. ========
+Resolution for module 'gl-matrix' was found in cache from location '/media/kaan/Data7510/GitProjects/2dgameEngine/WebOyunMotoru/legacy/srcts/motor'.
+======== Module name 'gl-matrix' was successfully resolved to '/media/kaan/Data7510/GitProjects/2dgameEngine/WebOyunMotoru/node_modules/gl-matrix/index.d.ts'. ========
+======== Resolving module '../motor/MotorNesne.js' from '/media/kaan/Data7510/GitProjects/2dgameEngine/WebOyunMotoru/legacy/srcts/motor/Kamera.ts'. ========
+Resolution for module '../motor/MotorNesne.js' was found in cache from location '/media/kaan/Data7510/GitProjects/2dgameEngine/WebOyunMotoru/legacy/srcts/motor'.
+======== Module name '../motor/MotorNesne.js' was successfully resolved to '/media/kaan/Data7510/GitProjects/2dgameEngine/WebOyunMotoru/legacy/srcts/motor/MotorNesne.ts'. ========
+======== Resolving module './Hatalar.js' from '/media/kaan/Data7510/GitProjects/2dgameEngine/WebOyunMotoru/legacy/srcts/lib/Matrix.ts'. ========
+Explicitly specified module resolution kind: 'NodeJs'.
+Loading module as file / folder, candidate module location '/media/kaan/Data7510/GitProjects/2dgameEngine/WebOyunMotoru/legacy/srcts/lib/Hatalar.js', target file type 'TypeScript'.
+File '/media/kaan/Data7510/GitProjects/2dgameEngine/WebOyunMotoru/legacy/srcts/lib/Hatalar.js.ts' does not exist.
+File '/media/kaan/Data7510/GitProjects/2dgameEngine/WebOyunMotoru/legacy/srcts/lib/Hatalar.js.tsx' does not exist.
+File '/media/kaan/Data7510/GitProjects/2dgameEngine/WebOyunMotoru/legacy/srcts/lib/Hatalar.js.d.ts' does not exist.
+File name '/media/kaan/Data7510/GitProjects/2dgameEngine/WebOyunMotoru/legacy/srcts/lib/Hatalar.js' has a '.js' extension - stripping it.
+File '/media/kaan/Data7510/GitProjects/2dgameEngine/WebOyunMotoru/legacy/srcts/lib/Hatalar.ts' exist - use it as a name resolution result.
+======== Module name './Hatalar.js' was successfully resolved to '/media/kaan/Data7510/GitProjects/2dgameEngine/WebOyunMotoru/legacy/srcts/lib/Hatalar.ts'. ========
+======== Resolving module '../MotorNesne.js' from '/media/kaan/Data7510/GitProjects/2dgameEngine/WebOyunMotoru/legacy/srcts/motor/ana/AnaMotorNesnesi.ts'. ========
+Resolution for module '../MotorNesne.js' was found in cache from location '/media/kaan/Data7510/GitProjects/2dgameEngine/WebOyunMotoru/legacy/srcts/motor/ana'.
+======== Module name '../MotorNesne.js' was successfully resolved to '/media/kaan/Data7510/GitProjects/2dgameEngine/WebOyunMotoru/legacy/srcts/motor/MotorNesne.ts'. ========
+======== Resolving module './AnaMotor.js' from '/media/kaan/Data7510/GitProjects/2dgameEngine/WebOyunMotoru/legacy/srcts/motor/ana/AnaMotorNesnesi.ts'. ========
+Explicitly specified module resolution kind: 'NodeJs'.
+Loading module as file / folder, candidate module location '/media/kaan/Data7510/GitProjects/2dgameEngine/WebOyunMotoru/legacy/srcts/motor/ana/AnaMotor.js', target file type 'TypeScript'.
+File '/media/kaan/Data7510/GitProjects/2dgameEngine/WebOyunMotoru/legacy/srcts/motor/ana/AnaMotor.js.ts' does not exist.
+File '/media/kaan/Data7510/GitProjects/2dgameEngine/WebOyunMotoru/legacy/srcts/motor/ana/AnaMotor.js.tsx' does not exist.
+File '/media/kaan/Data7510/GitProjects/2dgameEngine/WebOyunMotoru/legacy/srcts/motor/ana/AnaMotor.js.d.ts' does not exist.
+File name '/media/kaan/Data7510/GitProjects/2dgameEngine/WebOyunMotoru/legacy/srcts/motor/ana/AnaMotor.js' has a '.js' extension - stripping it.
+File '/media/kaan/Data7510/GitProjects/2dgameEngine/WebOyunMotoru/legacy/srcts/motor/ana/AnaMotor.ts' exist - use it as a name resolution result.
+======== Module name './AnaMotor.js' was successfully resolved to '/media/kaan/Data7510/GitProjects/2dgameEngine/WebOyunMotoru/legacy/srcts/motor/ana/AnaMotor.ts'. ========
+======== Resolving module '../MotorNesne.js' from '/media/kaan/Data7510/GitProjects/2dgameEngine/WebOyunMotoru/legacy/srcts/motor/ana/OyunDongusuNesnesi.ts'. ========
+Resolution for module '../MotorNesne.js' was found in cache from location '/media/kaan/Data7510/GitProjects/2dgameEngine/WebOyunMotoru/legacy/srcts/motor/ana'.
+======== Module name '../MotorNesne.js' was successfully resolved to '/media/kaan/Data7510/GitProjects/2dgameEngine/WebOyunMotoru/legacy/srcts/motor/MotorNesne.ts'. ========
+======== Resolving module './OyunDongusu.js' from '/media/kaan/Data7510/GitProjects/2dgameEngine/WebOyunMotoru/legacy/srcts/motor/ana/OyunDongusuNesnesi.ts'. ========
+Explicitly specified module resolution kind: 'NodeJs'.
+Loading module as file / folder, candidate module location '/media/kaan/Data7510/GitProjects/2dgameEngine/WebOyunMotoru/legacy/srcts/motor/ana/OyunDongusu.js', target file type 'TypeScript'.
+File '/media/kaan/Data7510/GitProjects/2dgameEngine/WebOyunMotoru/legacy/srcts/motor/ana/OyunDongusu.js.ts' does not exist.
+File '/media/kaan/Data7510/GitProjects/2dgameEngine/WebOyunMotoru/legacy/srcts/motor/ana/OyunDongusu.js.tsx' does not exist.
+File '/media/kaan/Data7510/GitProjects/2dgameEngine/WebOyunMotoru/legacy/srcts/motor/ana/OyunDongusu.js.d.ts' does not exist.
+File name '/media/kaan/Data7510/GitProjects/2dgameEngine/WebOyunMotoru/legacy/srcts/motor/ana/OyunDongusu.js' has a '.js' extension - stripping it.
+File '/media/kaan/Data7510/GitProjects/2dgameEngine/WebOyunMotoru/legacy/srcts/motor/ana/OyunDongusu.ts' exist - use it as a name resolution result.
+======== Module name './OyunDongusu.js' was successfully resolved to '/media/kaan/Data7510/GitProjects/2dgameEngine/WebOyunMotoru/legacy/srcts/motor/ana/OyunDongusu.ts'. ========
+======== Resolving module '../MotorNesne.js' from '/media/kaan/Data7510/GitProjects/2dgameEngine/WebOyunMotoru/legacy/srcts/motor/ana/VertexBufferNesnesi.ts'. ========
+Resolution for module '../MotorNesne.js' was found in cache from location '/media/kaan/Data7510/GitProjects/2dgameEngine/WebOyunMotoru/legacy/srcts/motor/ana'.
+======== Module name '../MotorNesne.js' was successfully resolved to '/media/kaan/Data7510/GitProjects/2dgameEngine/WebOyunMotoru/legacy/srcts/motor/MotorNesne.ts'. ========
+======== Resolving module './VertexBuffer.js' from '/media/kaan/Data7510/GitProjects/2dgameEngine/WebOyunMotoru/legacy/srcts/motor/ana/VertexBufferNesnesi.ts'. ========
+Explicitly specified module resolution kind: 'NodeJs'.
+Loading module as file / folder, candidate module location '/media/kaan/Data7510/GitProjects/2dgameEngine/WebOyunMotoru/legacy/srcts/motor/ana/VertexBuffer.js', target file type 'TypeScript'.
+File '/media/kaan/Data7510/GitProjects/2dgameEngine/WebOyunMotoru/legacy/srcts/motor/ana/VertexBuffer.js.ts' does not exist.
+File '/media/kaan/Data7510/GitProjects/2dgameEngine/WebOyunMotoru/legacy/srcts/motor/ana/VertexBuffer.js.tsx' does not exist.
+File '/media/kaan/Data7510/GitProjects/2dgameEngine/WebOyunMotoru/legacy/srcts/motor/ana/VertexBuffer.js.d.ts' does not exist.
+File name '/media/kaan/Data7510/GitProjects/2dgameEngine/WebOyunMotoru/legacy/srcts/motor/ana/VertexBuffer.js' has a '.js' extension - stripping it.
+File '/media/kaan/Data7510/GitProjects/2dgameEngine/WebOyunMotoru/legacy/srcts/motor/ana/VertexBuffer.ts' exist - use it as a name resolution result.
+======== Module name './VertexBuffer.js' was successfully resolved to '/media/kaan/Data7510/GitProjects/2dgameEngine/WebOyunMotoru/legacy/srcts/motor/ana/VertexBuffer.ts'. ========
+Files:              24
+Lines:           29600
+Nodes:          136244
+Identifiers:     51009
+Symbols:         31124
+Types:           10252
+Instantiations:   4846
+Memory used:    85205K
+I/O read:        0.01s
+I/O write:       0.00s
+Parse time:      0.46s
+Bind time:       0.21s
+Check time:      0.93s
+Emit time:       0.19s
+Total time:      1.79s

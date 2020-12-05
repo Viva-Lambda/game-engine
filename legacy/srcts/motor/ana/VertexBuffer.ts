@@ -1,5 +1,5 @@
 // vertext buffer objesi
-import {gMotor} from "../Motor.js";
+import {gMotor} from "../MotorNesnesi";
 
 export class VertexBuffer {
   _gKareNoktaBuffer: WebGLBuffer | null = null;
@@ -18,6 +18,10 @@ export class VertexBuffer {
   set gKareNoktaBuffer(gb: WebGLBuffer) { this._gKareNoktaBuffer = gb; }
   glVertexRefAl(): WebGLBuffer { return this.gKareNoktaBuffer; }
   baslat(): void {
+    if (gMotor.AnaMotor === null || gMotor.AnaMotor === undefined) {
+      throw new Error("ana motor null cizer de");
+    }
+
     var gl: WebGLRenderingContext = gMotor.AnaMotor.mGL;
     //
     var gKareNoktaBuffer_: WebGLBuffer | null = gl.createBuffer();
@@ -30,5 +34,3 @@ export class VertexBuffer {
                   gl.STATIC_DRAW);
   }
 }
-
-gMotor.VertexBuffer = new VertexBuffer();

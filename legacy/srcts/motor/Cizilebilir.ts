@@ -1,25 +1,25 @@
 // çizilebilir butun objelerin anasi
-import {vec4, GLM} from "gl-matrix";
-import {BasitCizer} from "./BasitCizer.js";
-import {Donusturme} from "./Donusturucu.js";
-import {vecMatBoyutKontrol} from "../motor/yardimcilar.js";
-import {gMotor} from "../motor/Motor.js";
+import {vec4, mat4} from "gl-matrix";
+import {BasitCizer} from "./BasitCizer";
+import {Donusturme} from "./Donusturucu";
+import {gMotor} from "../motor/MotorNesnesi";
 
 export class Cizilebilir {
   cizici: BasitCizer;
-  renk: GLM.IArray = vec4.fromValues(1, 1, 1, 1);
+  renk: vec4 = vec4.fromValues(1, 1, 1, 1);
   donustur: Donusturme = new Donusturme();
   constructor(_cizici: BasitCizer) { this.cizici = _cizici; }
-  ciz(bpMat: GLM.IArray): void {
-    vecMatBoyutKontrol(bpMat, 16, "bpMat 4x4 matris degil");
+  ciz(bpMat: mat4): void {
+
+    if (gMotor.AnaMotor === null || gMotor.AnaMotor === undefined) {
+      throw new Error("ana motor null cizer de");
+    }
+
     var gl: WebGLRenderingContext = gMotor.AnaMotor.mGL;
     this.cizici.ciziciAktif(this.renk, bpMat);
     this.cizici.modelMatKoy(this.donustur.modelMatAl());
     gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
   }
-  renkKoy(renk: GLM.IArray) {
-    vecMatBoyutKontrol(renk, 4, "renk vec4 degil");
-    this.renk = renk;
-  }
-  renkAl(): GLM.IArray { return this.renk; }
+  renkKoy(renk: vec4) { this.renk = renk; }
+  renkAl(): vec4 { return this.renk; }
 }

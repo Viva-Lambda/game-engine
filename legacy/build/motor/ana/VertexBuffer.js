@@ -1,6 +1,9 @@
-import { gMotor } from "../Motor.js";
-export class VertexBuffer {
-    constructor() {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.VertexBuffer = void 0;
+var MotorNesne_js_1 = require("../MotorNesne.js");
+var VertexBuffer = (function () {
+    function VertexBuffer() {
         this._gKareNoktaBuffer = null;
         this.kareKordinatlari = [
             0.5, 0.5, 0.0,
@@ -9,16 +12,20 @@ export class VertexBuffer {
             -0.5, -0.5, 0.0
         ];
     }
-    get gKareNoktaBuffer() {
-        if (this._gKareNoktaBuffer == null) {
-            throw new Error("WebGL buffer olusturulmamis");
-        }
-        return this._gKareNoktaBuffer;
-    }
-    set gKareNoktaBuffer(gb) { this._gKareNoktaBuffer = gb; }
-    glVertexRefAl() { return this.gKareNoktaBuffer; }
-    baslat() {
-        var gl = gMotor.AnaMotor.mGL;
+    Object.defineProperty(VertexBuffer.prototype, "gKareNoktaBuffer", {
+        get: function () {
+            if (this._gKareNoktaBuffer == null) {
+                throw new Error("WebGL buffer olusturulmamis");
+            }
+            return this._gKareNoktaBuffer;
+        },
+        set: function (gb) { this._gKareNoktaBuffer = gb; },
+        enumerable: false,
+        configurable: true
+    });
+    VertexBuffer.prototype.glVertexRefAl = function () { return this.gKareNoktaBuffer; };
+    VertexBuffer.prototype.baslat = function () {
+        var gl = MotorNesne_js_1.gMotor.AnaMotor.mGL;
         var gKareNoktaBuffer_ = gl.createBuffer();
         if (gKareNoktaBuffer_ == null) {
             throw new Error("Buffer olusturulamadi");
@@ -26,7 +33,8 @@ export class VertexBuffer {
         this.gKareNoktaBuffer = gKareNoktaBuffer_;
         gl.bindBuffer(gl.ARRAY_BUFFER, this.gKareNoktaBuffer);
         gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(this.kareKordinatlari), gl.STATIC_DRAW);
-    }
-}
-gMotor.VertexBuffer = new VertexBuffer();
+    };
+    return VertexBuffer;
+}());
+exports.VertexBuffer = VertexBuffer;
 //# sourceMappingURL=VertexBuffer.js.map

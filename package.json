@@ -1,26 +1,30 @@
 {
-  "name": "weboyunmotoru",
-  "version": "1.0.0",
-  "description": "2.5 D oyun motoru hem js hem ts",
-  "main": "index.js",
-  "directories": {
-    "doc": "docs"
-  },
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+ssh://git@gitlab.com/QmAuber/weboyunmotoru.git"
-  },
-  "author": "Qm Auber",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://gitlab.com/QmAuber/weboyunmotoru/issues"
-  },
-  "homepage": "https://gitlab.com/QmAuber/weboyunmotoru#readme",
-  "devDependencies": {
-    "gl-matrix": "^3.3.0",
-    "typescript": "^4.0.5"
-  }
+    "name": "weboyunmotoru",
+    "version": "1.0.0",
+    "description": "2.5 D oyun motoru hem js hem ts",
+    "main": "index.js",
+    "directories": {
+        "doc": "docs"
+    },
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "build": "browserify ./legacy/srcts/index.ts -p [ tsify --project ./legacy/legacy_tsconfig.json ] > ./legacy/dist/bundle2.js"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+ssh://git@gitlab.com/QmAuber/weboyunmotoru.git"
+    },
+    "author": "Qm Auber",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://gitlab.com/QmAuber/weboyunmotoru/issues"
+    },
+    "homepage": "https://gitlab.com/QmAuber/weboyunmotoru#readme",
+    "devDependencies": {
+        "browserify": "^17.0.0",
+        "gl-matrix": "^3.3.0",
+        "tsify": "^5.0.2",
+        "typescript": "^4.0.5"
+    },
+    "dependencies": {}
 }

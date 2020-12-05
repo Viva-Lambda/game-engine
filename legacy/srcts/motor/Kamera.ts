@@ -1,25 +1,31 @@
 // kamera objesi
-import {vec4, mat4, GLM} from "gl-matrix";
-import {vecMatBoyutKontrol} from "../motor/yardimcilar.js";
-import {gMotor} from "../motor/Motor.js";
+import {vec3, vec4, mat4} from "gl-matrix";
+import {gMotor} from "../motor/MotorNesnesi";
 
 export class Kamera {
-  merkez: GLM.IArray;
+  merkez: vec3;
   pgenislik: number;
-  gorusAlaniListesi: GLM.IArray;
+  gorusAlaniListesi: vec4;
   yakinPlan: number = 0;
   uzakPlan: number = 1000;
   bakmaMat = mat4.create();
   projMat = mat4.create();
   bakmaProjMat = mat4.create();
-  _arkaPlanRengi: GLM.IArray = vec4.fromValues(0.7, 0.7, 0.7, 1);
-  constructor(_merkez: GLM.IArray, pencereGenisligi: number,
-              _gorusAlaniListesi: GLM.IArray) {
-    vecMatBoyutKontrol(_merkez, 2, "merkez vec2 degil");
-    this.merkez = _merkez;
+  _arkaPlanRengi: vec4 = vec4.fromValues(0.7, 0.7, 0.7, 1);
+  constructor(_merkez: vec3 | Array<number>, pencereGenisligi: number,
+              _gorusAlaniListesi: vec4 | Array<number>) {
+    if (_merkez.length !== 3) {
+      throw new Error("merkez 3 boyutlu degil");
+    }
+    this.merkez = vec3.fromValues(_merkez[0], _merkez[1], _merkez[2]);
     this.pgenislik = pencereGenisligi;
-    vecMatBoyutKontrol(_gorusAlaniListesi, 4, "gorusAlaniListesi vec4 degil");
-    this.gorusAlaniListesi = _gorusAlaniListesi;
+
+    if (_gorusAlaniListesi.length !== 4) {
+      throw new Error("gorusAlaniListesi 4 boyutlu degil");
+    }
+    this.gorusAlaniListesi =
+        vec4.fromValues(_gorusAlaniListesi[0], _gorusAlaniListesi[1],
+                        _gorusAlaniListesi[2], _gorusAlaniListesi[3]);
   }
   merkezKoy(x: number, y: number) {
     this.merkez[0] = x;
@@ -28,16 +34,14 @@ export class Kamera {
   merkezAl() { return this.merkez; }
   genislikKoy(x: number) { this.pgenislik = x; }
   genislikAl() { return this.pgenislik; }
-  gorusAlaniKoy(gListe: GLM.IArray) {
-    vecMatBoyutKontrol(gListe, 4, "gorus alani istenen boyutta degil");
-    this.gorusAlaniListesi = gListe;
-  }
-  get arkaPlanRengi(): GLM.IArray { return this._arkaPlanRengi; }
-  set arkaPlanRengi(renk: GLM.IArray) {
-    vecMatBoyutKontrol(renk, 4, "arka plan rengi vec4 degil");
-    this._arkaPlanRengi = renk;
-  }
+  gorusAlaniKoy(gListe: vec4) { this.gorusAlaniListesi = gListe; }
+  get arkaPlanRengi(): vec4 { return this._arkaPlanRengi; }
+  set arkaPlanRengi(renk: vec4) { this._arkaPlanRengi = renk; }
   bakmaProjMatKur() {
+    if (gMotor.AnaMotor === null || gMotor.AnaMotor === undefined) {
+      throw new Error("ana motor null cizer de");
+    }
+
     var gl = gMotor.AnaMotor.mGL;
     gl.viewport(this.gorusAlaniListesi[0], this.gorusAlaniListesi[1],
                 this.gorusAlaniListesi[2], this.gorusAlaniListesi[3]);

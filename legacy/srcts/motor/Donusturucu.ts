@@ -1,14 +1,14 @@
 // objelerin yerini degistirir, dondurur, buyutup kuçultur
-import {vec3, vec4, mat4, GLM} from "gl-matrix";
-import {derece2Radyan} from "../motor/yardimcilar.js";
+import {vec3, vec4, mat4} from "gl-matrix";
+import {derece2Radyan} from "../motor/yardimcilar";
 
 export class Donusturme {
-  konum: GLM.IArray = vec4.fromValues(0, 0, 0, 0);
-  boyut: GLM.IArray = vec4.fromValues(1, 1, 1, 1);
+  konum: vec4 = vec4.fromValues(0, 0, 0, 0);
+  boyut: vec4 = vec4.fromValues(1, 1, 1, 1);
   radyan: number = 0.0;
   constructor() {}
   konumKoy(x: number, y: number) { this.konum = vec4.fromValues(x, y, 0, 0); }
-  konumAl(): GLM.IArray { return this.konum; }
+  konumAl(): vec4 { return this.konum; }
   //
   konumXAl(): number { return this.konum[0]; }
   konumYAl(): number { return this.konum[1]; }
@@ -22,7 +22,7 @@ export class Donusturme {
   konumYArti(x: number) { this.konum[1] += x; }
   konumZArti(x: number) { this.konum[2] += x; }
 
-  boyutAl(): GLM.IArray { return this.boyut; }
+  boyutAl(): vec4 { return this.boyut; }
   boyutKoy(x: number, y: number) { this.boyut = vec4.fromValues(x, y, 1, 1); }
 
   boyutXAl(): number { return this.boyut[0]; }
@@ -52,7 +52,7 @@ export class Donusturme {
   dereceKoy(x: number) { this.radyan = derece2Radyan(x); }
   dereceAl(): number { return this.radyan * 180.0 / Math.PI; }
   dereceArti(d: number) { this.radyan += derece2Radyan(d); }
-  modelMatAl(): GLM.IArray {
+  modelMatAl(): mat4 {
     let modelMat = mat4.create();
     mat4.translate(
         modelMat, modelMat,

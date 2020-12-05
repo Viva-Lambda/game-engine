@@ -71,7 +71,7 @@ function mapMulti(arr: Array<number>, args: Array<Array<number>>,
      @arr in her bir elemanina farkli degerler alan fn fonksiyonunu uygulamak
      için
    */
-  let anahtarlar = [...args[0].keys() ];
+  let anahtarlar: Array<number> = [...args[0] ];
   if (arr.length !== anahtarlar.length) {
     throw new Error("Uygulanacak arguman sayisi listenin eleman sayisindan" +
                     "farkli: eleman sayisi: " + arr.length.toString() + " " +
@@ -181,7 +181,7 @@ abstract class V {
     let eskimaks = eskiler[1];
     let yenimin = yeniler[0];
     let yenimaks = yeniler[1];
-    let anahtarlar = [...eskimin.keys() ];
+    let anahtarlar = [...eskimin ];
     let argumanlar = [ eskimin, eskimaks, yenimin, yenimaks ];
     let sonuc: Array<Array<number>> = [];
     for (var a of anahtarlar) {
