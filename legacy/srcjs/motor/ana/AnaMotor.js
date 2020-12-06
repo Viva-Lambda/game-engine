@@ -12,6 +12,11 @@ gMotor.AnaMotor = (function() {
     }
 
     //
+    var anaUnsurlariBaslat = function(glCanvasId) {
+        glBaslat(glCanvasId);
+        gMotor.VertexBuffer.baslat();
+        gMotor.Girdi.baslat();
+    }
     var glBaslat = function(glCanvasId) {
         //
         var kanvas = document.getElementById(glCanvasId);
@@ -21,7 +26,6 @@ gMotor.AnaMotor = (function() {
             document.write("<br><b>Tarayiciniz WebGL desteklemiyor</b>");
             return;
         }
-        gMotor.VertexBuffer.baslat();
     }
     var kanvasTemizle = function(renk) {
         //
@@ -32,7 +36,7 @@ gMotor.AnaMotor = (function() {
     var metotlar = {
         glAl: glAl,
         kanvasTemizle: kanvasTemizle,
-        glBaslat: glBaslat
+        anaUnsurlariBaslat: anaUnsurlariBaslat
     };
     return metotlar;
 }());

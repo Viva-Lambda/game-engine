@@ -26,6 +26,7 @@ var _donguCalistir = function() {
         gecikenSure += gecenSure;
 
         while ((gecikenSure >= MPF) && donguCalisiyorMu) {
+            gMotor.Girdi.guncelle();
             this.guncelle();
             gecikenSure -= MPF;
         }

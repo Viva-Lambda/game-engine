@@ -8,7 +8,7 @@ function Oyunum(kanvasId) {
     this.beyazKare = null;
     this.kirmiziKare = null;
     //
-    gMotor.AnaMotor.glBaslat(kanvasId);
+    gMotor.AnaMotor.anaUnsurlariBaslat(kanvasId);
 
     this.oyunuBaslat();
 }
@@ -51,17 +51,27 @@ Oyunum.prototype.oyunuBaslat = function() {
 Oyunum.prototype.guncelle = function() {
     var beyazDonustur = this.beyazKare.donustur;
     var deltaX = 0.05;
-    if (beyazDonustur.konumXAl() > 30) {
-        beyazDonustur.konumKoy(10, 60);
+    // beyaz kare hareketi
+    if (gMotor.Girdi.tusTiklandiMi(gMotor.Girdi.tuslar.Sag)) {
+        if (beyazDonustur.konumXAl() > 30) {
+            beyazDonustur.konumKoy(10, 60);
+        }
+        beyazDonustur.konumXArti(1);
     }
-    beyazDonustur.konumXArti(1);
-    beyazDonustur.dereceArti(1);
+    if (gMotor.Girdi.tusTiklandiMi(gMotor.Girdi.tuslar.Yukari)) {
+        beyazDonustur.dereceArti(1);
+    }
 
     var kirmiziDonustur = this.kirmiziKare.donustur;
-    if (kirmiziDonustur.boyutXAl() > 5) {
-        kirmiziDonustur.boyutKoy(2, 2);
+    // kirmizi kare hareketi
+    var kirmiziKontrol =
+        gMotor.Girdi.tusTiklandiMi(gMotor.Girdi.tuslar.Asagi);
+    if (kirmiziKontrol) {
+        if (kirmiziDonustur.boyutXAl() > 5) {
+            kirmiziDonustur.boyutKoy(2, 2);
+        }
+        kirmiziDonustur.boyutArti(0.05);
     }
-    kirmiziDonustur.boyutArti(0.05);
 }
 
 Oyunum.prototype.ciz = function() {
