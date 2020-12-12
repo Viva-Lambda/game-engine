@@ -10,6 +10,10 @@
     <script type="text/javascript" src="./srcjs/motor/ana/Girdi.js"></script>
     <script type="text/javascript" src="./srcjs/motor/ana/VertexBuffer.js"></script>
     <script type="text/javascript" src="./srcjs/motor/ana/OyunDongusu.js"></script>
+    <script type="text/javascript" src="./srcjs/motor/ana/kaynak/KaynakPlani.js"></script>
+    <script type="text/javascript" src="./srcjs/motor/ana/kaynak/MetinYukleyici.js"></script>
+    <script type="text/javascript" src="./srcjs/motor/ana/kaynak/VarsayilanKaynak.js"></script>
+
     <!-- Motor Kodu Ana unsurlar baslar -->
     <script type="text/javascript" src="./srcjs/motor/BasitCizer.js"></script>
     <script type="text/javascript" src="./srcjs/motor/Donusturucu.js"></script>
@@ -21,7 +25,10 @@
 
 </head>
 
-<body onload="new Oyunum('GLCanvas');">
+<body onload="
+      var oyunum = new Oyunum();
+      gMotor.AnaMotor.anaUnsurlariBaslat('GLCanvas', oyunum);
+    ">
     <canvas id="GLCanvas" width="640" height="480">
         Tarayiciniz html5 kanvasini desteklemiyor
     </canvas>

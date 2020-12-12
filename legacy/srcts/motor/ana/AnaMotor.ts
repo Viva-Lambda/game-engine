@@ -19,8 +19,6 @@ export class AnaMotor {
     if (gMotor.VertexBuffer === null || gMotor.VertexBuffer === undefined) {
       throw new Error("ana motor null cizer de");
     }
-
-    gMotor.VertexBuffer.baslat();
   }
   set mGL(gl: WebGLRenderingContext) { this._mGL = gl; }
   get mGL(): WebGLRenderingContext {
@@ -32,5 +30,10 @@ export class AnaMotor {
   kanvasTemizle(renk: vec4) {
     this.mGL.clearColor(renk[0], renk[1], renk[2], renk[3]);
     this.mGL.clear(this.mGL.COLOR_BUFFER_BIT);
+  }
+  anaUnsurlariBaslat(kanvasId: string) {
+    this.glBaslat(kanvasId);
+    gMotor.VertexBuffer.baslat();
+    gMotor.Girdi.baslat(kanvasId);
   }
 }

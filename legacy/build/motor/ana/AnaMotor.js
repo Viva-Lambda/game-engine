@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.AnaMotor = void 0;
-var MotorNesne_js_1 = require("../MotorNesne.js");
+var MotorNesnesi_1 = require("../MotorNesnesi");
 var AnaMotor = (function () {
     function AnaMotor() {
         this._mGL = null;
@@ -16,7 +16,9 @@ var AnaMotor = (function () {
             throw new Error("Ilgili baglam alinamadi ");
         }
         this.mGL = gl;
-        MotorNesne_js_1.gMotor.VertexBuffer.baslat();
+        if (MotorNesnesi_1.gMotor.VertexBuffer === null || MotorNesnesi_1.gMotor.VertexBuffer === undefined) {
+            throw new Error("ana motor null cizer de");
+        }
     };
     Object.defineProperty(AnaMotor.prototype, "mGL", {
         get: function () {
@@ -32,6 +34,11 @@ var AnaMotor = (function () {
     AnaMotor.prototype.kanvasTemizle = function (renk) {
         this.mGL.clearColor(renk[0], renk[1], renk[2], renk[3]);
         this.mGL.clear(this.mGL.COLOR_BUFFER_BIT);
+    };
+    AnaMotor.prototype.anaUnsurlariBaslat = function (kanvasId) {
+        this.glBaslat(kanvasId);
+        MotorNesnesi_1.gMotor.VertexBuffer.baslat();
+        MotorNesnesi_1.gMotor.Girdi.baslat(kanvasId);
     };
     return AnaMotor;
 }());

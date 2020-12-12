@@ -11,7 +11,7 @@ else {
     console.log("null dugme");
 }
 
-},{"./oyun/Oyunum":12}],2:[function(require,module,exports){
+},{"./oyun/Oyunum":13}],2:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.BasitCizer = void 0;
@@ -129,7 +129,7 @@ var BasitCizer = (function () {
 }());
 exports.BasitCizer = BasitCizer;
 
-},{"../motor/yardimcilar":11,"./MotorNesnesi":6}],3:[function(require,module,exports){
+},{"../motor/yardimcilar":12,"./MotorNesnesi":6}],3:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Cizilebilir = void 0;
@@ -157,7 +157,7 @@ var Cizilebilir = (function () {
 }());
 exports.Cizilebilir = Cizilebilir;
 
-},{"../motor/MotorNesnesi":6,"./Donusturucu":4,"gl-matrix":14}],4:[function(require,module,exports){
+},{"../motor/MotorNesnesi":6,"./Donusturucu":4,"gl-matrix":15}],4:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Donusturme = void 0;
@@ -218,7 +218,7 @@ var Donusturme = (function () {
 }());
 exports.Donusturme = Donusturme;
 
-},{"../motor/yardimcilar":11,"gl-matrix":14}],5:[function(require,module,exports){
+},{"../motor/yardimcilar":12,"gl-matrix":15}],5:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Kamera = void 0;
@@ -290,20 +290,26 @@ var Kamera = (function () {
 }());
 exports.Kamera = Kamera;
 
-},{"../motor/MotorNesnesi":6,"gl-matrix":14}],6:[function(require,module,exports){
+},{"../motor/MotorNesnesi":6,"gl-matrix":15}],6:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.gMotor = void 0;
 var AnaMotor_1 = require("./ana/AnaMotor");
 var OyunDongusu_1 = require("./ana/OyunDongusu");
 var VertexBuffer_1 = require("./ana/VertexBuffer");
-exports.gMotor = {
-    AnaMotor: new AnaMotor_1.AnaMotor(),
-    VertexBuffer: new VertexBuffer_1.VertexBuffer(),
-    OyunDongusu: new OyunDongusu_1.OyunDongusu()
-};
+var Girdi_1 = require("./ana/Girdi");
+var MotorObje = (function () {
+    function MotorObje() {
+        this.AnaMotor = new AnaMotor_1.AnaMotor();
+        this.VertexBuffer = new VertexBuffer_1.VertexBuffer();
+        this.OyunDongusu = new OyunDongusu_1.OyunDongusu();
+        this.Girdi = new Girdi_1.KlavyeGirdi();
+    }
+    return MotorObje;
+}());
+exports.gMotor = new MotorObje();
 
-},{"./ana/AnaMotor":8,"./ana/OyunDongusu":9,"./ana/VertexBuffer":10}],7:[function(require,module,exports){
+},{"./ana/AnaMotor":8,"./ana/Girdi":9,"./ana/OyunDongusu":10,"./ana/VertexBuffer":11}],7:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.OyunArayuzu = void 0;
@@ -336,7 +342,6 @@ var AnaMotor = (function () {
         if (MotorNesnesi_1.gMotor.VertexBuffer === null || MotorNesnesi_1.gMotor.VertexBuffer === undefined) {
             throw new Error("ana motor null cizer de");
         }
-        MotorNesnesi_1.gMotor.VertexBuffer.baslat();
     };
     Object.defineProperty(AnaMotor.prototype, "mGL", {
         get: function () {
@@ -353,11 +358,193 @@ var AnaMotor = (function () {
         this.mGL.clearColor(renk[0], renk[1], renk[2], renk[3]);
         this.mGL.clear(this.mGL.COLOR_BUFFER_BIT);
     };
+    AnaMotor.prototype.anaUnsurlariBaslat = function (kanvasId) {
+        this.glBaslat(kanvasId);
+        MotorNesnesi_1.gMotor.VertexBuffer.baslat();
+        MotorNesnesi_1.gMotor.Girdi.baslat(kanvasId);
+    };
     return AnaMotor;
 }());
 exports.AnaMotor = AnaMotor;
 
 },{"../MotorNesnesi":6}],9:[function(require,module,exports){
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.KlavyeGirdi = exports.KlavyeTuslari = void 0;
+exports.KlavyeTuslari = {
+    Sol: "ArrowLeft",
+    Sag: "ArrowRight",
+    Yukari: "ArrowUp",
+    Asagi: "ArrowDown",
+    A: "A",
+    B: "B",
+    C: "C",
+    D: "D",
+    E: "E",
+    F: "F",
+    G: "G",
+    H: "H",
+    I: "I",
+    J: "J",
+    K: "K",
+    L: "L",
+    M: "M",
+    N: "N",
+    O: "O",
+    P: "P",
+    Q: "Q",
+    R: "R",
+    S: "S",
+    T: "T",
+    U: "U",
+    V: "V",
+    W: "W",
+    Y: "Y",
+    Z: "Z",
+    a: "a",
+    b: "b",
+    c: "c",
+    d: "d",
+    e: "e",
+    f: "f",
+    g: "g",
+    h: "h",
+    i: "i",
+    j: "j",
+    k: "k",
+    l: "l",
+    m: "m",
+    n: "n",
+    o: "o",
+    p: "p",
+    q: "q",
+    r: "r",
+    s: "s",
+    t: "t",
+    u: "u",
+    v: "v",
+    w: "w",
+    y: "y",
+    z: "z",
+    Sifir: "Digit0",
+    Bir: "Digit1",
+    Iki: "Digit2",
+    Uc: "Digit3",
+    Dort: "Digit4",
+    Bes: "Digit5",
+    Alti: "Digit6",
+    Yedi: "Digit7",
+    Sekiz: "Digit8",
+    Dokuz: "Digit9",
+    Escape: "Escape"
+};
+var TusDurumlari = {
+    "ArrowLeft": false,
+    "ArrowRight": false,
+    "ArrowUp": false,
+    "ArrowDown": false,
+    "A": false,
+    "B": false,
+    "C": false,
+    "D": false,
+    "E": false,
+    "F": false,
+    "G": false,
+    "H": false,
+    "I": false,
+    "J": false,
+    "K": false,
+    "L": false,
+    "M": false,
+    "N": false,
+    "O": false,
+    "P": false,
+    "Q": false,
+    "R": false,
+    "S": false,
+    "T": false,
+    "U": false,
+    "V": false,
+    "W": false,
+    "Y": false,
+    "Z": false,
+    "a": false,
+    "b": false,
+    "c": false,
+    "d": false,
+    "e": false,
+    "f": false,
+    "g": false,
+    "h": false,
+    "i": false,
+    "j": false,
+    "k": false,
+    "l": false,
+    "m": false,
+    "n": false,
+    "o": false,
+    "p": false,
+    "q": false,
+    "r": false,
+    "s": false,
+    "t": false,
+    "u": false,
+    "v": false,
+    "w": false,
+    "y": false,
+    "z": false,
+    "Digit0": false,
+    "Digit1": false,
+    "Digit2": false,
+    "Digit3": false,
+    "Digit4": false,
+    "Digit5": false,
+    "Digit6": false,
+    "Digit7": false,
+    "Digit8": false,
+    "Digit9": false,
+    "Escape": false
+};
+var _tuslarBasiliMi = TusDurumlari;
+var _oncekiBasiliDurum = {};
+var _tuslarTiklandiMi = {};
+var KlavyeGirdi = (function () {
+    function KlavyeGirdi() {
+        this.tuslar = exports.KlavyeTuslari;
+    }
+    KlavyeGirdi.prototype._tusBasilir = function (olay) {
+        var tdurumu = _tuslarBasiliMi;
+        tdurumu[olay.key] = true;
+        _tuslarBasiliMi = tdurumu;
+    };
+    KlavyeGirdi.prototype._tusKalkar = function (olay) { _tuslarBasiliMi[olay.key] = false; };
+    KlavyeGirdi.prototype.tusBasiliMi = function (tusKodu) { return _tuslarBasiliMi[tusKodu]; };
+    KlavyeGirdi.prototype.tusTiklandiMi = function (tusKodu) { return _tuslarTiklandiMi[tusKodu]; };
+    KlavyeGirdi.prototype.guncelle = function () {
+        for (var tus in this.tuslar) {
+            var ktusu = this.tuslar[tus];
+            _tuslarTiklandiMi[ktusu] =
+                (!_oncekiBasiliDurum[ktusu]) && _tuslarBasiliMi[ktusu];
+            _oncekiBasiliDurum[ktusu] = _tuslarBasiliMi[ktusu];
+        }
+    };
+    KlavyeGirdi.prototype.baslat = function (kanvasId) {
+        var kanvas = document.getElementById(kanvasId);
+        if (kanvas == null) {
+            throw new Error("Ilgili kanvas elemani bulunamadi: " + kanvasId);
+        }
+        var oyunBody = document.getElementById("oyun-body");
+        if (oyunBody === null) {
+            throw new Error("Ilgili oyun body elemani bulunamadi: ");
+        }
+        window.addEventListener("keyup", this._tusKalkar);
+        window.addEventListener("keydown", this._tusBasilir);
+    };
+    return KlavyeGirdi;
+}());
+exports.KlavyeGirdi = KlavyeGirdi;
+
+},{}],10:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.OyunDongusu = void 0;
@@ -404,7 +591,7 @@ var OyunDongusu = (function () {
 }());
 exports.OyunDongusu = OyunDongusu;
 
-},{}],10:[function(require,module,exports){
+},{}],11:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.VertexBuffer = void 0;
@@ -448,7 +635,7 @@ var VertexBuffer = (function () {
 }());
 exports.VertexBuffer = VertexBuffer;
 
-},{"../MotorNesnesi":6}],11:[function(require,module,exports){
+},{"../MotorNesnesi":6}],12:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.derece2Radyan = exports.attribInfoYap = exports.uniformInfoYap = void 0;
@@ -474,7 +661,7 @@ function derece2Radyan(aciDerece) {
 }
 exports.derece2Radyan = derece2Radyan;
 
-},{}],12:[function(require,module,exports){
+},{}],13:[function(require,module,exports){
 "use strict";
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
@@ -508,7 +695,7 @@ var Oyunum = (function (_super) {
         if (MotorNesnesi_1.gMotor.AnaMotor === null || MotorNesnesi_1.gMotor.AnaMotor === undefined) {
             throw new Error("ana motor null oyunum da");
         }
-        MotorNesnesi_1.gMotor.AnaMotor.glBaslat(kanvasId);
+        MotorNesnesi_1.gMotor.AnaMotor.anaUnsurlariBaslat(kanvasId);
         _this.oyunuBaslat();
         return _this;
     }
@@ -581,16 +768,26 @@ var Oyunum = (function (_super) {
     Oyunum.prototype.guncelle = function () {
         var beyazDonustur = this.beyazKare.donustur;
         var deltaX = 0.05;
-        if (beyazDonustur.konumXAl() > 30) {
-            beyazDonustur.konumKoy(10, 60);
+        var sagTiklandiMi = MotorNesnesi_1.gMotor.Girdi.tusTiklandiMi(MotorNesnesi_1.gMotor.Girdi.tuslar.Sag);
+        console.log("sag tiklandi mi", sagTiklandiMi);
+        if (sagTiklandiMi) {
+            if (beyazDonustur.konumXAl() > 30) {
+                beyazDonustur.konumKoy(10, 60);
+            }
+            beyazDonustur.konumXArti(deltaX);
         }
-        beyazDonustur.konumXArti(deltaX);
-        beyazDonustur.dereceArti(1);
+        var asagiTiklandiMi = MotorNesnesi_1.gMotor.Girdi.tusTiklandiMi(MotorNesnesi_1.gMotor.Girdi.tuslar.Asagi);
+        console.log("asagi tiklandi mi", asagiTiklandiMi);
+        if (asagiTiklandiMi) {
+            beyazDonustur.dereceArti(1);
+        }
         var kirmiziDonustur = this.kirmiziKare.donustur;
-        if (kirmiziDonustur.boyutXAl() > 5) {
-            kirmiziDonustur.boyutKoy(2, 2);
+        if (MotorNesnesi_1.gMotor.Girdi.tusTiklandiMi(MotorNesnesi_1.gMotor.Girdi.tuslar.Yukari)) {
+            if (kirmiziDonustur.boyutXAl() > 5) {
+                kirmiziDonustur.boyutKoy(2, 2);
+            }
+            kirmiziDonustur.boyutArti(deltaX);
         }
-        kirmiziDonustur.boyutArti(deltaX);
     };
     Oyunum.prototype.ciz = function () {
         if (MotorNesnesi_1.gMotor.AnaMotor === null || MotorNesnesi_1.gMotor.AnaMotor === undefined) {
@@ -605,7 +802,7 @@ var Oyunum = (function (_super) {
 }(OyunArayuzu_1.OyunArayuzu));
 exports.Oyunum = Oyunum;
 
-},{"../motor/BasitCizer":2,"../motor/Cizilebilir":3,"../motor/Kamera":5,"../motor/MotorNesnesi":6,"../motor/OyunArayuzu":7,"gl-matrix":14}],13:[function(require,module,exports){
+},{"../motor/BasitCizer":2,"../motor/Cizilebilir":3,"../motor/Kamera":5,"../motor/MotorNesnesi":6,"../motor/OyunArayuzu":7,"gl-matrix":15}],14:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -673,7 +870,7 @@ if (!Math.hypot) Math.hypot = function () {
 
   return Math.sqrt(y);
 };
-},{}],14:[function(require,module,exports){
+},{}],15:[function(require,module,exports){
 "use strict";
 
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
@@ -726,7 +923,7 @@ exports.vec4 = vec4;
 function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function _getRequireWildcardCache() { return cache; }; return cache; }
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || _typeof(obj) !== "object" && typeof obj !== "function") { return { "default": obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj["default"] = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
-},{"./common.js":13,"./mat2.js":15,"./mat2d.js":16,"./mat3.js":17,"./mat4.js":18,"./quat.js":19,"./quat2.js":20,"./vec2.js":21,"./vec3.js":22,"./vec4.js":23}],15:[function(require,module,exports){
+},{"./common.js":14,"./mat2.js":16,"./mat2d.js":17,"./mat3.js":18,"./mat4.js":19,"./quat.js":20,"./quat2.js":21,"./vec2.js":22,"./vec3.js":23,"./vec4.js":24}],16:[function(require,module,exports){
 "use strict";
 
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
@@ -1222,7 +1419,7 @@ var mul = multiply;
 exports.mul = mul;
 var sub = subtract;
 exports.sub = sub;
-},{"./common.js":13}],16:[function(require,module,exports){
+},{"./common.js":14}],17:[function(require,module,exports){
 "use strict";
 
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
@@ -1770,7 +1967,7 @@ var mul = multiply;
 exports.mul = mul;
 var sub = subtract;
 exports.sub = sub;
-},{"./common.js":13}],17:[function(require,module,exports){
+},{"./common.js":14}],18:[function(require,module,exports){
 "use strict";
 
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
@@ -2624,7 +2821,7 @@ var mul = multiply;
 exports.mul = mul;
 var sub = subtract;
 exports.sub = sub;
-},{"./common.js":13}],18:[function(require,module,exports){
+},{"./common.js":14}],19:[function(require,module,exports){
 "use strict";
 
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
@@ -4544,7 +4741,7 @@ var mul = multiply;
 exports.mul = mul;
 var sub = subtract;
 exports.sub = sub;
-},{"./common.js":13}],19:[function(require,module,exports){
+},{"./common.js":14}],20:[function(require,module,exports){
 "use strict";
 
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
@@ -5336,7 +5533,7 @@ var setAxes = function () {
 }();
 
 exports.setAxes = setAxes;
-},{"./common.js":13,"./mat3.js":17,"./vec3.js":22,"./vec4.js":23}],20:[function(require,module,exports){
+},{"./common.js":14,"./mat3.js":18,"./vec3.js":23,"./vec4.js":24}],21:[function(require,module,exports){
 "use strict";
 
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
@@ -6261,7 +6458,7 @@ function equals(a, b) {
       b7 = b[7];
   return Math.abs(a0 - b0) <= glMatrix.EPSILON * Math.max(1.0, Math.abs(a0), Math.abs(b0)) && Math.abs(a1 - b1) <= glMatrix.EPSILON * Math.max(1.0, Math.abs(a1), Math.abs(b1)) && Math.abs(a2 - b2) <= glMatrix.EPSILON * Math.max(1.0, Math.abs(a2), Math.abs(b2)) && Math.abs(a3 - b3) <= glMatrix.EPSILON * Math.max(1.0, Math.abs(a3), Math.abs(b3)) && Math.abs(a4 - b4) <= glMatrix.EPSILON * Math.max(1.0, Math.abs(a4), Math.abs(b4)) && Math.abs(a5 - b5) <= glMatrix.EPSILON * Math.max(1.0, Math.abs(a5), Math.abs(b5)) && Math.abs(a6 - b6) <= glMatrix.EPSILON * Math.max(1.0, Math.abs(a6), Math.abs(b6)) && Math.abs(a7 - b7) <= glMatrix.EPSILON * Math.max(1.0, Math.abs(a7), Math.abs(b7));
 }
-},{"./common.js":13,"./mat4.js":18,"./quat.js":19}],21:[function(require,module,exports){
+},{"./common.js":14,"./mat4.js":19,"./quat.js":20}],22:[function(require,module,exports){
 "use strict";
 
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
@@ -6983,7 +7180,7 @@ var forEach = function () {
 }();
 
 exports.forEach = forEach;
-},{"./common.js":13}],22:[function(require,module,exports){
+},{"./common.js":14}],23:[function(require,module,exports){
 "use strict";
 
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
@@ -7874,7 +8071,7 @@ var forEach = function () {
 }();
 
 exports.forEach = forEach;
-},{"./common.js":13}],23:[function(require,module,exports){
+},{"./common.js":14}],24:[function(require,module,exports){
 "use strict";
 
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
@@ -8627,4 +8824,4 @@ var forEach = function () {
 }();
 
 exports.forEach = forEach;
-},{"./common.js":13}]},{},[1]);
+},{"./common.js":14}]},{},[1]);

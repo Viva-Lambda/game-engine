@@ -1,8 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var Oyunum_js_1 = require("./oyun/Oyunum.js");
+var Oyunum_1 = require("./oyun/Oyunum");
 var dugme = document.getElementById("oyunu-baslat");
-function baslat() { new Oyunum_js_1.Oyunum("GLCanvas"); }
+function baslat() { new Oyunum_1.Oyunum("GLCanvas"); }
 if (dugme !== null) {
     dugme.addEventListener("click", baslat, true);
 }

@@ -3,7 +3,7 @@
 
 function Cizilebilir(cizici) {
     //
-    this.cizici = cizici;
+    this.cizici = cizici; // null
     this.renk = [1, 1, 1, 1];
     this.donustur = new Donustur();
 }

@@ -1,12 +1,15 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.BasitCizer = void 0;
-var MotorNesne_js_1 = require("./MotorNesne.js");
-var yardimcilar_js_1 = require("../motor/yardimcilar.js");
+var MotorNesnesi_1 = require("./MotorNesnesi");
+var yardimcilar_1 = require("../motor/yardimcilar");
 var BasitCizer = (function () {
     function BasitCizer(noktaCiziciId, renklendiriciId) {
         this._derlenenCizici = null;
-        var gl = MotorNesne_js_1.gMotor.AnaMotor.mGL;
+        if (MotorNesnesi_1.gMotor.AnaMotor === null || MotorNesnesi_1.gMotor.AnaMotor === undefined) {
+            throw new Error("ana motor null cizer de");
+        }
+        var gl = MotorNesnesi_1.gMotor.AnaMotor.mGL;
         var noktaCizici = this.ciziciYukleDerle(noktaCiziciId, gl.VERTEX_SHADER);
         var renklendirici = this.ciziciYukleDerle(renklendiriciId, gl.FRAGMENT_SHADER);
         var cizciProgram = gl.createProgram();
@@ -25,27 +28,30 @@ var BasitCizer = (function () {
         if (gCizerKordinatKonumu === null) {
             throw new Error("ilgili kordinat adi: " + kordinatAdi + " bulunamadi");
         }
-        this.gCizerKordinatInfo = yardimcilar_js_1.attribInfoYap(kordinatAdi, gCizerKordinatKonumu, 3, gl.FLOAT, false, 0, 0);
-        gl.bindBuffer(gl.ARRAY_BUFFER, MotorNesne_js_1.gMotor.VertexBuffer.glVertexRefAl());
+        this.gCizerKordinatInfo = yardimcilar_1.attribInfoYap(kordinatAdi, gCizerKordinatKonumu, 3, gl.FLOAT, false, 0, 0);
+        if (MotorNesnesi_1.gMotor.VertexBuffer === null || MotorNesnesi_1.gMotor.VertexBuffer === undefined) {
+            throw new Error("vertex buffer null cizer de");
+        }
+        gl.bindBuffer(gl.ARRAY_BUFFER, MotorNesnesi_1.gMotor.VertexBuffer.glVertexRefAl());
         gl.vertexAttribPointer(this.gCizerKordinatInfo.konum, this.gCizerKordinatInfo.boyut, this.gCizerKordinatInfo.tip, this.gCizerKordinatInfo.normalizeMi, this.gCizerKordinatInfo.adim, this.gCizerKordinatInfo.uzaklik);
         var pikselAdi = "uPikselRengi";
         var pixKonumu = gl.getUniformLocation(this.derlenenCizici, pikselAdi);
         if (pixKonumu === null) {
             throw new Error("Piksel konumu bulunamadi");
         }
-        this.pikselRengiInfo = yardimcilar_js_1.uniformInfoYap(pikselAdi, pixKonumu);
+        this.pikselRengiInfo = yardimcilar_1.uniformInfoYap(pikselAdi, pixKonumu);
         var modelAdi = "uModelDonustur";
         var matKonumu = gl.getUniformLocation(this.derlenenCizici, modelAdi);
         if (matKonumu === null) {
             throw new Error("Model matrisi konumu bulunamadi");
         }
-        this.modelMatInfo = yardimcilar_js_1.uniformInfoYap(modelAdi, matKonumu);
+        this.modelMatInfo = yardimcilar_1.uniformInfoYap(modelAdi, matKonumu);
         var bakmaMatAdi = "uBakmaProj";
         matKonumu = gl.getUniformLocation(this.derlenenCizici, bakmaMatAdi);
         if (matKonumu === null) {
             throw new Error("Bakma matrisi konumu bulunamadi");
         }
-        this.bakmaMatInfo = yardimcilar_js_1.uniformInfoYap(bakmaMatAdi, matKonumu);
+        this.bakmaMatInfo = yardimcilar_1.uniformInfoYap(bakmaMatAdi, matKonumu);
     }
     Object.defineProperty(BasitCizer.prototype, "derlenenCizici", {
         get: function () {
@@ -59,7 +65,10 @@ var BasitCizer = (function () {
         configurable: true
     });
     BasitCizer.prototype.ciziciYukleDerle = function (dosyaYolu, ciziciTipi) {
-        var gl = MotorNesne_js_1.gMotor.AnaMotor.mGL;
+        if (MotorNesnesi_1.gMotor.AnaMotor === null || MotorNesnesi_1.gMotor.AnaMotor === undefined) {
+            throw new Error("ana motor null cizer de");
+        }
+        var gl = MotorNesnesi_1.gMotor.AnaMotor.mGL;
         var xmlSorgu = new XMLHttpRequest();
         xmlSorgu.open("GET", dosyaYolu, false);
         var ciziciKaynagi = null;
@@ -86,14 +95,20 @@ var BasitCizer = (function () {
         return cizici;
     };
     BasitCizer.prototype.ciziciAktif = function (renk, bpMat) {
-        var gl = MotorNesne_js_1.gMotor.AnaMotor.mGL;
+        if (MotorNesnesi_1.gMotor.AnaMotor === null || MotorNesnesi_1.gMotor.AnaMotor === undefined) {
+            throw new Error("ana motor null cizer de");
+        }
+        var gl = MotorNesnesi_1.gMotor.AnaMotor.mGL;
         gl.useProgram(this.derlenenCizici);
         gl.enableVertexAttribArray(this.gCizerKordinatInfo.konum);
         gl.uniform4fv(this.pikselRengiInfo.konum, renk);
         gl.uniformMatrix4fv(this.bakmaMatInfo.konum, false, bpMat);
     };
     BasitCizer.prototype.modelMatKoy = function (mat) {
-        var gl = MotorNesne_js_1.gMotor.AnaMotor.mGL;
+        if (MotorNesnesi_1.gMotor.AnaMotor === null || MotorNesnesi_1.gMotor.AnaMotor === undefined) {
+            throw new Error("ana motor null cizer de");
+        }
+        var gl = MotorNesnesi_1.gMotor.AnaMotor.mGL;
         gl.uniformMatrix4fv(this.modelMatInfo.konum, false, mat);
     };
     return BasitCizer;

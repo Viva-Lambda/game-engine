@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Kamera = void 0;
 var gl_matrix_1 = require("gl-matrix");
-var MotorNesne_js_1 = require("../motor/MotorNesne.js");
+var MotorNesnesi_1 = require("../motor/MotorNesnesi");
 var Kamera = (function () {
     function Kamera(_merkez, pencereGenisligi, _gorusAlaniListesi) {
         this.yakinPlan = 0;
@@ -37,7 +37,10 @@ var Kamera = (function () {
         configurable: true
     });
     Kamera.prototype.bakmaProjMatKur = function () {
-        var gl = MotorNesne_js_1.gMotor.AnaMotor.mGL;
+        if (MotorNesnesi_1.gMotor.AnaMotor === null || MotorNesnesi_1.gMotor.AnaMotor === undefined) {
+            throw new Error("ana motor null cizer de");
+        }
+        var gl = MotorNesnesi_1.gMotor.AnaMotor.mGL;
         gl.viewport(this.gorusAlaniListesi[0], this.gorusAlaniListesi[1], this.gorusAlaniListesi[2], this.gorusAlaniListesi[3]);
         gl.scissor(this.gorusAlaniListesi[0], this.gorusAlaniListesi[1], this.gorusAlaniListesi[2], this.gorusAlaniListesi[3]);
         gl.clearColor(this.arkaPlanRengi[0], this.arkaPlanRengi[1], this.arkaPlanRengi[2], this.arkaPlanRengi[3]);

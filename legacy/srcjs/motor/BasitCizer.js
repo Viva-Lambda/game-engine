@@ -1,7 +1,7 @@
 "use strict";
 //
 
-function BasitCizer(noktaCiziciId, renklendiriciId) {
+function BasitCizer(noktaCiziciDosyaYolu, renklendiriciDosyaYolu) {
     this.derlenenCizici = null;
     this.gCizerKordinatKonumu = null;
     this.pikselRengi = null;
@@ -11,8 +11,9 @@ function BasitCizer(noktaCiziciId, renklendiriciId) {
 
     var gl = gMotor.AnaMotor.glAl();
 
-    var noktaCizici = this.ciziciYukleDerle(noktaCiziciId, gl.VERTEX_SHADER);
-    var renklendirici = this.ciziciYukleDerle(renklendiriciId, gl.FRAGMENT_SHADER);
+    console.log("yukle derle oncesi");
+    var noktaCizici = this.ciziciYukleDerle(noktaCiziciDosyaYolu, gl.VERTEX_SHADER);
+    var renklendirici = this.ciziciYukleDerle(renklendiriciDosyaYolu, gl.FRAGMENT_SHADER);
 
 
     // cizer olustur
@@ -49,19 +50,8 @@ BasitCizer.prototype.ciziciYukleDerle = function(dosyaYolu, ciziciTipi) {
     var gl = gMotor.AnaMotor.glAl();
 
     // dosya yolundan yukleme
-    var xmlSorgu = new XMLHttpRequest();
-    xmlSorgu.open("GET", dosyaYolu, false);
-    try {
-        xmlSorgu.send();
-    } catch (hata) {
-        alert("dosya yolundaki çizim kodu yuklenemedi: " + dosyaYolu);
-        return null;
-    }
-    ciziciKaynagi = xmlSorgu.responseText;
-    if (ciziciKaynagi === null) {
-        alert("dosya yolundaki çizim kodu metin içermiyor: " + dosyaYolu);
-        return null;
-    }
+    console.log("kaynak al oncesi");
+    ciziciKaynagi = gMotor.KaynakPlani.kaynakAl(dosyaYolu);
     //
     derlenenCizici = gl.createShader(ciziciTipi);
 

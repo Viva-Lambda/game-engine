@@ -2,6 +2,12 @@
 
 var gMotor = gMotor || {};
 
+var oyunBaslat = function(oyunum) {
+    console.log("oyun baslat");
+    oyunum.baslat.call(oyunum);
+    gMotor.OyunDongusu.baslat(oyunum);
+};
+
 gMotor.AnaMotor = (function() {
     //
     var mGL = null;
@@ -11,11 +17,19 @@ gMotor.AnaMotor = (function() {
         return mGL;
     }
 
+
     //
-    var anaUnsurlariBaslat = function(glCanvasId) {
+    var anaUnsurlariBaslat = function(glCanvasId, oyunum) {
         glBaslat(glCanvasId);
         gMotor.VertexBuffer.baslat();
         gMotor.Girdi.baslat();
+
+        // varsayilan kaynaklari baslat
+        gMotor.VarsayilanKaynaklar.baslat(
+            function() {
+                oyunBaslat(oyunum);
+            }
+        );
     }
     var glBaslat = function(glCanvasId) {
         //

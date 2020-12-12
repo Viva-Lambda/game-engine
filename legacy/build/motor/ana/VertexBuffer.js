@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.VertexBuffer = void 0;
-var MotorNesne_js_1 = require("../MotorNesne.js");
+var MotorNesnesi_1 = require("../MotorNesnesi");
 var VertexBuffer = (function () {
     function VertexBuffer() {
         this._gKareNoktaBuffer = null;
@@ -25,7 +25,10 @@ var VertexBuffer = (function () {
     });
     VertexBuffer.prototype.glVertexRefAl = function () { return this.gKareNoktaBuffer; };
     VertexBuffer.prototype.baslat = function () {
-        var gl = MotorNesne_js_1.gMotor.AnaMotor.mGL;
+        if (MotorNesnesi_1.gMotor.AnaMotor === null || MotorNesnesi_1.gMotor.AnaMotor === undefined) {
+            throw new Error("ana motor null cizer de");
+        }
+        var gl = MotorNesnesi_1.gMotor.AnaMotor.mGL;
         var gKareNoktaBuffer_ = gl.createBuffer();
         if (gKareNoktaBuffer_ == null) {
             throw new Error("Buffer olusturulamadi");

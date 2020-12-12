@@ -1,19 +1,14 @@
 "use strict";
 
-function Oyunum(kanvasId) {
-    this.cizer = null;
+function Oyunum() {
     this.kamera = null;
 
     // cizilebilirleri olustur
     this.beyazKare = null;
     this.kirmiziKare = null;
-    //
-    gMotor.AnaMotor.anaUnsurlariBaslat(kanvasId);
-
-    this.oyunuBaslat();
 }
 
-Oyunum.prototype.oyunuBaslat = function() {
+Oyunum.prototype.baslat = function() {
     // kamera olustur
     this.kamera = new Kamera(
         vec2.fromValues(20, 60),
@@ -23,16 +18,13 @@ Oyunum.prototype.oyunuBaslat = function() {
     this.kamera.arkaPlanRengiKoy([0.8, 0.8, 0.8, 1.0]);
 
     // cizer olustur
-    this.cizer = new BasitCizer(
-        "srcjs/glsl/basitvs.vert",
-        "srcjs/glsl/degisikrenk.frag"
-    );
-
+    var cizer = gMotor.VarsayilanKaynaklar.tekRenkCizerAl();
+    console.log(this.cizer);
     // cizilebilirleri olustur
-    this.kirmiziKare = new Cizilebilir(this.cizer);
+    this.kirmiziKare = new Cizilebilir(cizer);
     this.kirmiziKare.renkKoy([0.8, 0.1, 0.1, 1.0]);
 
-    this.beyazKare = new Cizilebilir(this.cizer);
+    this.beyazKare = new Cizilebilir(cizer);
     this.beyazKare.renkKoy([0.8, 0.8, 0.7, 1.0]);
 
     // bir yere koy objeleri

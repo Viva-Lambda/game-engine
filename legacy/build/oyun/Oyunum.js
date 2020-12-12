@@ -15,11 +15,11 @@ var __extends = (this && this.__extends) || (function () {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Oyunum = void 0;
 var gl_matrix_1 = require("gl-matrix");
-var MotorNesne_js_1 = require("../motor/MotorNesne.js");
-var BasitCizer_js_1 = require("../motor/BasitCizer.js");
-var Cizilebilir_js_1 = require("../motor/Cizilebilir.js");
-var Kamera_js_1 = require("../motor/Kamera.js");
-var OyunArayuzu_js_1 = require("../motor/OyunArayuzu.js");
+var MotorNesnesi_1 = require("../motor/MotorNesnesi");
+var BasitCizer_1 = require("../motor/BasitCizer");
+var Cizilebilir_1 = require("../motor/Cizilebilir");
+var Kamera_1 = require("../motor/Kamera");
+var OyunArayuzu_1 = require("../motor/OyunArayuzu");
 var Oyunum = (function (_super) {
     __extends(Oyunum, _super);
     function Oyunum(kanvasId) {
@@ -28,7 +28,10 @@ var Oyunum = (function (_super) {
         _this._beyazKare = null;
         _this._kirmiziKare = null;
         _this._kamera = null;
-        MotorNesne_js_1.gMotor.AnaMotor.glBaslat(kanvasId);
+        if (MotorNesnesi_1.gMotor.AnaMotor === null || MotorNesnesi_1.gMotor.AnaMotor === undefined) {
+            throw new Error("ana motor null oyunum da");
+        }
+        MotorNesnesi_1.gMotor.AnaMotor.anaUnsurlariBaslat(kanvasId);
         _this.oyunuBaslat();
         return _this;
     }
@@ -80,12 +83,12 @@ var Oyunum = (function (_super) {
         var merkez = [20, 60, 0];
         var pg = 20;
         var gliste = gl_matrix_1.vec4.fromValues(20, 40, 600, 300);
-        this.kamera = new Kamera_js_1.Kamera(merkez, pg, gliste);
+        this.kamera = new Kamera_1.Kamera(merkez, pg, gliste);
         this.kamera.arkaPlanRengi = [0.8, 0.8, 0.8, 1.0];
-        this.cizer = new BasitCizer_js_1.BasitCizer("./srcts/glsl/basitvs.vert", "./srcts/glsl/degisikrenk.frag");
-        this.kirmiziKare = new Cizilebilir_js_1.Cizilebilir(this.cizer);
+        this.cizer = new BasitCizer_1.BasitCizer("./srcts/glsl/basitvs.vert", "./srcts/glsl/degisikrenk.frag");
+        this.kirmiziKare = new Cizilebilir_1.Cizilebilir(this.cizer);
         this.kirmiziKare.renkKoy([0.8, 0.1, 0.1, 1.0]);
-        this.beyazKare = new Cizilebilir_js_1.Cizilebilir(this.cizer);
+        this.beyazKare = new Cizilebilir_1.Cizilebilir(this.cizer);
         this.beyazKare.renkKoy([0.8, 0.8, 0.7, 1.0]);
         this.beyazKare.donustur.konumKoy(20, 60);
         this.beyazKare.donustur.radyanKoy(0.2);
@@ -93,29 +96,45 @@ var Oyunum = (function (_super) {
         this.kirmiziKare.donustur.konumKoy(20, 60);
         this.kirmiziKare.donustur.radyanKoy(-0.2);
         this.kirmiziKare.donustur.boyutKoy(2, 2);
-        MotorNesne_js_1.gMotor.OyunDongusu.baslat(this);
+        if (MotorNesnesi_1.gMotor.OyunDongusu === null || MotorNesnesi_1.gMotor.OyunDongusu === undefined) {
+            throw new Error("OyunDongusu null oyunum da");
+        }
+        MotorNesnesi_1.gMotor.OyunDongusu.baslat(this);
     };
     Oyunum.prototype.guncelle = function () {
         var beyazDonustur = this.beyazKare.donustur;
         var deltaX = 0.05;
-        if (beyazDonustur.konumXAl() > 30) {
-            beyazDonustur.konumKoy(10, 60);
+        var sagTiklandiMi = MotorNesnesi_1.gMotor.Girdi.tusTiklandiMi(MotorNesnesi_1.gMotor.Girdi.tuslar.Sag);
+        console.log("sag tiklandi mi", sagTiklandiMi);
+        if (sagTiklandiMi) {
+            if (beyazDonustur.konumXAl() > 30) {
+                beyazDonustur.konumKoy(10, 60);
+            }
+            beyazDonustur.konumXArti(deltaX);
         }
-        beyazDonustur.konumXArti(deltaX);
-        beyazDonustur.dereceArti(1);
+        var asagiTiklandiMi = MotorNesnesi_1.gMotor.Girdi.tusTiklandiMi(MotorNesnesi_1.gMotor.Girdi.tuslar.Asagi);
+        console.log("asagi tiklandi mi", asagiTiklandiMi);
+        if (asagiTiklandiMi) {
+            beyazDonustur.dereceArti(1);
+        }
         var kirmiziDonustur = this.kirmiziKare.donustur;
-        if (kirmiziDonustur.boyutXAl() > 5) {
-            kirmiziDonustur.boyutKoy(2, 2);
+        if (MotorNesnesi_1.gMotor.Girdi.tusTiklandiMi(MotorNesnesi_1.gMotor.Girdi.tuslar.Yukari)) {
+            if (kirmiziDonustur.boyutXAl() > 5) {
+                kirmiziDonustur.boyutKoy(2, 2);
+            }
+            kirmiziDonustur.boyutArti(deltaX);
         }
-        kirmiziDonustur.boyutArti(deltaX);
     };
     Oyunum.prototype.ciz = function () {
-        MotorNesne_js_1.gMotor.AnaMotor.kanvasTemizle([0.9, 0.9, 0.9, 1.0]);
+        if (MotorNesnesi_1.gMotor.AnaMotor === null || MotorNesnesi_1.gMotor.AnaMotor === undefined) {
+            throw new Error("AnaMotor null oyunum da");
+        }
+        MotorNesnesi_1.gMotor.AnaMotor.kanvasTemizle([0.9, 0.9, 0.9, 1.0]);
         this.kamera.bakmaProjMatKur();
         this.kirmiziKare.ciz(this.kamera.bakmaProjMat);
         this.beyazKare.ciz(this.kamera.bakmaProjMat);
     };
     return Oyunum;
-}(OyunArayuzu_js_1.OyunArayuzu));
+}(OyunArayuzu_1.OyunArayuzu));
 exports.Oyunum = Oyunum;
 //# sourceMappingURL=Oyunum.js.map

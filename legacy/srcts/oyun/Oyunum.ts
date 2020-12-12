@@ -19,7 +19,7 @@ export class Oyunum extends OyunArayuzu {
       throw new Error("ana motor null oyunum da");
     }
 
-    gMotor.AnaMotor.glBaslat(kanvasId);
+    gMotor.AnaMotor.anaUnsurlariBaslat(kanvasId);
 
     this.oyunuBaslat();
   }
@@ -88,17 +88,27 @@ export class Oyunum extends OyunArayuzu {
     //
     var beyazDonustur = this.beyazKare.donustur;
     var deltaX: number = 0.05;
-    if (beyazDonustur.konumXAl() > 30) {
-      beyazDonustur.konumKoy(10, 60);
+    var sagTiklandiMi = gMotor.Girdi.tusTiklandiMi(gMotor.Girdi.tuslar.Sag);
+    console.log("sag tiklandi mi", sagTiklandiMi);
+    if (sagTiklandiMi) {
+      if (beyazDonustur.konumXAl() > 30) {
+        beyazDonustur.konumKoy(10, 60);
+      }
+      beyazDonustur.konumXArti(deltaX);
     }
-    beyazDonustur.konumXArti(deltaX);
-    beyazDonustur.dereceArti(1);
+    var asagiTiklandiMi = gMotor.Girdi.tusTiklandiMi(gMotor.Girdi.tuslar.Asagi);
+    console.log("asagi tiklandi mi", asagiTiklandiMi);
+    if (asagiTiklandiMi) {
+      beyazDonustur.dereceArti(1);
+    }
 
     var kirmiziDonustur = this.kirmiziKare.donustur;
-    if (kirmiziDonustur.boyutXAl() > 5) {
-      kirmiziDonustur.boyutKoy(2, 2);
+    if (gMotor.Girdi.tusTiklandiMi(gMotor.Girdi.tuslar.Yukari)) {
+      if (kirmiziDonustur.boyutXAl() > 5) {
+        kirmiziDonustur.boyutKoy(2, 2);
+      }
+      kirmiziDonustur.boyutArti(deltaX);
     }
-    kirmiziDonustur.boyutArti(deltaX);
   }
   ciz() {
     //

@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Donusturme = void 0;
 var gl_matrix_1 = require("gl-matrix");
-var yardimcilar_js_1 = require("../motor/yardimcilar.js");
+var yardimcilar_1 = require("../motor/yardimcilar");
 var Donusturme = (function () {
     function Donusturme() {
         this.konum = gl_matrix_1.vec4.fromValues(0, 0, 0, 0);
@@ -44,9 +44,9 @@ var Donusturme = (function () {
             this.radyan += (2 * Math.PI);
         }
     };
-    Donusturme.prototype.dereceKoy = function (x) { this.radyan = yardimcilar_js_1.derece2Radyan(x); };
+    Donusturme.prototype.dereceKoy = function (x) { this.radyan = yardimcilar_1.derece2Radyan(x); };
     Donusturme.prototype.dereceAl = function () { return this.radyan * 180.0 / Math.PI; };
-    Donusturme.prototype.dereceArti = function (d) { this.radyan += yardimcilar_js_1.derece2Radyan(d); };
+    Donusturme.prototype.dereceArti = function (d) { this.radyan += yardimcilar_1.derece2Radyan(d); };
     Donusturme.prototype.modelMatAl = function () {
         var modelMat = gl_matrix_1.mat4.create();
         gl_matrix_1.mat4.translate(modelMat, modelMat, gl_matrix_1.vec3.fromValues(this.konumXAl(), this.konumYAl(), this.konumZAl()));
