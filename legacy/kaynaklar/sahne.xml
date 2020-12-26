@@ -1,0 +1,9 @@
+<OyunBolumu>
+    <Kamera MerkezX="20"  MerkezY="60" En="20" 
+        GorusAlani="20 40 600 300" 
+        ArkaPlanRengi="0.8 0.8 0.8 1.0"/>
+    <Kare KonumX="20" KonumY="60" En="5" Boy="5" 
+        AciDerece="30" Renk="1 1 1 1" />
+    <Kare KonumX="20" KonumY="60" En="2" Boy="2" 
+        AciDerece="0" Renk="1 0 0 1" />
+</OyunBolumu>
