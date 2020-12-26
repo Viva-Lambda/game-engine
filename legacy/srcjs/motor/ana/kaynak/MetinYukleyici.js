@@ -29,7 +29,7 @@ var metniYukle = function(metinAdi, metinTipi, sinyal) {
             if (metinTipi === MetinTipi.XML) {
                 var dom_analiz = new DOMParser();
                 dosyaIci = dom_analiz.parseFromString(req.responseText,
-                    "text/html");
+                    "text/xml");
             } else {
                 dosyaIci = req.responseText;
             }

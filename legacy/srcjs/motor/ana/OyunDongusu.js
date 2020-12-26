@@ -11,13 +11,23 @@ var gecenSure;
 
 var donguCalisiyorMu = false;
 
-var oyunum = null;
+var donguOyun = null;
+
+var _donguBaslat = function() {
+    //
+    oncekiSure = Date.now();
+    gecikenSure = 0.0;
+    donguCalisiyorMu = true;
+    requestAnimationFrame(function() {
+        _donguCalistir.call(donguOyun)
+    });
+};
 
 var _donguCalistir = function() {
     if (donguCalisiyorMu) {
         // eger dongu çalisiyor ise
         requestAnimationFrame(function() {
-            _donguCalistir.call(oyunum);
+            _donguCalistir.call(donguOyun);
         });
 
         suankiSure = Date.now();
@@ -32,17 +42,17 @@ var _donguCalistir = function() {
         }
         this.ciz();
     }
-}
+};
 var baslat = function(oyun) {
-    oyunum = oyun;
+    donguOyun = oyun;
     // kare sifirla
-    oncekiSure = Date.now();
-    gecikenSure = 0.0;
-    donguCalisiyorMu = true;
-    requestAnimationFrame(function() {
-        _donguCalistir.call(oyunum);
-    });
-}
+    gMotor.KaynakPlani.yuklemeBittiSinyaliKoy(
+        function() {
+            donguOyun._baslat();
+            _donguBaslat();
+        }
+    );
+};
 gMotor.OyunDongusu = (function() {
     var genel = {
         baslat: baslat

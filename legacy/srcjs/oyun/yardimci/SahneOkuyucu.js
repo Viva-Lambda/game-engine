@@ -17,11 +17,11 @@ SahneOkuyucu.prototype._elemanAl = function(elem) {
 
 SahneOkuyucu.prototype.kameraOku = function() {
     let kamElm = this._elemanAl("Kamera");
-    let mx = Number(camElm[0].getAttribute("MerkezX"));
-    let my = Number(camElm[0].getAttribute("MerkezY"));
-    let en = Number(camElm[0].getAttribute("En"));
-    let galani = camElm[0].getAttribute("GorusAlani").split(" ");
-    let arkaplan = camElm[0].getAttribute("ArkaPlanRengi").split(" ");
+    let mx = Number(kamElm[0].getAttribute("MerkezX"));
+    let my = Number(kamElm[0].getAttribute("MerkezY"));
+    let en = Number(kamElm[0].getAttribute("En"));
+    let galani = kamElm[0].getAttribute("GorusAlani").split(" ");
+    let arkaplan = kamElm[0].getAttribute("ArkaPlanRengi").split(" ");
     for (var j = 0; j < 4; j++) {
         arkaplan[j] = Number(arkaplan[j]);
         galani[j] = Number(galani[j]);
@@ -50,7 +50,7 @@ SahneOkuyucu.prototype.kareOkuyucu = function(kareListesi) {
         for (var j = 0; j < 3; j++)
             renk[j] = Number(renk[j]);
         kare.renkKoy(renk);
-        kare.donusturAl().konumKoy(x, y);
+        kare.donusturAl().konumKoy(kx, ky);
         kare.donusturAl().dereceKoy(aci);
         kare.donusturAl().boyutKoy(en, boy);
         kareListesi.push(kare);

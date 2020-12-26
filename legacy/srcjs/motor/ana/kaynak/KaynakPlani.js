@@ -47,6 +47,7 @@ var asyncYuklemeTamamlandiSinyali = function(kaynakAdi, yuklenenKaynak) {
         alert("Mevcut kaynak: " + kaynakAdi + " yuklenmemis!");
     }
     KaynakPlani[kaynakAdi].kaynak = yuklenenKaynak;
+    // debugger;
     BekleyenYuklemeler--;
     _butunYuklemelerOlduMuKontrol();
 };

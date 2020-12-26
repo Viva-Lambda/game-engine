@@ -2,10 +2,11 @@
 
 var gMotor = gMotor || {};
 
-var oyunBaslat = function(oyunum) {
+var sahneBaslat = function(oyn) {
     console.log("oyun baslat");
-    oyunum.baslat.call(oyunum);
-    gMotor.OyunDongusu.baslat(oyunum);
+    oyn.sahneYukle.call(oyn);
+    console.log("oyun baslat2");
+    gMotor.OyunDongusu.baslat(oyn);
 };
 
 gMotor.AnaMotor = (function() {
@@ -27,7 +28,7 @@ gMotor.AnaMotor = (function() {
         // varsayilan kaynaklari baslat
         gMotor.VarsayilanKaynaklar.baslat(
             function() {
-                oyunBaslat(oyunum);
+                sahneBaslat(oyunum);
             }
         );
     }

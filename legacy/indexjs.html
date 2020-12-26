@@ -3,6 +3,15 @@
 
 <head>
     <title>JS Oyun Motoru Projesi</title>
+
+</head>
+
+<body onload="
+          ">
+    <canvas id="GLCanvas" width="640" height="480">
+        Tarayiciniz html5 kanvasini desteklemiyor
+    </canvas>
+    <button id="ciz-btn">Ciz</button>
     <!-- 3. kisi kodu baslar -->
     <script type="text/javascript" src="./srcjs/lib/glmatrix.js"></script>
     <!-- Motor Kodu baslar -->
@@ -22,16 +31,17 @@
     <!-- Motor Kodu biter -->
     <!-- Oyunum Kodu baslar -->
     <script type="text/javascript" src="./srcjs/oyun/Oyunum.js"></script>
+    <script type="text/javascript" src="./srcjs/oyun/yardimci/SahneOkuyucu.js"></script>
+    <script type="text/javascript">
+        function oyunBaslat() {
+            var oyunum = new Oyunum();
+            gMotor.AnaMotor.anaUnsurlariBaslat('GLCanvas', oyunum);
+            gMotor.OyunDongusu.baslat(oyunum);
+        }
+        var btn = document.getElementById("ciz-btn");
+        btn.addEventListener("click", oyunBaslat, false);
+    </script>
 
-</head>
-
-<body onload="
-      var oyunum = new Oyunum();
-      gMotor.AnaMotor.anaUnsurlariBaslat('GLCanvas', oyunum);
-    ">
-    <canvas id="GLCanvas" width="640" height="480">
-        Tarayiciniz html5 kanvasini desteklemiyor
-    </canvas>
 </body>
 
 </html>

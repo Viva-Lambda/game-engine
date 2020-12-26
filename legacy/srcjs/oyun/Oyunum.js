@@ -1,47 +1,23 @@
 "use strict";
 
 function Oyunum() {
+    this.sahne_yolu = "kaynaklar/sahne.xml";
+    this.kare_listesi = new Array();
     this.kamera = null;
-
-    // cizilebilirleri olustur
-    this.beyazKare = null;
-    this.kirmiziKare = null;
 }
 
-Oyunum.prototype.baslat = function() {
-    // kamera olustur
-    this.kamera = new Kamera(
-        vec2.fromValues(20, 60),
-        20,
-        [20, 40, 600, 300]
-    );
-    this.kamera.arkaPlanRengiKoy([0.8, 0.8, 0.8, 1.0]);
+Oyunum.prototype._baslat = function() {
 
-    // cizer olustur
-    var cizer = gMotor.VarsayilanKaynaklar.tekRenkCizerAl();
-    console.log(this.cizer);
-    // cizilebilirleri olustur
-    this.kirmiziKare = new Cizilebilir(cizer);
-    this.kirmiziKare.renkKoy([0.8, 0.1, 0.1, 1.0]);
-
-    this.beyazKare = new Cizilebilir(cizer);
-    this.beyazKare.renkKoy([0.8, 0.8, 0.7, 1.0]);
-
-    // bir yere koy objeleri
-    this.beyazKare.donustur.konumKoy(20, 60);
-    this.beyazKare.donustur.radyanKoy(0.2);
-    this.beyazKare.donustur.boyutKoy(5, 5);
-
+    let sahne_okuyucu = new SahneOkuyucu(this.sahne_yolu);
     //
-    this.kirmiziKare.donustur.konumKoy(20, 60);
-    this.kirmiziKare.donustur.radyanKoy(-0.2);
-    this.kirmiziKare.donustur.boyutKoy(2, 2);
+    this.kamera = sahne_okuyucu.kameraOku();
+    //
+    sahne_okuyucu.kareOkuyucu(this.kare_listesi);
+};
 
-    gMotor.OyunDongusu.baslat(this);
-}
 
 Oyunum.prototype.guncelle = function() {
-    var beyazDonustur = this.beyazKare.donustur;
+    var beyazDonustur = this.kare_listesi[0].donusturAl();
     var deltaX = 0.05;
     // beyaz kare hareketi
     if (gMotor.Girdi.tusTiklandiMi(gMotor.Girdi.tuslar.Sag)) {
@@ -54,7 +30,7 @@ Oyunum.prototype.guncelle = function() {
         beyazDonustur.dereceArti(1);
     }
 
-    var kirmiziDonustur = this.kirmiziKare.donustur;
+    var kirmiziDonustur = this.kare_listesi[1].donusturAl();
     // kirmizi kare hareketi
     var kirmiziKontrol =
         gMotor.Girdi.tusTiklandiMi(gMotor.Girdi.tuslar.Asagi);
@@ -64,7 +40,7 @@ Oyunum.prototype.guncelle = function() {
         }
         kirmiziDonustur.boyutArti(0.05);
     }
-}
+};
 
 Oyunum.prototype.ciz = function() {
     //
@@ -72,6 +48,17 @@ Oyunum.prototype.ciz = function() {
 
     this.kamera.bakmaProjMatKur();
 
-    this.kirmiziKare.ciz(this.kamera.bakmaProjMatAl());
-    this.beyazKare.ciz(this.kamera.bakmaProjMatAl());
-}
+    for (var i = 0; i < this.kare_listesi.length; i++) {
+        this.kare_listesi[i].ciz(this.kamera.bakmaProjMatAl());
+    }
+};
+
+Oyunum.prototype.sahneYukle = function() {
+    gMotor.MetinYukleyici.metniYukle(this.sahne_yolu,
+        gMotor.MetinYukleyici.MetinTipi.XML);
+};
+
+Oyunum.prototype.sahneKaldir = function() {
+    //
+    gMotor.MetinYukleyici.metinKaldir(this.sahne_yolu);
+};
