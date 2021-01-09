@@ -41,6 +41,8 @@ var _donguCalistir = function() {
             gecikenSure -= MPF;
         }
         this.ciz();
+    } else {
+        donguOyun.sahneKaldir();
     }
 };
 var baslat = function(oyun) {
@@ -53,9 +55,13 @@ var baslat = function(oyun) {
         }
     );
 };
+var dur = function() {
+    donguCalisiyorMu = false;
+};
 gMotor.OyunDongusu = (function() {
     var genel = {
-        baslat: baslat
+        baslat: baslat,
+        dur: dur
     };
     return genel;
 }());

@@ -5,6 +5,7 @@ function Oyunum() {
     this.kare_listesi = new Array();
     this.kamera = null;
 }
+objeyiKalit(MaviSahne, Sahne);
 
 Oyunum.prototype._baslat = function() {
 
@@ -22,7 +23,7 @@ Oyunum.prototype.guncelle = function() {
     // beyaz kare hareketi
     if (gMotor.Girdi.tusTiklandiMi(gMotor.Girdi.tuslar.Sag)) {
         if (beyazDonustur.konumXAl() > 30) {
-            beyazDonustur.konumKoy(10, 60);
+            gMotor.OyunDongusu.dur();
         }
         beyazDonustur.konumXArti(1);
     }
@@ -60,5 +61,9 @@ Oyunum.prototype.sahneYukle = function() {
 
 Oyunum.prototype.sahneKaldir = function() {
     //
-    gMotor.MetinYukleyici.metinKaldir(this.sahne_yolu);
+    //gMotor.MetinYukleyici.metinKaldir(this.sahne_yolu);
+
+    var sonrakiBolum = new MaviSahne();
+    gMotor.AnaMotor.sahneBaslat(sonrakiBolum);
+
 };

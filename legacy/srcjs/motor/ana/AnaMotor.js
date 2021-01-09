@@ -2,6 +2,13 @@
 
 var gMotor = gMotor || {};
 
+var objeyiKalit = function(OzelObje, GenelObje) {
+    //
+    var prototype = Object.create(OzelObje.prototype);
+    prototype.constructor = GenelObje;
+    OzelObje.prototype = prototype;
+};
+
 var sahneBaslat = function(oyn) {
     console.log("oyun baslat");
     oyn.sahneYukle.call(oyn);
@@ -51,7 +58,8 @@ gMotor.AnaMotor = (function() {
     var metotlar = {
         glAl: glAl,
         kanvasTemizle: kanvasTemizle,
-        anaUnsurlariBaslat: anaUnsurlariBaslat
+        anaUnsurlariBaslat: anaUnsurlariBaslat,
+        sahneBaslat: sahneBaslat
     };
     return metotlar;
 }());
