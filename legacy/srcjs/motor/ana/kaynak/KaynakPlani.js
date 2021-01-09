@@ -5,6 +5,7 @@ var gMotor = gMotor || {};
 
 var KaynakGirdisi = function(kaynakAdi) {
     this.kaynak = kaynakAdi;
+    this.refSayisi = 1;
 }
 
 
@@ -15,11 +16,7 @@ var BekleyenYuklemeler = 0;
 var YuklendiSinyali = null;
 
 var _butunYuklemelerOlduMuKontrol = function() {
-    console.log("butun oldu mu dis");
-    console.log(YuklendiSinyali);
-    console.log(BekleyenYuklemeler);
     if ((BekleyenYuklemeler === 0) && (YuklendiSinyali !== null)) {
-        console.log("butun oldu mu ic");
         var cagrilacak = YuklendiSinyali;
         cagrilacak();
         YuklendiSinyali = null;
@@ -36,6 +33,10 @@ var asyncYuklemeTalebi = function(kaynakAdi) {
     KaynakPlani[kaynakAdi] = new KaynakGirdisi(kaynakAdi);
     BekleyenYuklemeler++;
 };
+
+var kaynakRefArti = function(kaynakAdi) {
+    KaynakPlani[kaynakAdi].refSayisi += 1;
+}
 
 var kaynakYuklendiMi = function(kaynakAdi) {
     return (kaynakAdi in KaynakPlani);
@@ -57,16 +58,21 @@ var kaynakAl = function(kaynakAdi) {
     var k = null;
     if (kaynakAdi in KaynakPlani)
         k = KaynakPlani[kaynakAdi].kaynak;
-    console.log(k, "k degeri");
     return k;
 };
 
 var kaynakCikart = function(kaynakAdi) {
     //
+    var ref_sayisi = 0;
     if (kaynakAdi in KaynakPlani) {
-        delete KaynakPlani[kaynakAdi];
+        KaynakPlani[kaynakAdi].refSayisi -= 1;
+        ref_sayisi = KaynakPlani[kaynakAdi].refSayisi;
+        if (ref_sayisi === 0) {
+            delete KaynakPlani[kaynakAdi];
+        }
     }
-}
+    return ref_sayisi;
+};
 gMotor.KaynakPlani = (function() {
     var metotlar = {
         asyncYuklemeTamamlandiSinyali: asyncYuklemeTamamlandiSinyali,
@@ -74,6 +80,7 @@ gMotor.KaynakPlani = (function() {
         yuklemeBittiSinyaliKoy: yuklemeBittiSinyaliKoy,
         kaynakAl: kaynakAl,
         kaynakCikart: kaynakCikart,
+        kaynakRefArti: kaynakRefArti,
         kaynakYuklendiMi: kaynakYuklendiMi
     };
     return metotlar;
