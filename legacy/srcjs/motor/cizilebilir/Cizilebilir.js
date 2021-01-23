@@ -1,9 +1,9 @@
 "use strict";
 // cizilebilir objelerin anasi
 
-function Cizilebilir(cizici) {
+function Cizilebilir() {
     //
-    this.cizici = cizici; // null
+    this.cizici = gMotor.VarsayilanKaynaklar.tekRenkCizerAl(); // null
     this.renk = [1, 1, 1, 1];
     this.donustur = new Donustur();
 }
@@ -24,3 +24,6 @@ Cizilebilir.prototype.renkKoy = function(renk) {
 Cizilebilir.prototype.renkAl = function() {
     return this.renk;
 };
+Cizilebilir.prototype._cizerKoy = function(cizer) {
+    this.cizici = cizer;
+}

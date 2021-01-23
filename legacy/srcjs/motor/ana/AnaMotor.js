@@ -42,8 +42,21 @@ gMotor.AnaMotor = (function() {
     var glBaslat = function(glCanvasId) {
         //
         var kanvas = document.getElementById(glCanvasId);
-        mGL = kanvas.getContext("webgl") ||
-            kanvas.getContext("webgl2");
+        mGL = kanvas.getContext("webgl", {
+                alpha: false
+            }) ||
+            kanvas.getContext("webgl2", {
+                alpha: false
+            });
+
+        // saydam dokulara izin verir
+        mGL.blendFunc(mGL.SRC_ALPHA, mGL.ONE_MINUS_SRC_ALPHA);
+        mGL.enable(mGL.BLEND);
+
+        // y ekseninde resimi dondur, doku alanina uygun hale gelmesi icin
+        mGL.pixelStorei(mGL.UNPACK_FLIP_Y_WEBGL, true);
+
+        //
         if (mGL === null) {
             document.write("<br><b>Tarayiciniz WebGL desteklemiyor</b>");
             return;
@@ -59,7 +72,8 @@ gMotor.AnaMotor = (function() {
         glAl: glAl,
         kanvasTemizle: kanvasTemizle,
         anaUnsurlariBaslat: anaUnsurlariBaslat,
-        sahneBaslat: sahneBaslat
+        sahneBaslat: sahneBaslat,
+        objeyiKalit: objeyiKalit,
     };
     return metotlar;
 }());
