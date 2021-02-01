@@ -2,20 +2,6 @@
 
 var gMotor = gMotor || {};
 
-var objeyiKalit = function(OzelObje, GenelObje) {
-    //
-    var prototype = Object.create(OzelObje.prototype);
-    prototype.constructor = GenelObje;
-    OzelObje.prototype = prototype;
-};
-
-var sahneBaslat = function(oyn) {
-    console.log("oyun baslat");
-    oyn.sahneYukle.call(oyn);
-    console.log("oyun baslat2");
-    gMotor.OyunDongusu.baslat(oyn);
-};
-
 gMotor.AnaMotor = (function() {
     //
     var mGL = null;
@@ -23,25 +9,11 @@ gMotor.AnaMotor = (function() {
     //
     var glAl = function() {
         return mGL;
-    }
+    };
 
-
-    //
-    var anaUnsurlariBaslat = function(glCanvasId, oyunum) {
-        glBaslat(glCanvasId);
-        gMotor.VertexBuffer.baslat();
-        gMotor.Girdi.baslat();
-
-        // varsayilan kaynaklari baslat
-        gMotor.VarsayilanKaynaklar.baslat(
-            function() {
-                sahneBaslat(oyunum);
-            }
-        );
-    }
-    var glBaslat = function(glCanvasId) {
+    var _webglBaslat = function(glCanvasId) {
         //
-        var kanvas = document.getElementById(glCanvasId);
+        let kanvas = document.getElementById(glCanvasId);
         mGL = kanvas.getContext("webgl", {
                 alpha: false
             }) ||
@@ -61,12 +33,38 @@ gMotor.AnaMotor = (function() {
             document.write("<br><b>Tarayiciniz WebGL desteklemiyor</b>");
             return;
         }
-    }
+    };
+
+    var sahneBaslat = function(oyn) {
+        oyn.sahneYukle.call(oyn);
+        gMotor.OyunDongusu.baslat(oyn);
+    };
+
+    //
+    var anaUnsurlariBaslat = function(glCanvasId, oyunum) {
+        _webglBaslat(glCanvasId);
+        gMotor.VertexBuffer.baslat();
+        gMotor.Girdi.baslat();
+        gMotor.SesKlipleri.SesOrtaminiBaslat();
+
+        // varsayilan kaynaklari baslat
+        gMotor.VarsayilanKaynaklar.baslat(
+            function() {
+                sahneBaslat(oyunum);
+            }
+        );
+    };
     var kanvasTemizle = function(renk) {
         //
         mGL.clearColor(renk[0], renk[1], renk[2], renk[3]);
         mGL.clear(mGL.COLOR_BUFFER_BIT);
-    }
+    };
+    var objeyiKalit = function(OzelObje, GenelObje) {
+        //
+        var prototype = Object.create(OzelObje.prototype);
+        prototype.constructor = GenelObje;
+        OzelObje.prototype = prototype;
+    };
 
     var metotlar = {
         glAl: glAl,
