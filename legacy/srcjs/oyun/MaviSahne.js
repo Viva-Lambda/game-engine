@@ -11,23 +11,14 @@ function MaviSahne() {
     // doku, resim, gorseller
     this.doku_demotik = "kaynaklar/doku/demotik1.jpeg";
     this.doku_yunan = "kaynaklar/doku/yunan1.jpg";
+
+    //
     this.kare_listesi = new Array();
+
+    //
     this.kamera = null;
 }
-objeyiKalit(MaviSahne, Sahne);
-
-MaviSahne.prototype._baslat = function() {
-
-    let sahne_okuyucu = new SahneOkuyucu(this.sahne_yolu);
-    //
-    this.kamera = sahne_okuyucu.kameraOku();
-    //
-    sahne_okuyucu.kareOkuyucu(this.kare_listesi);
-    sahne_okuyucu.dokuKareOkuyucu(this.kare_listesi);
-
-
-    gMotor.SesKlipleri.arkaPlanSesiOynat(this.arkaplan_ses_yolu);
-};
+gMotor.AnaMotor.objeyiKalit(MaviSahne, Sahne);
 
 
 MaviSahne.prototype.sahneYukle = function() {
@@ -40,6 +31,37 @@ MaviSahne.prototype.sahneYukle = function() {
     gMotor.Dokular.dokuYukle(this.doku_demotik);
     gMotor.Dokular.dokuYukle(this.doku_yunan);
 };
+MaviSahne.prototype.sahneKaldir = function() {
+    //
+    gMotor.MetinYukleyici.metinKaldir(this.sahne_yolu);
+
+    //
+    gMotor.SesKlipleri.arkaPlanSesiniDurdur();
+    gMotor.SesKlipleri.sesKaldir(this.arkaplan_ses_yolu);
+    gMotor.SesKlipleri.sesKaldir(this.efekt_ses_yolu);
+
+    //
+    gMotor.Dokular.dokuKaldir(this.doku_makemyday);
+    gMotor.Dokular.dokuKaldir(this.doku_suitup);
+
+
+    var sonrakiBolum = new Oyunum();
+    gMotor.AnaMotor.sahneBaslat(sonrakiBolum);
+};
+
+
+MaviSahne.prototype.baslat = function() {
+
+    let sahne_okuyucu = new SahneOkuyucu(this.sahne_yolu);
+    //
+    this.kamera = sahne_okuyucu.kameraOku();
+    //
+    sahne_okuyucu.kareOkuyucu(this.kare_listesi);
+    sahne_okuyucu.dokuKareOkuyucu(this.kare_listesi);
+
+
+    gMotor.SesKlipleri.arkaPlanSesiOynat(this.arkaplan_ses_yolu);
+};
 
 MaviSahne.prototype.ciz = function() {
     //
@@ -50,19 +72,6 @@ MaviSahne.prototype.ciz = function() {
     for (var i = 0; i < this.kare_listesi.length; i++) {
         this.kare_listesi[i].ciz(this.kamera.bakmaProjMatAl());
     }
-};
-MaviSahne.prototype.sahneKaldir = function() {
-    //
-    //gMotor.MetinYukleyici.metinKaldir(this.sahne_yolu);
-    gMotor.SesKlipleri.arkaPlanSesiniDurdur();
-    gMotor.SesKlipleri.sesKaldir(this.arkaplan_ses_yolu);
-    gMotor.SesKlipleri.sesKaldir(this.efekt_ses_yolu);
-    gMotor.Dokular.dokuKaldir(this.doku_makemyday);
-    gMotor.Dokular.dokuKaldir(this.doku_suitup);
-
-
-    var sonrakiBolum = new Oyunum();
-    gMotor.AnaMotor.sahneBaslat(sonrakiBolum);
 };
 MaviSahne.prototype.guncelle = function() {
     var beyazDonustur = this.kare_listesi[0].donusturAl();

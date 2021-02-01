@@ -10,5 +10,5 @@ void main() {
   gl_Position = uBakmaProj * uModelDonustur * vec4(kareKoordinati, 1.0);
 
   // doku koordinati fragment shader'a aktarilir
-  dokuKoord = dokuKoordinati
+  dokuKoord = dokuKoordinati;
 }

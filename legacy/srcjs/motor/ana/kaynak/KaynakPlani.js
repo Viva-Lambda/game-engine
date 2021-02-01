@@ -3,95 +3,100 @@
 
 var gMotor = gMotor || {};
 
-/** KaynakPlani içerisinde bir kaynagi temsil eden obje
+gMotor.KaynakYoneticisi = (function() {
 
-  @param {string} kaynakAdi kaynagin bulundugu dosya yolu
-*/
-var KaynakGirdisi = function(kaynakAdi) {
-    this.kaynak = kaynakAdi;
-    this.refSayisi = 1;
-}
+    /** Kaynaklar içerisinde bir kaynagi temsil eden obje
 
-/** Kaynaklari içinde barindiran obje*/
-var KaynakPlani = {};
-
-/** Kaynak planinin toplam yuklemesi gereken obje */
-var BekleyenYuklemeler = 0;
-
-/** Bir yuklemenin sonunda çagrilacak islem*/
-var YuklendiSinyali = null;
-
-/** bekleyen yukleme kalip kalmadigini denetler */
-var _butunYuklemelerOlduMuKontrol = function() {
-    if ((BekleyenYuklemeler === 0) && (YuklendiSinyali !== null)) {
-        var cagrilacak = YuklendiSinyali;
-        cagrilacak();
-        YuklendiSinyali = null;
-    }
-};
-
-var yuklemeBittiSinyaliKoy = function(f) {
-    YuklendiSinyali = f;
-    _butunYuklemelerOlduMuKontrol();
-};
-
-var asyncYuklemeTalebi = function(kaynakAdi) {
-    //
-    KaynakPlani[kaynakAdi] = new KaynakGirdisi(kaynakAdi);
-    BekleyenYuklemeler++;
-};
-
-/** kaynagin referansini arttir
-
-Kaynak çok buyuk olasilikla baska bir yerden çagriliyor ve bunun uzerine biz
-de ilgili referansini arttriyoruz.
+      @param {string} kaynakAdi kaynagin bulundugu dosya yolu
     */
-var kaynakRefArti = function(kaynakAdi) {
-    KaynakPlani[kaynakAdi].refSayisi += 1;
-}
+    var KaynakGirdisi = function(kaynakAdi) {
+        this.kaynak = kaynakAdi;
+        this.refSayisi = 1;
+    };
 
-var kaynakYuklendiMi = function(kaynakAdi) {
-    return (kaynakAdi in KaynakPlani);
-}
+    /** Kaynaklari içinde barindiran obje*/
+    var Kaynaklar = {};
 
-var asyncYuklemeTamamlandiSinyali = function(kaynakAdi, yuklenenKaynak) {
-    //
-    if (!kaynakYuklendiMi(kaynakAdi)) {
-        alert("Mevcut kaynak: " + kaynakAdi + " yuklenmemis!");
-    }
-    KaynakPlani[kaynakAdi].kaynak = yuklenenKaynak;
-    // debugger;
-    BekleyenYuklemeler--;
-    _butunYuklemelerOlduMuKontrol();
-};
+    /** Kaynak planinin toplam yuklemesi gereken obje */
+    var BekleyenYuklemeler = 0;
 
-var kaynakAl = function(kaynakAdi) {
-    //
-    var k = null;
-    if (kaynakAdi in KaynakPlani)
-        k = KaynakPlani[kaynakAdi].kaynak;
-    return k;
-};
+    /** Bir yuklemenin sonunda çagrilacak islem*/
+    var YuklendiSinyali = null;
 
-/** dosya yolu verilen kaynagi eger referansi sifirlanmissa kaldirir
+    var asyncYuklemeTalebi = function(kaynakAdi) {
+        //
+        Kaynaklar[kaynakAdi] = new KaynakGirdisi(kaynakAdi);
+        BekleyenYuklemeler++;
+    };
 
-@param {string} kaynakAdi ilgili kaynagin dosya yolu
-    */
-var kaynakCikart = function(kaynakAdi) {
-    //
-    var ref_sayisi = 0;
-    if (kaynakAdi in KaynakPlani) {
-        KaynakPlani[kaynakAdi].refSayisi -= 1;
-        ref_sayisi = KaynakPlani[kaynakAdi].refSayisi;
-        if (ref_sayisi === 0) {
-            delete KaynakPlani[kaynakAdi];
+    var asyncYuklemeTamamlandi = function(kaynakAdi, yuklenenKaynak) {
+        //
+        if (!kaynakYuklendiMi(kaynakAdi)) {
+            alert("Mevcut kaynak: " + kaynakAdi + " yuklenmemis!");
         }
+        Kaynaklar[kaynakAdi].kaynak = yuklenenKaynak;
+        // debugger;
+        BekleyenYuklemeler--;
+        _butunYuklemelerOlduMuKontrol();
+    };
+
+    /** bekleyen yukleme kalip kalmadigini denetler */
+    var _butunYuklemelerOlduMuKontrol = function() {
+        if ((BekleyenYuklemeler === 0) && (YuklendiSinyali !== null)) {
+            var cagrilacak = YuklendiSinyali;
+            cagrilacak();
+            YuklendiSinyali = null;
+        }
+    };
+
+    var yuklemeBittiSinyaliKoy = function(f) {
+        YuklendiSinyali = f;
+        _butunYuklemelerOlduMuKontrol();
+    };
+
+    var kaynakAl = function(kaynakAdi) {
+        //
+        var k = null;
+        if (kaynakAdi in Kaynaklar) {
+            k = Kaynaklar[kaynakAdi].kaynak;
+        } else {
+            alert("ilgili kaynak: " + kaynakAdi + " Kaynak Plani yok");
+        }
+        return k;
+    };
+
+
+    /** kaynagin referansini arttir
+
+    Kaynak çok buyuk olasilikla baska bir yerden çagriliyor ve bunun uzerine biz
+    de ilgili referansini arttriyoruz.
+        */
+    var kaynakRefArti = function(kaynakAdi) {
+        Kaynaklar[kaynakAdi].refSayisi += 1;
     }
-    return ref_sayisi;
-};
-gMotor.KaynakPlani = (function() {
+
+    var kaynakYuklendiMi = function(kaynakAdi) {
+        return (kaynakAdi in Kaynaklar);
+    }
+
+    /** dosya yolu verilen kaynagi eger referansi sifirlanmissa kaldirir
+
+    @param {string} kaynakAdi ilgili kaynagin dosya yolu
+        */
+    var kaynakCikart = function(kaynakAdi) {
+        //
+        var ref_sayisi = 0;
+        if (kaynakAdi in Kaynaklar) {
+            Kaynaklar[kaynakAdi].refSayisi -= 1;
+            ref_sayisi = Kaynaklar[kaynakAdi].refSayisi;
+            if (ref_sayisi === 0) {
+                delete Kaynaklar[kaynakAdi];
+            }
+        }
+        return ref_sayisi;
+    };
     var metotlar = {
-        asyncYuklemeTamamlandiSinyali: asyncYuklemeTamamlandiSinyali,
+        asyncYuklemeTamamlandi: asyncYuklemeTamamlandi,
         asyncYuklemeTalebi: asyncYuklemeTalebi,
         yuklemeBittiSinyaliKoy: yuklemeBittiSinyaliKoy,
         kaynakAl: kaynakAl,
@@ -101,4 +106,3 @@ gMotor.KaynakPlani = (function() {
     };
     return metotlar;
 }());
-//

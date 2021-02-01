@@ -19,29 +19,36 @@
     <script type="text/javascript" src="./srcjs/motor/ana/Girdi.js"></script>
     <script type="text/javascript" src="./srcjs/motor/ana/VertexBuffer.js"></script>
     <script type="text/javascript" src="./srcjs/motor/ana/OyunDongusu.js"></script>
+
+    <!-- Kaynaklar ile ilgili Kod baslar -->
     <script type="text/javascript" src="./srcjs/motor/ana/kaynak/KaynakPlani.js"></script>
-    <script type="text/javascript" src="./srcjs/motor/ana/kaynak/SesKlibi.js"></script>
     <script type="text/javascript" src="./srcjs/motor/ana/kaynak/MetinYukleyici.js"></script>
     <script type="text/javascript" src="./srcjs/motor/ana/kaynak/VarsayilanKaynak.js"></script>
-
-    <!-- Motor Kodu Ana unsurlar baslar -->
-    <script type="text/javascript" src="./srcjs/motor/cizer/BasitCizer.js"></script>
-    <script type="text/javascript" src="./srcjs/motor/cizer/DokuCizer.js"></script>
+    <script type="text/javascript" src="./srcjs/motor/ana/kaynak/SesKlibi.js"></script>
+    <script type="text/javascript" src="./srcjs/motor/ana/kaynak/Dokular.js"></script>
+    <!-- Kamera donusturucu -->
     <script type="text/javascript" src="./srcjs/motor/Donusturucu.js"></script>
-    <script type="text/javascript" src="./srcjs/motor/cizilebilir/Cizilebilir.js"></script>
-    <script type="text/javascript" src="./srcjs/motor/cizilebilir/DokuCizilebilir.js"></script>
     <script type="text/javascript" src="./srcjs/motor/Kamera.js"></script>
     <script type="text/javascript" src="./srcjs/motor/Sahne.js"></script>
+
+    <!-- Cizilebilirler -->
+    <script type="text/javascript" src="./srcjs/motor/cizilebilir/Cizilebilir.js"></script>
+    <script type="text/javascript" src="./srcjs/motor/cizilebilir/DokuCizilebilir.js"></script>
+    <!-- Cizerler -->
+    <script type="text/javascript" src="./srcjs/motor/cizer/BasitCizer.js"></script>
+    <script type="text/javascript" src="./srcjs/motor/cizer/DokuCizer.js"></script>
     <!-- Motor Kodu biter -->
+
     <!-- Oyunum Kodu baslar -->
-    <script type="text/javascript" src="./srcjs/oyun/yardimci/SahneOkuyucu.js"></script>
     <script type="text/javascript" src="./srcjs/oyun/MaviSahne.js"></script>
     <script type="text/javascript" src="./srcjs/oyun/Oyunum.js"></script>
+    <!-- Oyuna yardimci kod -->
+    <script type="text/javascript" src="./srcjs/oyun/yardimci/SahneOkuyucu.js"></script>
     <script type="text/javascript">
         function oyunBaslat() {
             var oyunum = new Oyunum();
             gMotor.AnaMotor.anaUnsurlariBaslat('GLCanvas', oyunum);
-            gMotor.OyunDongusu.baslat(oyunum);
+            //gMotor.OyunDongusu.baslat(oyunum);
         }
         var btn = document.getElementById("ciz-btn");
         btn.addEventListener("click", oyunBaslat, false);

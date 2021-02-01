@@ -11,10 +11,9 @@ function BasitCizer(noktaCiziciDosyaYolu, renklendiriciDosyaYolu) {
 
     let gl = gMotor.AnaMotor.glAl();
 
-    console.log("yukle derle oncesi");
     // 1. cizicileri derle yukle
-    let noktaCizici = this.ciziciYukleDerle(noktaCiziciDosyaYolu, gl.VERTEX_SHADER);
-    let renklendirici = this.ciziciYukleDerle(renklendiriciDosyaYolu, gl.FRAGMENT_SHADER);
+    var noktaCizici = this.ciziciYukleDerle(noktaCiziciDosyaYolu, gl.VERTEX_SHADER);
+    var renklendirici = this.ciziciYukleDerle(renklendiriciDosyaYolu, gl.FRAGMENT_SHADER);
 
 
     // 2. cizer olustur
@@ -57,7 +56,7 @@ BasitCizer.prototype.ciziciYukleDerle = function(dosyaYolu, ciziciTipi) {
     let gl = gMotor.AnaMotor.glAl();
 
     // 1. Shader metnini al
-    let ciziciKaynagi = gMotor.KaynakPlani.kaynakAl(dosyaYolu);
+    let ciziciKaynagi = gMotor.KaynakYoneticisi.kaynakAl(dosyaYolu);
     if (ciziciKaynagi === null) {
         alert("shader kaynagi yuklenemedi: " + dosyaYolu);
         return null;

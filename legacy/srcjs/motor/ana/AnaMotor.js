@@ -61,8 +61,8 @@ gMotor.AnaMotor = (function() {
     };
     var objeyiKalit = function(OzelObje, GenelObje) {
         //
-        var prototype = Object.create(OzelObje.prototype);
-        prototype.constructor = GenelObje;
+        var prototype = Object.create(GenelObje.prototype);
+        prototype.constructor = OzelObje;
         OzelObje.prototype = prototype;
     };
 
