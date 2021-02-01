@@ -20,38 +20,38 @@ function Kamera(merkez, pencereGenisligi, gorusAlaniListesi) {
 Kamera.prototype.merkezKoy = function(x, y) {
     this.merkez[0] = x;
     this.merkez[1] = y;
-}
+};
 Kamera.prototype.merkezAl = function() {
     return this.merkez;
-}
+};
 
 Kamera.prototype.genislikKoy = function(x) {
     this.pgenislik = x;
-}
+};
 Kamera.prototype.genislikAl = function(x) {
     return this.pgenislik;
-}
+};
 
 Kamera.prototype.gorusAlaniKoy = function(gListesi) {
     if (gListesi.length !== 4) {
         alert("Gorus Alani Listesi 4 elemanli degil");
     }
     this.gorusAlaniListesi = gListesi;
-}
+};
 
 Kamera.prototype.arkaPlanRengiKoy = function(renk) {
     if (renk.length !== 4) {
         alert("Renk 4 elemanli degil");
     }
     this.arkaPlanRengi = renk;
-}
+};
 Kamera.prototype.arkaPlanRengiAl = function() {
     return this.arkaPlanRengi;
-}
+};
 
 Kamera.prototype.bakmaProjMatAl = function() {
     return this.bakmaProjMat;
-}
+};
 
 Kamera.prototype.bakmaProjMatKur = function() {
     //
@@ -102,5 +102,4 @@ Kamera.prototype.bakmaProjMatKur = function() {
         this.yakinPlan, this.uzakPlan);
 
     mat4.multiply(this.bakmaProjMat, this.projMat, this.bakmaMat);
-
-}
+};

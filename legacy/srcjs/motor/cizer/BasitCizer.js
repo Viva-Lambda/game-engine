@@ -9,33 +9,40 @@ function BasitCizer(noktaCiziciDosyaYolu, renklendiriciDosyaYolu) {
     this.bakmaMatKonumu = null;
     //
 
-    var gl = gMotor.AnaMotor.glAl();
+    let gl = gMotor.AnaMotor.glAl();
 
     console.log("yukle derle oncesi");
-    var noktaCizici = this.ciziciYukleDerle(noktaCiziciDosyaYolu, gl.VERTEX_SHADER);
-    var renklendirici = this.ciziciYukleDerle(renklendiriciDosyaYolu, gl.FRAGMENT_SHADER);
+    // 1. cizicileri derle yukle
+    let noktaCizici = this.ciziciYukleDerle(noktaCiziciDosyaYolu, gl.VERTEX_SHADER);
+    let renklendirici = this.ciziciYukleDerle(renklendiriciDosyaYolu, gl.FRAGMENT_SHADER);
 
 
-    // cizer olustur
+    // 2. cizer olustur
     this.derlenenCizici = gl.createProgram();
     gl.attachShader(this.derlenenCizici, noktaCizici);
     gl.attachShader(this.derlenenCizici, renklendirici);
     gl.linkProgram(this.derlenenCizici);
 
+    // 3. cizilenin kontrolu
     if (!gl.getProgramParameter(this.derlenenCizici, gl.LINK_STATUS)) {
         alert("Cizici linklemede hata olustu");
         return null;
     }
+
+    // 4. kare koordinati konumu 
     this.gCizerKordinatKonumu = gl.getAttribLocation(this.derlenenCizici,
         "kareKoordinati");
 
+    // 5. bufferi bagla
     gl.bindBuffer(gl.ARRAY_BUFFER, gMotor.VertexBuffer.glVertexRefAl());
 
+    // 6. vertex attrib pointer için ilgili degerleri girelim
     gl.vertexAttribPointer(this.gCizerKordinatKonumu,
         3, gl.FLOAT, false,
         0,
         0);
-    // çizici derlendi artik rengi koyabiliriz
+
+    // 7. diger uniformlari koyalim
     this.pikselRengi = gl.getUniformLocation(this.derlenenCizici,
         "uPikselRengi");
     this.modelMatKonumu = gl.getUniformLocation(this.derlenenCizici,
@@ -45,36 +52,46 @@ function BasitCizer(noktaCiziciDosyaYolu, renklendiriciDosyaYolu) {
 }
 
 BasitCizer.prototype.ciziciYukleDerle = function(dosyaYolu, ciziciTipi) {
-    var ciziciMetni, ciziciKaynagi, derlenenCizici;
+    let ciziciMetni;
 
-    var gl = gMotor.AnaMotor.glAl();
+    let gl = gMotor.AnaMotor.glAl();
 
-    // dosya yolundan yukleme
-    console.log("kaynak al oncesi");
-    ciziciKaynagi = gMotor.KaynakPlani.kaynakAl(dosyaYolu);
-    //
-    derlenenCizici = gl.createShader(ciziciTipi);
+    // 1. Shader metnini al
+    let ciziciKaynagi = gMotor.KaynakPlani.kaynakAl(dosyaYolu);
+    if (ciziciKaynagi === null) {
+        alert("shader kaynagi yuklenemedi: " + dosyaYolu);
+        return null;
+    }
+    // 2. istenen ciziciyi yarat
+    let derlenenCizici = gl.createShader(ciziciTipi);
 
-    //
+    // 3. ciziciyi derle
     gl.shaderSource(derlenenCizici, ciziciKaynagi);
     gl.compileShader(derlenenCizici);
 
-    // hata kontrolu
+    // 4. hata kontrolu
     if (!gl.getShaderParameter(derlenenCizici, gl.COMPILE_STATUS)) {
         //
         alert("Cizici derlenemedi: " + gl.getShaderInfoLog(derlenenCizici));
     }
     return derlenenCizici;
-}
+};
 
 BasitCizer.prototype.ciziciAktif = function(renk, bpMat) {
-    var gl = gMotor.AnaMotor.glAl();
+    let gl = gMotor.AnaMotor.glAl();
     gl.useProgram(this.derlenenCizici);
+    gl.uniformMatrix4fv(this.bakmaMatKonumu, false, bpMat);
+    gl.bindBuffer(gl.ARRAY_BUFFER, gMotor.VertexBuffer.glVertexRefAl());
+    gl.vertexAttribPointer(this.gCizerKordinatKonumu,
+        3, // each element is a 3-float (x,y.z)
+        gl.FLOAT, // data type is FLOAT
+        false, // if the content is normalized vectors
+        0, // number of bytes to skip in between elements
+        0); // offsets to the first element
     gl.enableVertexAttribArray(this.gCizerKordinatKonumu);
     //
-    gl.uniformMatrix4fv(this.bakmaMatKonumu, false, bpMat);
     gl.uniform4fv(this.pikselRengi, renk);
-}
+};
 BasitCizer.prototype.modelMatKoy = function(mat) {
     var gl = gMotor.AnaMotor.glAl();
     gl.uniformMatrix4fv(this.modelMatKonumu, false, mat);

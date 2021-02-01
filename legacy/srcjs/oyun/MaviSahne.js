@@ -2,9 +2,15 @@
 "use strict";
 
 function MaviSahne() {
+    // sahne objesi
     this.sahne_yolu = "kaynaklar/mavisahne.xml";
+
+    // ses, efekt vs
     this.arkaplan_ses_yolu = "kaynaklar/ses/arkamavi1.mp3";
     this.efekt_ses_yolu = "kaynaklar/ses/efekt.wav";
+    // doku, resim, gorseller
+    this.doku_demotik = "kaynaklar/doku/demotik1.jpeg";
+    this.doku_yunan = "kaynaklar/doku/yunan1.jpg";
     this.kare_listesi = new Array();
     this.kamera = null;
 }
@@ -17,6 +23,7 @@ MaviSahne.prototype._baslat = function() {
     this.kamera = sahne_okuyucu.kameraOku();
     //
     sahne_okuyucu.kareOkuyucu(this.kare_listesi);
+    sahne_okuyucu.dokuKareOkuyucu(this.kare_listesi);
 
 
     gMotor.SesKlipleri.arkaPlanSesiOynat(this.arkaplan_ses_yolu);
@@ -29,6 +36,9 @@ MaviSahne.prototype.sahneYukle = function() {
 
     gMotor.SesKlipleri.sesYukle(this.arkaplan_ses_yolu);
     gMotor.SesKlipleri.sesYukle(this.efekt_ses_yolu);
+
+    gMotor.Dokular.dokuYukle(this.doku_demotik);
+    gMotor.Dokular.dokuYukle(this.doku_yunan);
 };
 
 MaviSahne.prototype.ciz = function() {
@@ -47,6 +57,8 @@ MaviSahne.prototype.sahneKaldir = function() {
     gMotor.SesKlipleri.arkaPlanSesiniDurdur();
     gMotor.SesKlipleri.sesKaldir(this.arkaplan_ses_yolu);
     gMotor.SesKlipleri.sesKaldir(this.efekt_ses_yolu);
+    gMotor.Dokular.dokuKaldir(this.doku_makemyday);
+    gMotor.Dokular.dokuKaldir(this.doku_suitup);
 
 
     var sonrakiBolum = new Oyunum();
@@ -63,6 +75,7 @@ MaviSahne.prototype.guncelle = function() {
         gMotor.SesKlipleri.sesOynat(this.efekt_ses_yolu);
         beyazDonustur.konumXArti(2);
     }
+    // kareyi renklendir
     if (gMotor.Girdi.tusTiklandiMi(gMotor.Girdi.tuslar.Asagi)) {
         beyazDonustur.dereceArti(2);
     }
@@ -78,4 +91,11 @@ MaviSahne.prototype.guncelle = function() {
         gMotor.SesKlipleri.sesOynat(this.efekt_ses_yolu);
         kirmiziDonustur.boyutArti(0.05);
     }
+    var r = this.kare_listesi[1].renkAl();
+    var r_alfa = r[3] + deltaX;
+    if (r_alfa > 1.0) {
+        r_alfa = 0.0;
+    }
+    r[3] = r_alfa;
+
 };

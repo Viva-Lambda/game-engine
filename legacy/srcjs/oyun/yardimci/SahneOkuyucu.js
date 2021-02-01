@@ -56,3 +56,25 @@ SahneOkuyucu.prototype.kareOkuyucu = function(kareListesi) {
         kareListesi.push(kare);
     }
 };
+SahneOkuyucu.prototype.dokuKareOkuyucu = function(kareListesi) {
+    var elm = this._elemanAl("DokuKare");
+    for (var i = 0; i < elm.length; i++) {
+        let kx, ky, en, boy, aci, renk, kareDoku;
+        kx = Number(elm.item(i).attributes.getNamedItem("KonumX").value);
+        ky = Number(elm.item(i).attributes.getNamedItem("KonumY").value);
+        en = Number(elm.item(i).attributes.getNamedItem("En").value);
+        boy = Number(elm.item(i).attributes.getNamedItem("Boy").value);
+        aci = Number(elm.item(i).attributes.getNamedItem("AciDerece").value);
+        renk = elm.item(i).attributes.getNamedItem("Renk").value.split(" ");
+        let dokuYolu = elm.item(i).attributes.getNamedItem("Doku").value;
+        kareDoku = new DokuCizilebilir(dokuYolu);
+        // make sure color array contains numbers
+        for (var j = 0; j < 3; j++)
+            renk[j] = Number(renk[j]);
+        kareDoku.renkKoy(renk);
+        kareDoku.donusturAl().konumKoy(kx, ky);
+        kareDoku.donusturAl().dereceKoy(aci);
+        kareDoku.donusturAl().boyutKoy(en, boy);
+        kareListesi.push(kareDoku);
+    }
+};

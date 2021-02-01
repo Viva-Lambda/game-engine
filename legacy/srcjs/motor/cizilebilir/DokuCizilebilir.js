@@ -10,7 +10,6 @@ function DokuCizilebilir(cizerDokusu) {
 gMotor.AnaMotor.objeyiKalit(DokuCizilebilir, Cizilebilir);
 
 DokuCizilebilir.prototype.ciz = function(bpMat) {
-    var gl = gMotor.AnaMotor.glAl();
     gMotor.Dokular.dokuAktif(this.dokum);
     Cizilebilir.prototype.ciz.call(this, bpMat);
 };
