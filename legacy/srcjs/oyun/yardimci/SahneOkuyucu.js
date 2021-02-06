@@ -2,12 +2,12 @@
 
 function SahneOkuyucu(sahneYolu) {
     //
-    this.sahneXml = gMotor.KaynakPlani.kaynakAl(sahneYolu);
+    this.sahneXml = gMotor.KaynakYoneticisi.kaynakAl(sahneYolu);
 }
 
 SahneOkuyucu.prototype._elemanAl = function(elem) {
     //
-    var el = this.sahneXml.getElementsByTagName(elem);
+    let el = this.sahneXml.getElementsByTagName(elem);
     if (el.length === 0) {
         //
         alert("bolum unsuru: " + el + " bulunamadi");
@@ -22,10 +22,13 @@ SahneOkuyucu.prototype.kameraOku = function() {
     let en = Number(kamElm[0].getAttribute("En"));
     let galani = kamElm[0].getAttribute("GorusAlani").split(" ");
     let arkaplan = kamElm[0].getAttribute("ArkaPlanRengi").split(" ");
+
+    // sayiya donustur
     for (var j = 0; j < 4; j++) {
         arkaplan[j] = Number(arkaplan[j]);
         galani[j] = Number(galani[j]);
     }
+    // kamera
     var kamera = new Kamera(
         vec2.fromValues(mx, my),
         en,
@@ -45,7 +48,7 @@ SahneOkuyucu.prototype.kareOkuyucu = function(kareListesi) {
         boy = Number(elm.item(i).attributes.getNamedItem("Boy").value);
         aci = Number(elm.item(i).attributes.getNamedItem("AciDerece").value);
         renk = elm.item(i).attributes.getNamedItem("Renk").value.split(" ");
-        kare = new Cizilebilir(gMotor.VarsayilanKaynaklar.tekRenkCizerAl());
+        kare = new Cizilebilir();
         // make sure color array contains numbers
         for (var j = 0; j < 3; j++)
             renk[j] = Number(renk[j]);
@@ -69,7 +72,7 @@ SahneOkuyucu.prototype.dokuKareOkuyucu = function(kareListesi) {
         let dokuYolu = elm.item(i).attributes.getNamedItem("Doku").value;
         kareDoku = new DokuCizilebilir(dokuYolu);
         // make sure color array contains numbers
-        for (var j = 0; j < 3; j++)
+        for (var j = 0; j < 4; j++)
             renk[j] = Number(renk[j]);
         kareDoku.renkKoy(renk);
         kareDoku.donusturAl().konumKoy(kx, ky);

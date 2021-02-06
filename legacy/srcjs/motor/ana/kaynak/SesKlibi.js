@@ -22,9 +22,9 @@ gMotor.SesKlipleri = (function() {
         if (SesSinyali === null) {
             SesOrtaminiBaslat();
         }
-        if (!gMotor.KaynakPlani.kaynakYuklendiMi(klipAdi)) {
+        if (!gMotor.KaynakYoneticisi.kaynakYuklendiMi(klipAdi)) {
             //
-            gMotor.KaynakPlani.asyncYuklemeTalebi(klipAdi);
+            gMotor.KaynakYoneticisi.asyncYuklemeTalebi(klipAdi);
 
             // async kaynak yukle
             var sorgu = new XMLHttpRequest();
@@ -44,23 +44,23 @@ gMotor.SesKlipleri = (function() {
                 //
                 SesSinyali.decodeAudioData(sorgu.response,
                     function(b) {
-                        gMotor.KaynakPlani.asyncYuklemeTamamlandiSinyali(klipAdi,
+                        gMotor.KaynakYoneticisi.asyncYuklemeTamamlandi(klipAdi,
                             b);
                     }
                 );
             };
             sorgu.send();
         } else {
-            gMotor.KaynakPlani.kaynakRefArti(klipAdi);
+            gMotor.KaynakYoneticisi.kaynakRefArti(klipAdi);
         }
     };
     var sesKaldir = function(klipAdi) {
-        gMotor.KaynakPlani.kaynakCikart(klipAdi);
+        gMotor.KaynakYoneticisi.kaynakCikart(klipAdi);
     };
 
     var sesOynat = function(klipAdi) {
         //
-        var klipBilgi = gMotor.KaynakPlani.kaynakAl(klipAdi);
+        var klipBilgi = gMotor.KaynakYoneticisi.kaynakAl(klipAdi);
         if (klipBilgi !== null) {
             var sesKaynagi = SesSinyali.createBufferSource();
             sesKaynagi.buffer = klipBilgi;
@@ -83,7 +83,7 @@ gMotor.SesKlipleri = (function() {
 
     var arkaPlanSesiOynat = function(klipAdi) {
         //
-        var klipBilgi = gMotor.KaynakPlani.kaynakAl(klipAdi);
+        var klipBilgi = gMotor.KaynakYoneticisi.kaynakAl(klipAdi);
         if (klipBilgi !== null) {
             // caliyorsa durdur
             arkaPlanSesiniDurdur();

@@ -8,7 +8,8 @@ function DokuCizer(noktaCiziciDosyaYolu, renklendiriciDosyaYolu) {
 
     let gl = gMotor.AnaMotor.glAl();
 
-    this.dokuCizerAttr = gl.getAttribLocation(this.derlenenCizici, "dokuKoord");
+    this.dokuCizerAttr = gl.getAttribLocation(this.derlenenCizici,
+        "dokuKoordinati");
 }
 
 gMotor.AnaMotor.objeyiKalit(DokuCizer, BasitCizer);

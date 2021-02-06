@@ -1,18 +1,19 @@
 <OyunBolumu>
     <Kamera MerkezX="20"  MerkezY="60" En="20" 
         GorusAlani="20 40 600 300" 
-        ArkaPlanRengi="0.0 0.0 0.0 1.0"/>
-    <Kare KonumX="20" KonumY="60" En="5" Boy="5" 
-        AciDerece="30" Renk="1 1 1 1" />
+        ArkaPlanRengi="0.0 0.0 1.0 1.0"/>
+
+    <Kare KonumX="20" KonumY="60" En="2" Boy="3" 
+        AciDerece="30" Renk="1 0 0 1" />
 
     <!-- Resimli Kare -->
-    <DokuKare KonumX="20" KonumY="60" En="2" Boy="2"
-        AciDerece="0" Renk="1 0 0 0.3"
-        Doku="kaynaklar/doku/demotik1.jpeg"/>
+    <DokuKare KonumX="15" KonumY="60" En="3" Boy="3"
+        AciDerece="-5" Renk="1 0 0 0.3"
+        Doku="kaynaklar/doku/minion_collector.jpg"/>
 
     <!-- Resimli Kare -->
-    <DokuKare KonumX="20" KonumY="60" En="3" Boy="3"
-        AciDerece="45" Renk="0 0 0 0"
-        Doku="kaynaklar/doku/yunan1.jpg"/>
+    <DokuKare KonumX="25" KonumY="60" En="3" Boy="3"
+        AciDerece="5" Renk="0 0 0 0"
+        Doku="kaynaklar/doku/minion_portal.jpg"/>
 
 </OyunBolumu>

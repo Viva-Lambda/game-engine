@@ -15,9 +15,13 @@ gMotor.VarsayilanKaynaklar = (function() {
     var dokuCizimFs = "srcjs/glsl/doku.frag";
     var dokuCizer = null;
 
+    // hareketli grafik cizer için gerekenler
+    var hareketliGrafikCizer = null;
+
     var _cizerYarat = function(sinyal) {
         tekRenkCizer = new BasitCizer(basitCizimVs, basitCizimFs);
         dokuCizer = new DokuCizer(dokuCizimVs, dokuCizimFs);
+        hareketliGrafikCizer = new HareketliGrafikCizer(dokuCizimVs, dokuCizimFs);
         sinyal();
     };
 
@@ -27,6 +31,9 @@ gMotor.VarsayilanKaynaklar = (function() {
     var dokuCizerAl = function() {
         return dokuCizer;
     };
+    var hareketliGrafikCizerAl = function() {
+        return hareketliGrafikCizer;
+    }
 
     var baslat = function(sinyal) {
 
@@ -53,6 +60,7 @@ gMotor.VarsayilanKaynaklar = (function() {
         baslat: baslat,
         tekRenkCizerAl: tekRenkCizerAl,
         dokuCizerAl: dokuCizerAl,
+        hareketliGrafikCizerAl: hareketliGrafikCizerAl
     };
     return metotlar;
 }());

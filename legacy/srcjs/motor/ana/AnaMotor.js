@@ -37,6 +37,7 @@ gMotor.AnaMotor = (function() {
 
     var sahneBaslat = function(oyn) {
         oyn.sahneYukle.call(oyn);
+        console.log(oyn);
         gMotor.OyunDongusu.baslat(oyn);
     };
 

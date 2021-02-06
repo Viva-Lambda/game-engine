@@ -64,10 +64,11 @@ gMotor.OyunDongusu = (function() {
 
     var baslat = function(oyun) {
         donguOyun = oyun;
+        // debugger;
         // kare sifirla
-        gMotor.KaynakPlani.yuklemeBittiSinyaliKoy(
+        gMotor.KaynakYoneticisi.yuklemeBittiSinyaliKoy(
             function() {
-                donguOyun._baslat();
+                donguOyun.baslat();
                 _donguBaslat();
             }
         );

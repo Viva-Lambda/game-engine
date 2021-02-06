@@ -9,7 +9,6 @@ function Donustur() {
 
 Donustur.prototype.konumKoy = function(x, y) {
     this.konum = vec2.fromValues(x, y);
-    console.log(this.konum);
 };
 Donustur.prototype.konumXKoy = function(x) {
     this.konum[0] = x;
@@ -36,7 +35,6 @@ Donustur.prototype.konumYAl = function() {
 
 Donustur.prototype.boyutKoy = function(x, y) {
     this.boyut = vec2.fromValues(x, y);
-    console.log(this.boyut);
 };
 Donustur.prototype.boyutXKoy = function(x) {
     this.boyut[0] = x;
