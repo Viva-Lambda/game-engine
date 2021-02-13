@@ -92,10 +92,37 @@ Oyunum.prototype.baslat = function() {
     this.fontResmi.donusturAl().konumKoy(13, 62);
     this.fontResmi.donusturAl().boyutKoy(4, 4);
 
-    this.yanKarakter = new HareketliGrafikCizilebilir(this.doku_hgrafik_yolu);
-    this.yanKarakter.renkKoy([1, 1, 1, 0.0]);
-    this.yanKarakter.donusturAl().konumKoy(26, 56);
-    this.yanKarakter.donusturAl().boyutKoy(5, 2.5);
+    // sag yan karakter 
+    this.sagYanKarakter = new HareketliCizilebilir(this.doku_hgrafik_yolu);
+    this.sagYanKarakter.renkKoy([1, 1, 1, 0.0]);
+    this.sagYanKarakter.donusturAl().konumKoy(26, 56);
+    this.sagYanKarakter.donusturAl().boyutKoy(4, 3.2);
+    this.sagYanKarakter.hareketDizisiKoy(
+        512, // ust
+        0, // sag
+        204, // en
+        164, // boy
+        5, // eleman sayisi
+        0 // en bosluk
+    );
+    this.sagYanKarakter.hareketTipiKoy(HareketliCizilebilir.eHareketTuru.eSagaHareket);
+    this.sagYanKarakter.hareketHiziKoy(50);
+
+    // sol yan karakter
+    this.solYanKarakter = new HareketliCizilebilir(this.doku_hgrafik_yolu);
+    this.solYanKarakter.renkKoy([1, 1, 1, 0.0]);
+    this.solYanKarakter.donusturAl().konumKoy(15, 56);
+    this.solYanKarakter.donusturAl().boyutKoy(4, 3.2);
+    this.solYanKarakter.hareketDizisiKoy(
+        348, // ust
+        0, // sag
+        204, // en
+        164, // boy
+        5, // eleman sayisi
+        0 // en bosluk
+    );
+    this.solYanKarakter.hareketTipiKoy(HareketliCizilebilir.eHareketTuru.eSagaHareket);
+    this.solYanKarakter.hareketHiziKoy(50);
 
     // 3. karakteri yarat
     this.anaKarakter = new HareketliGrafikCizilebilir(this.doku_hgrafik_yolu);
@@ -157,24 +184,43 @@ Oyunum.prototype.guncelle = function() {
         dokuKoord[HareketliGrafikCizilebilir.eDokuKoordListesi.Ust],
     );
 
-    dokuKoord = this.yanKarakter.elemandanUVKoordinatListesiAl();
+    // animasyonlari guncelle
+    this.sagYanKarakter.hareketiGuncelle();
+    this.solYanKarakter.hareketiGuncelle();
 
-    let ust = dokuKoord[HareketliGrafikCizilebilir.eDokuKoordListesi.Ust] - deltaT;
-    let sol = dokuKoord[HareketliGrafikCizilebilir.eDokuKoordListesi.Sol] + deltaT;
-
-    if (sol > 0.5) {
-        sol = 0;
+    // animasyonlarin hizlarini ayarla
+    if (gMotor.Girdi.tusBasiliMi(gMotor.Girdi.tuslar.R)) {
+        this.sagYanKarakter.hareketHiziArti(-2);
+        this.solYanKarakter.hareketHiziArti(-2);
     }
-    if (ust < 0.5) {
-        ust = 1;
+    if (gMotor.Girdi.tusBasiliMi(gMotor.Girdi.tuslar.T)) {
+        this.sagYanKarakter.hareketHiziArti(2);
+        this.solYanKarakter.hareketHiziArti(2);
     }
-    this.yanKarakter.elemanaUvKoordinatiKoy(
-        sol,
-        dokuKoord[HareketliGrafikCizilebilir.eDokuKoordListesi.Sag],
-        ust,
-        dokuKoord[HareketliGrafikCizilebilir.eDokuKoordListesi.Alt],
-    );
-
+    if (gMotor.Girdi.tusBasiliMi(gMotor.Girdi.tuslar.Y)) {
+        this.sagYanKarakter.hareketTipiKoy(
+            HareketliCizilebilir.eHareketTuru.eSagaHareket
+        );
+        this.solYanKarakter.hareketTipiKoy(
+            HareketliCizilebilir.eHareketTuru.eSagaHareket
+        );
+    }
+    if (gMotor.Girdi.tusBasiliMi(gMotor.Girdi.tuslar.G)) {
+        this.sagYanKarakter.hareketTipiKoy(
+            HareketliCizilebilir.eHareketTuru.eSarkacHareket
+        );
+        this.solYanKarakter.hareketTipiKoy(
+            HareketliCizilebilir.eHareketTuru.eSarkacHareket
+        );
+    }
+    if (gMotor.Girdi.tusBasiliMi(gMotor.Girdi.tuslar.H)) {
+        this.sagYanKarakter.hareketTipiKoy(
+            HareketliCizilebilir.eHareketTuru.eSolaHareket
+        );
+        this.solYanKarakter.hareketTipiKoy(
+            HareketliCizilebilir.eHareketTuru.eSolaHareket
+        );
+    }
 };
 
 Oyunum.prototype.ciz = function() {
@@ -188,6 +234,7 @@ Oyunum.prototype.ciz = function() {
     this.portal.ciz(this.kamera.bakmaProjMatAl());
     this.collector.ciz(this.kamera.bakmaProjMatAl());
     this.anaKarakter.ciz(this.kamera.bakmaProjMatAl());
-    this.yanKarakter.ciz(this.kamera.bakmaProjMatAl());
+    this.sagYanKarakter.ciz(this.kamera.bakmaProjMatAl());
+    this.solYanKarakter.ciz(this.kamera.bakmaProjMatAl());
     this.fontResmi.ciz(this.kamera.bakmaProjMatAl());
 };
