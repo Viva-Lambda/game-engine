@@ -11,7 +11,7 @@ function YanKarakter(hareketliResim) {
     this.mHResim.elemanaPikselKonumuKoy(510, 595, 23, 153);
     OyunObjesi.call(this, this.mHResim);
 }
-gMotor.objeyiKalit(YanKarakter, OyunObjesi);
+gMotor.AnaMotor.objeyiKalit(YanKarakter, OyunObjesi);
 
 function AnaKarakter(hareketliResim) {
     this.kDelta = 0.3;
@@ -22,7 +22,7 @@ function AnaKarakter(hareketliResim) {
     this.mHResim.elemanaPikselKonumuKoy(0, 120, 0, 180);
     OyunObjesi.call(this, this.mHResim);
 }
-gMotor.objeyiKalit(AnaKarakter, OyunObjesi);
+gMotor.AnaMotor.objeyiKalit(AnaKarakter, OyunObjesi);
 
 AnaKarakter.prototype.guncelle = function() {
     //
@@ -55,7 +55,7 @@ function HareketliKarakter(hareketliResim, konumY) {
 
     OyunObjesi.call(this, this.mHResim);
 }
-gMotor.AnaKarakter.objeyiKalit(HareketliKarakter, OyunObjesi);
+gMotor.AnaMotor.objeyiKalit(HareketliKarakter, OyunObjesi);
 
 HareketliKarakter.prototype.guncelle = function() {
     this.mHResim.hareketiGuncelle();
