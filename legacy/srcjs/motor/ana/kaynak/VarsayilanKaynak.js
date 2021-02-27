@@ -5,6 +5,9 @@ var gMotor = gMotor || {};
 
 gMotor.VarsayilanKaynaklar = (function() {
 
+    // sistem fontlari
+    var vsayilanFont = "kaynaklar/fontlar/consolas32"
+
     // basit çizer için gerekenler
     var basitCizimVs = "srcjs/glsl/basitvs.vert";
     var basitCizimFs = "srcjs/glsl/degisikrenk.frag";
@@ -49,6 +52,9 @@ gMotor.VarsayilanKaynaklar = (function() {
         gMotor.MetinYukleyici.metniYukle(dokuCizimFs,
             gMotor.MetinYukleyici.MetinTipi.TXT);
 
+        // font yukleme
+        gMotor.Fontlar.fontYukle(vsayilanFont);
+
         //
         gMotor.KaynakYoneticisi.yuklemeBittiSinyaliKoy(
             function() {
@@ -56,11 +62,32 @@ gMotor.VarsayilanKaynaklar = (function() {
             }
         );
     };
+    var varsayilanFontuAl = function() {
+        return vsayilanFont;
+    };
+    //
+    var temizle = function() {
+        tekRenkCizer.temizle();
+        dokuCizer.temizle();
+        hareketliGrafikCizer.temizle();
+
+        gMotor.MetinYukleyici.metinKaldir(basitCizimVs);
+        gMotor.MetinYukleyici.metinKaldir(basitCizimFs);
+
+        //
+        gMotor.MetinYukleyici.metinKaldir(dokuCizimVs);
+        gMotor.MetinYukleyici.metinKaldir(dokuCizimFs);
+
+        //
+        gMotor.Fontlar.fontKaldir(vsayilanFont);
+    };
     var metotlar = {
         baslat: baslat,
         tekRenkCizerAl: tekRenkCizerAl,
         dokuCizerAl: dokuCizerAl,
-        hareketliGrafikCizerAl: hareketliGrafikCizerAl
+        hareketliGrafikCizerAl: hareketliGrafikCizerAl,
+        varsayilanFontuAl: varsayilanFontuAl,
+        temizle: temizle,
     };
     return metotlar;
 }());

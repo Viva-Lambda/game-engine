@@ -60,6 +60,10 @@ gMotor.AnaMotor = (function() {
         mGL.clearColor(renk[0], renk[1], renk[2], renk[3]);
         mGL.clear(mGL.COLOR_BUFFER_BIT);
     };
+    var temizle = function() {
+        gMotor.VertexBuffer.temizle();
+        gMotor.VarsayilanKaynaklar.temizle();
+    };
     var objeyiKalit = function(OzelObje, GenelObje) {
         //
         var prototype = Object.create(GenelObje.prototype);

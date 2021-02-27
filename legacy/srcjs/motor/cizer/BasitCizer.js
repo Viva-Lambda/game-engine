@@ -12,14 +12,14 @@ function BasitCizer(noktaCiziciDosyaYolu, renklendiriciDosyaYolu) {
     let gl = gMotor.AnaMotor.glAl();
 
     // 1. cizicileri derle yukle
-    var noktaCizici = this.ciziciYukleDerle(noktaCiziciDosyaYolu, gl.VERTEX_SHADER);
-    var renklendirici = this.ciziciYukleDerle(renklendiriciDosyaYolu, gl.FRAGMENT_SHADER);
+    this.noktaCizici = this.ciziciYukleDerle(noktaCiziciDosyaYolu, gl.VERTEX_SHADER);
+    this.renklendirici = this.ciziciYukleDerle(renklendiriciDosyaYolu, gl.FRAGMENT_SHADER);
 
 
     // 2. cizer olustur
     this.derlenenCizici = gl.createProgram();
-    gl.attachShader(this.derlenenCizici, noktaCizici);
-    gl.attachShader(this.derlenenCizici, renklendirici);
+    gl.attachShader(this.derlenenCizici, this.noktaCizici);
+    gl.attachShader(this.derlenenCizici, this.renklendirici);
     gl.linkProgram(this.derlenenCizici);
 
     // 3. cizilenin kontrolu
@@ -76,10 +76,10 @@ BasitCizer.prototype.ciziciYukleDerle = function(dosyaYolu, ciziciTipi) {
     return derlenenCizici;
 };
 
-BasitCizer.prototype.ciziciAktif = function(renk, bpMat) {
+BasitCizer.prototype.ciziciAktif = function(renk, kamera) {
     let gl = gMotor.AnaMotor.glAl();
     gl.useProgram(this.derlenenCizici);
-    gl.uniformMatrix4fv(this.bakmaMatKonumu, false, bpMat);
+    gl.uniformMatrix4fv(this.bakmaMatKonumu, false, kamera.bakmaProjMatAl());
     gl.bindBuffer(gl.ARRAY_BUFFER, gMotor.VertexBuffer.glVertexRefAl());
     gl.vertexAttribPointer(this.gCizerKordinatKonumu,
         3, // each element is a 3-float (x,y.z)
@@ -99,3 +99,10 @@ BasitCizer.prototype.modelMatKoy = function(mat) {
 BasitCizer.prototype.cizerAl = function() {
     return this.derlenenCizici;
 }
+BasitCizer.prototype.temizle = function() {
+    let gl = gMotor.AnaMotor.glAl();
+    gl.detachShader(this.derlenenCizici, this.noktaCizici);
+    gl.detachShader(this.derlenenCizici, this.renklendirici);
+    gl.deleteShader(this.noktaCizici);
+    gl.deleteShader(this.renklendirici);
+};

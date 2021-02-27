@@ -58,9 +58,51 @@ gMotor.Fontlar = (function() {
         //
         let info = null;
         let finfo = gMotor.KaynakYoneticisi.kaynakAl(fontAdi);
-        let ortakYol = "font/ortak";
+        //
+        let ortakYol = "font/common";
+        //
+        let ortakInfo = finfo.evaluate(ortakYol, finfo, null,
+            XPathResult.ANY_TYPE, null);
+        ortakInfo = ortakInfo.iterateNext();
+        if (ortakInfo === null) {
+            return info;
+        }
+        let karakterBoyu = ortakInfo.getAttribute("base");
+        let karakterYolu = "font/chars/char[@id=" + birKarakter + "]";
+        let karakterInfo = finfo.evaluate(karakterYolu, finfo, null,
+            XPathResult.ANY_TYPE, null);
+        karakterInfo = karakterInfo.iterateNext();
+        if (karakterInfo === null) {
+            return karakterInfo;
+        }
+        //
+        info = new KarakterBilgisi();
+        let dokuBilgisi = gMotor.Dokular.dokuBilgisiAl(finfo.FontResmi);
+        let solPiksel = Number(karakterInfo.getAttribute("x"));
+        let sagPiksel = solPiksel + Number(karakterInfo.getAttribute("width")) - 1;
+        let ustPiksel = (dokuBilgisi.boyu - 1) -
+            Number(karakterInfo.getAttribute("y"));
+        let altPiksel = ustPiksel - Number(karakterInfo.getAttribute("height")) + 1;
+
+        info.mDokuKoordSol = solPiksel / (dokuBilgisi.eni - 1);
+        info.mDokuKoordUst = ustPiksel / (dokuBilgisi.boyu - 1);
+        info.mDokuKoordSag = sagPiksel / (dokuBilgisi.eni - 1);
+        info.mDokuKoordAlt = altPiksel / (dokuBilgisi.boyu - 1);
+
+        // karakter degerleri
+        let karakterEni = karakterInfo.getAttribute("xadvance");
+        info.mKarakterEn = karakterInfo.getAttribute("width") / karakterEni;
+        info.mKarakterBoy = karakterInfo.getAttribute("height") / karakterBoyu;
+        info.mKarakterEnBosluk = karakterInfo.getAttribute("xoffset") / karakterEni;
+        info.mKarakterBoyBosluk = karakterInfo.getAttribute("yoffset") / karakterBoyu;
+        info.mKarakterGorusOrani = karakterEni / karakterBoyu;
+        return info;
     };
     //
-    var metotlar = function() {};
+    var metotlar = {
+        karakterBilgisiAl: karakterBilgisiAl,
+        fontYukle: fontYukle,
+        fontKaldir: fontKaldir,
+    };
     return metotlar;
 }());

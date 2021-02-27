@@ -45,7 +45,7 @@ MaviSahne.prototype.sahneKaldir = function() {
     gMotor.Dokular.dokuKaldir(this.doku_yunan);
 
 
-    var sonrakiBolum = new Oyunum();
+    var sonrakiBolum = new OyunBitti();
     gMotor.AnaMotor.sahneBaslat(sonrakiBolum);
 };
 

@@ -26,6 +26,11 @@ gMotor.VertexBuffer = (function() {
     var glDokuRefAl = function() {
         return dokuKoordBuffer;
     };
+    var temizle = function() {
+        let gl = gMotor.AnaMotor.glAl();
+        gl.deleteBuffer(gKareNoktaBuffer);
+        gl.deleteBuffer(dokuKoordBuffer);
+    };
 
     var baslat = function() {
         var gl = gMotor.AnaMotor.glAl();

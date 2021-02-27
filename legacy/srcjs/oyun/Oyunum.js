@@ -13,6 +13,9 @@ function Oyunum() {
     this.doku_hgrafik_yolu = "kaynaklar/doku/minion_sprite.png";
     this.doku_font_yolu = "kaynaklar/doku/fontConsolas.png";
 
+    // font yolu
+    this.font_yolu = "kaynaklar/fontlar/consolas32";
+
     this.kamera = null;
 
     // doku objeleri
@@ -22,6 +25,8 @@ function Oyunum() {
     this.anaKarakter = null;
     this.yanKarakter = null;
     this.fontResmi = null;
+
+    this.mConsolas32 = null;
 }
 gMotor.AnaMotor.objeyiKalit(Oyunum, Sahne);
 
@@ -35,6 +40,9 @@ Oyunum.prototype.sahneYukle = function() {
 
     gMotor.Dokular.dokuYukle(this.doku_hgrafik_yolu);
     gMotor.Dokular.dokuYukle(this.doku_font_yolu);
+    //
+
+    gMotor.Fontlar.fontYukle(this.font_yolu);
 };
 
 Oyunum.prototype.sahneKaldir = function() {
@@ -46,10 +54,17 @@ Oyunum.prototype.sahneKaldir = function() {
     gMotor.Dokular.dokuKaldir(this.doku_hgrafik_yolu);
     gMotor.Dokular.dokuKaldir(this.doku_font_yolu);
 
+    gMotor.Fontlar.fontKaldir(this.font_yolu);
+
     //
     var sonrakiBolum = new MaviSahne();
 
     gMotor.AnaMotor.sahneBaslat(sonrakiBolum);
+};
+Oyunum.prototype._MetinBaslat = function(font, x, y, renk, metinBoyu) {
+    font.renkKoy(renk);
+    font.donusturAl().konumKoy(x, y);
+    font.metinBoyuKoy(metinBoyu);
 };
 
 Oyunum.prototype.baslat = function() {
@@ -91,6 +106,11 @@ Oyunum.prototype.baslat = function() {
     this.fontResmi.renkKoy([1, 1, 1, 0.0]);
     this.fontResmi.donusturAl().konumKoy(13, 62);
     this.fontResmi.donusturAl().boyutKoy(4, 4);
+
+    // font olustur
+    this.consolas32 = new FontCizilebilir("KONSOLAS 32 SIYAH");
+    this.consolas32.fontKoy(this.font_yolu);
+    this._MetinBaslat(this.consolas32, 50, 50, [0, 0, 0, 1], 2);
 
     // sag yan karakter 
     this.sagYanKarakter = new HareketliCizilebilir(this.doku_hgrafik_yolu);
@@ -231,10 +251,11 @@ Oyunum.prototype.ciz = function() {
     this.kamera.bakmaProjMatKur();
 
     // 3. objeleri çiz
-    this.portal.ciz(this.kamera.bakmaProjMatAl());
-    this.collector.ciz(this.kamera.bakmaProjMatAl());
-    this.anaKarakter.ciz(this.kamera.bakmaProjMatAl());
-    this.sagYanKarakter.ciz(this.kamera.bakmaProjMatAl());
-    this.solYanKarakter.ciz(this.kamera.bakmaProjMatAl());
-    this.fontResmi.ciz(this.kamera.bakmaProjMatAl());
+    this.portal.ciz(this.kamera);
+    this.collector.ciz(this.kamera);
+    this.anaKarakter.ciz(this.kamera);
+    this.sagYanKarakter.ciz(this.kamera);
+    this.solYanKarakter.ciz(this.kamera);
+    this.fontResmi.ciz(this.kamera);
+    this.consolas32.ciz(this.kamera);
 };

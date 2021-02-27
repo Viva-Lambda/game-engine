@@ -11,9 +11,9 @@ Cizilebilir.prototype.donusturAl = function() {
     return this.donustur;
 }
 
-Cizilebilir.prototype.ciz = function(bpMat) {
+Cizilebilir.prototype.ciz = function(kamera) {
     let gl = gMotor.AnaMotor.glAl();
-    this.cizici.ciziciAktif(this.renk, bpMat);
+    this.cizici.ciziciAktif(this.renk, kamera);
     this.cizici.modelMatKoy(this.donustur.modelMatAl());
     gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
 };

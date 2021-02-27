@@ -14,8 +14,8 @@ function DokuCizer(noktaCiziciDosyaYolu, renklendiriciDosyaYolu) {
 
 gMotor.AnaMotor.objeyiKalit(DokuCizer, BasitCizer);
 
-DokuCizer.prototype.ciziciAktif = function(renk, bpMat) {
-    BasitCizer.prototype.ciziciAktif.call(this, renk, bpMat);
+DokuCizer.prototype.ciziciAktif = function(renk, kamera) {
+    BasitCizer.prototype.ciziciAktif.call(this, renk, kamera);
 
     let gl = gMotor.AnaMotor.glAl();
     gl.bindBuffer(gl.ARRAY_BUFFER, gMotor.VertexBuffer.glDokuRefAl());

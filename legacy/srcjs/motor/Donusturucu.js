@@ -48,6 +48,13 @@ Donustur.prototype.boyutXAl = function(x) {
 Donustur.prototype.boyutYAl = function(y) {
     return this.boyut[1];
 };
+Donustur.prototype.enAl = function() {
+    return this.boyut[0];
+}
+Donustur.prototype.boyAl = function() {
+    return this.boyut[1];
+}
+
 Donustur.prototype.boyutArti = function(x) {
     var xb = this.boyutXAl();
     var yb = this.boyutYAl();
