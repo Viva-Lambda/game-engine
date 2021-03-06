@@ -10,6 +10,9 @@ function Donustur() {
 Donustur.prototype.konumKoy = function(x, y) {
     this.konum = vec2.fromValues(x, y);
 };
+Donustur.prototype.konumAl = function() {
+    return this.konum;
+};
 Donustur.prototype.konumXKoy = function(x) {
     this.konum[0] = x;
 }
@@ -80,17 +83,20 @@ Donustur.prototype.radyanKoy = function(r) {
         this.radyan -= (2 * Math.PI);
     }
 };
+Donustur.prototype.radyanArti = function(r) {
+    this.radyan += r;
+};
 Donustur.prototype.dereceKoy = function(d) {
     this.radyanKoy(d * Math.PI / 180.0);
 };
 Donustur.prototype.dereceAl = function() {
     return this.radyan * 180.0 / Math.PI;
-}
+};
 Donustur.prototype.dereceArti = function(d) {
     var derece = this.dereceAl();
     derece += d;
     this.dereceKoy(derece);
-}
+};
 Donustur.prototype.modelMatAl = function() {
     var modelMat = mat4.create();
     mat4.translate(modelMat, modelMat, vec3.fromValues(this.konumXAl(),

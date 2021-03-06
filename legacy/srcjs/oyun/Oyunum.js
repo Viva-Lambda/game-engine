@@ -15,8 +15,13 @@ function Oyunum() {
     this.mesaj = null;
 
     this.anaKarakter = null;
-    this.mYanKarakterKumesi = null;
-    this.yanKarakter = null;
+    this.mBeyin = null;
+
+    // hareket modu:
+    // A: Ana karakter beyinde
+    // Y: Yan karakter beyinde hemen yon degistirmeli
+    // K: Yan karakter beyinde yavas yon degistirmeli
+    this.mMod = "A";
 
 }
 gMotor.AnaMotor.objeyiKalit(Oyunum, Sahne);
@@ -64,19 +69,10 @@ Oyunum.prototype.baslat = function() {
     );
     this.kamera.arkaPlanRengi = [0.9, 0.9, 0.9, 1];
 
-    // 2. sahne objelerini yarat
-    this.yanKarakter = new YanKarakter(this.doku_hgrafik_yolu);
+    // 3. beyin yarat
+    this.mBeyin = new Beyin(this.doku_hgrafik_yolu);
+    console.log("beyin");
 
-    // hareketli karakterler
-    this.mHareketliKarakterKumesi = new OyunObjesiKumesi();
-    for (var i = 0; i < 5; i++) {
-        let randomY = Math.random() * 65;
-        let birKarakter = new HareketliKarakter(
-            this.doku_hgrafik_yolu, randomY
-        );
-        this.mHareketliKarakterKumesi.ekle(birKarakter);
-    }
-    // ana karakteri yarat
     this.anaKarakter = new AnaKarakter(this.doku_hgrafik_yolu);
 
     // font
@@ -85,14 +81,6 @@ Oyunum.prototype.baslat = function() {
     this.mesaj.donusturAl().konumKoy(1, 2);
     this.mesaj.metinBoyuKoy(3);
 };
-
-
-Oyunum.prototype.guncelle = function() {
-    this.anaKarakter.guncelle();
-    this.mHareketliKarakterKumesi.guncelle();
-    this.yanKarakter.guncelle();
-};
-
 Oyunum.prototype.ciz = function() {
     // 1. temizle sahneyi
     gMotor.AnaMotor.kanvasTemizle([0.9, 0.9, 0.9, 1.0]);
@@ -102,7 +90,39 @@ Oyunum.prototype.ciz = function() {
 
     // 3. objeleri çiz
     this.anaKarakter.ciz(this.kamera);
-    this.mHareketliKarakterKumesi.ciz(this.kamera);
-    this.yanKarakter.ciz(this.kamera);
+    this.mBeyin.ciz(this.kamera);
     this.mesaj.ciz(this.kamera);
+    console.log("beyin ciz");
+};
+Oyunum.prototype.guncelle = function() {
+    let mesaj = "Beyin modu: [A: Tuslar, Y: Derhal, K: Yavastan]: ";
+    let oran = 1;
+    //
+    this.anaKarakter.guncelle();
+
+    switch (this.mMod) {
+        case "A":
+            this.mBeyin.guncelle();
+            break;
+        case "K":
+            oran = 0.02; // yavastan
+            break;
+        case "Y":
+            this.mBeyin.dondurYonelt(
+                this.anaKarakter.donusturAl().konumAl(),
+                oran);
+            OyunObjesi.prototype.guncelle.call(this.mBeyin);
+            break;
+    }
+    if (gMotor.Girdi.tusBasiliMi(gMotor.Girdi.tuslar.A)) {
+        this.mMod = "A";
+    }
+    if (gMotor.Girdi.tusBasiliMi(gMotor.Girdi.tuslar.Y)) {
+        this.mMod = "Y";
+    }
+    if (gMotor.Girdi.tusBasiliMi(gMotor.Girdi.tuslar.K)) {
+        this.mMod = "K";
+    }
+
+    this.mesaj.metinKoy(mesaj + this.mMod);
 };
