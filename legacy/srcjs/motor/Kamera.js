@@ -24,12 +24,31 @@ Kamera.prototype.merkezKoy = function(x, y) {
 Kamera.prototype.merkezAl = function() {
     return this.merkez;
 };
+Kamera.prototype.gAlaniXAl = function() {
+    return this.gorusAlaniListesi[0];
+};
+Kamera.prototype.gAlaniYAl = function() {
+    return this.gorusAlaniListesi[1];
+};
+Kamera.prototype.gAlaniEnAl = function() {
+    return this.gorusAlaniListesi[2];
+};
+Kamera.prototype.gAlaniBoyAl = function() {
+    return this.gorusAlaniListesi[3];
+};
 
 Kamera.prototype.genislikKoy = function(x) {
     this.pgenislik = x;
 };
 Kamera.prototype.genislikAl = function(x) {
     return this.pgenislik;
+};
+Kamera.prototype.pgEnAl = function() {
+    return this.pgenislik;
+};
+Kamera.prototype.pgBoyAl = function() {
+    return
+    this.pgenislik * (this.gAlaniEnAl() / this.gAlaniBoyAl());
 };
 
 Kamera.prototype.gorusAlaniKoy = function(gListesi) {
@@ -51,6 +70,20 @@ Kamera.prototype.arkaPlanRengiAl = function() {
 
 Kamera.prototype.bakmaProjMatAl = function() {
     return this.bakmaProjMat;
+};
+
+Kamera.prototype.gAlanKutusuCarpma = function(donusturucu, alanOrani) {
+    let kutu = new Kutu2D(
+        donusturucu.konumAl(), // merkez
+        donusturucu.enAl(), // en
+        donusturucu.boyAl() // boy
+    );
+    let en = alanOrani * this.pgEnAl();
+    let boy = alanOrani * this.pgBoyAl();
+    let kameraKutusu = new Kutu2D(
+        this.merkezAl(), en, boy
+    );
+    return kameraKutusu.carpmaDurumuAl(kutu);
 };
 
 Kamera.prototype.bakmaProjMatKur = function() {

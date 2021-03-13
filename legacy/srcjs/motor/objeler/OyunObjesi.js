@@ -17,6 +17,15 @@ OyunObjesi.prototype.guncelle = function() {
 OyunObjesi.prototype.cizilebilirAl = function() {
     return this.mCizilebilirOge;
 };
+OyunObjesi.prototype.kutu2dAl = function() {
+    let d = this.donusturAl();
+    let kutu = new Kutu2D(
+        d.konumAl(), // merkez
+        d.enAl(), // en
+        d.boyAl() // boy
+    );
+    return kutu;
+};
 OyunObjesi.prototype.ciz = function(kamera) {
     if (this.mGorulebilirMi) {
         this.mCizilebilirOge.ciz(kamera);

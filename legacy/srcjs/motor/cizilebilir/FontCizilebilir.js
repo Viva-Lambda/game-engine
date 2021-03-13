@@ -51,7 +51,6 @@ FontCizilebilir.prototype.metinBoyuKoy = function(b) {
     this.donusturAl().boyutKoy(en * this.metin.length, b);
 };
 FontCizilebilir.prototype.metinKoy = function(m) {
-    // todo
     this.metin = m;
     this.metinBoyuKoy(this.donusturAl().boyAl());
 };

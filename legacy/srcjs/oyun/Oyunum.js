@@ -71,14 +71,13 @@ Oyunum.prototype.baslat = function() {
 
     // 3. beyin yarat
     this.mBeyin = new Beyin(this.doku_hgrafik_yolu);
-    console.log("beyin");
 
     this.anaKarakter = new AnaKarakter(this.doku_hgrafik_yolu);
 
     // font
     this.mesaj = new FontCizilebilir("Durum Mesaji");
-    this.mesaj.renkKoy([0, 0, 0, 1]);
-    this.mesaj.donusturAl().konumKoy(1, 2);
+    this.mesaj.renkKoy([1, 0, 0, 1]);
+    this.mesaj.donusturAl().konumKoy(50, 35);
     this.mesaj.metinBoyuKoy(3);
 };
 Oyunum.prototype.ciz = function() {
@@ -92,7 +91,6 @@ Oyunum.prototype.ciz = function() {
     this.anaKarakter.ciz(this.kamera);
     this.mBeyin.ciz(this.kamera);
     this.mesaj.ciz(this.kamera);
-    console.log("beyin ciz");
 };
 Oyunum.prototype.guncelle = function() {
     let mesaj = "Beyin modu: [A: Tuslar, Y: Derhal, K: Yavastan]: ";
@@ -100,20 +98,30 @@ Oyunum.prototype.guncelle = function() {
     //
     this.anaKarakter.guncelle();
 
+    // kutular
+    let anaKKutu = this.anaKarakter.kutu2dAl();
+    let beyinKutu = this.mBeyin.kutu2dAl();
+
     switch (this.mMod) {
         case "A":
             this.mBeyin.guncelle();
             break;
         case "K":
             oran = 0.02; // yavastan
-            break;
+            //break;
         case "Y":
-            this.mBeyin.dondurYonelt(
-                this.anaKarakter.donusturAl().konumAl(),
-                oran);
-            OyunObjesi.prototype.guncelle.call(this.mBeyin);
+            if (!anaKKutu.carpmaDurumuAl(beyinKutu)) {
+                this.mBeyin.dondurYonelt(
+                    this.anaKarakter.donusturAl().konumAl(),
+                    oran);
+                OyunObjesi.prototype.guncelle.call(this.mBeyin);
+            }
             break;
     }
+    // kamera karakter durumu
+    let anaKarakter_durumu =
+        this.kamera.gAlanKutusuCarpma(
+            this.anaKarakter.donusturAl(), 0.8);
     if (gMotor.Girdi.tusBasiliMi(gMotor.Girdi.tuslar.A)) {
         this.mMod = "A";
     }
@@ -124,5 +132,6 @@ Oyunum.prototype.guncelle = function() {
         this.mMod = "K";
     }
 
-    this.mesaj.metinKoy(mesaj + this.mMod);
+    this.mesaj.metinKoy(mesaj + this.mMod + " Karakter durumu =" +
+        anaKarakter_durumu + "]");
 };

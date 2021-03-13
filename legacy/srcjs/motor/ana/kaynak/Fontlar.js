@@ -1,4 +1,5 @@
 // fontlari yukle
+"use strict";
 
 function KarakterBilgisi() {
     this.mDokuKoordSol = 0;

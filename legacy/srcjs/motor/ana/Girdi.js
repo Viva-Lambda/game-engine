@@ -84,7 +84,6 @@ gMotor.Girdi = (function() {
     var _tusTiklandiMi = [];
 
     var _tusBasilir = function(olay) {
-        console.log(olay.key);
         _tusBasiliMi[olay.key] = true;
     };
     var _tusKalkar = function(olay) {
