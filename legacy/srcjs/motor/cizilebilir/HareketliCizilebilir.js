@@ -77,7 +77,7 @@ HareketliCizilebilir.prototype.hareketDizisiKoy = function(
     enBoslukPiksel
 ) {
     //
-    let tinfo = gMotor.KaynakYoneticisi.kaynakAl(this.dokum);
+    let tinfo = gMotor.KaynakYoneticisi.kaynakAl(this.mDokum);
     let en = tinfo.eni;
     let boy = tinfo.boyu;
 

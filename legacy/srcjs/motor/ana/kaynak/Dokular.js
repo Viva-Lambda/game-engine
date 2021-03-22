@@ -6,6 +6,7 @@ function DokuBilgisi(yolu, eni, boyu, id) {
     this.eni = eni;
     this.boyu = boyu;
     this.glId = id;
+    this.mPikseller = null;
 }
 
 gMotor.Dokular = (function() {
@@ -88,6 +89,31 @@ gMotor.Dokular = (function() {
     var dokuBilgisiAl = function(dokuYolu) {
         return gMotor.KaynakYoneticisi.kaynakAl(dokuYolu);
     };
+    var dokuPikselleriAl = function(dokuYolu) {
+        var dokuBilgisi = dokuBilgisiAl(dokuYolu);
+        if (dokuBilgisi.mPikseller === null) {
+            //
+            let gl = gMotor.AnaMotor.glAl();
+            let fb = gl.createFramebuffer();
+            gl.bindFramebuffer(gl.FRAMEBUFFER, fb);
+            gl.framebufferTexture2D(gl.FRAMEBUFFER, gl.COLOR_ATTACHMENT0,
+                gl.TEXTURE_2D, dokuBilgisi.glId, 0);
+            if (gl.checkFramebufferStatus(gl.FRAMEBUFFER) ===
+                gl.FRAMEBUFFER_COMPLETE) {
+                let pikseller = new Uint8Array(dokuBilgisi.eni *
+                    dokuBilgisi.boyu * 4);
+                gl.readPixels(0, 0, dokuBilgisi.eni, dokuBilgisi.boyu,
+                    gl.RGBA, gl.UNSIGNED_BYTE, pikseller);
+                dokuBilgisi.mPikseller = pikseller;
+            } else {
+                throw new Error("dokuPikselleriAl çalismadi");
+            }
+            gl.bindFramebuffer(gl.FRAMEBUFFER, null);
+            gl.deleteFramebuffer(fb);
+        }
+        return dokuBilgisi.mPikseller;
+
+    };
 
     var metotlar = {
         dokuYukle: dokuYukle,
@@ -95,6 +121,7 @@ gMotor.Dokular = (function() {
         dokuBilgisiAl: dokuBilgisiAl,
         dokuAktif: dokuAktif,
         dokuInaktif: dokuInaktif,
+        dokuPikselleriAl: dokuPikselleriAl
     };
     return metotlar;
 }());

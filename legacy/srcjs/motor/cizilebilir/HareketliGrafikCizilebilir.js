@@ -35,7 +35,7 @@ HareketliGrafikCizilebilir.prototype.elemanaUvKoordinatiKoy = function(
 };
 HareketliGrafikCizilebilir.prototype.elemanaPikselKonumuKoy = function(
     sol, sag, alt, ust) {
-    let dokuBilgisi = gMotor.KaynakYoneticisi.kaynakAl(this.dokum);
+    let dokuBilgisi = gMotor.KaynakYoneticisi.kaynakAl(this.mDokum);
     let eni = dokuBilgisi.eni;
     let boyu = dokuBilgisi.boyu;
 

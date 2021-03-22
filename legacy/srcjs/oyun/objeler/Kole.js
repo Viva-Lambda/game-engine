@@ -1,7 +1,7 @@
-// oyundaki objeler
+// uydu.js objesi
 "use strict";
 
-function HareketliKarakter(hareketliResim, konumY) {
+function Kole(hareketliResim, konumY) {
     //
     this.kDelta = 0.2;
     this.mHResim = new HareketliCizilebilir(hareketliResim);
@@ -15,9 +15,9 @@ function HareketliKarakter(hareketliResim, konumY) {
 
     OyunObjesi.call(this, this.mHResim);
 }
-gMotor.AnaMotor.objeyiKalit(HareketliKarakter, OyunObjesi);
+gMotor.AnaMotor.objeyiKalit(Kole, OyunObjesi);
 
-HareketliKarakter.prototype.guncelle = function() {
+Kole.prototype.guncelle = function() {
     this.mHResim.hareketiGuncelle();
 
     this.donusturAl().konumXArti(-this.kDelta);
@@ -27,4 +27,3 @@ HareketliKarakter.prototype.guncelle = function() {
         this.donusturAl().konumYKoy(65 * Math.random());
     }
 };
-//

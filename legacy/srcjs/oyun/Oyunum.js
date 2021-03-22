@@ -9,13 +9,16 @@ function Oyunum() {
     this.kamera = null;
 
     // doku, gorsel yolu
-    this.doku_hgrafik_yolu = "kaynaklar/doku/minion_sprite.png";
+    this.mPaketYolu = "kaynaklar/doku/minion_sprite.png";
+    this.mToplayiciYolu = "kaynaklar/doku/minion_collector.png";
+    this.mPortalYolu = "kaynaklar/doku/minion_portal.png";
 
     //
     this.mesaj = null;
 
-    this.anaKarakter = null;
-    this.mBeyin = null;
+    this.mToplayici = null;
+    this.mPortal = null;
+    this.mPaket = null;
 
     // hareket modu:
     // A: Ana karakter beyinde
@@ -34,7 +37,9 @@ Oyunum.prototype.sahneYukle = function() {
     // gMotor.SesKlipleri.sesYukle(this.arkaplan_ses_yolu);
     // gMotor.SesKlipleri.sesYukle(this.efekt_ses_yolu);
 
-    gMotor.Dokular.dokuYukle(this.doku_hgrafik_yolu);
+    gMotor.Dokular.dokuYukle(this.mToplayiciYolu);
+    gMotor.Dokular.dokuYukle(this.mPaketYolu);
+    gMotor.Dokular.dokuYukle(this.mPortalYolu);
     //
 };
 
@@ -44,7 +49,9 @@ Oyunum.prototype.sahneKaldir = function() {
     // gMotor.SesKlipleri.arkaPlanSesiniDurdur();
     // gMotor.SesKlipleri.sesKaldir(this.efekt_ses_yolu);
 
-    gMotor.Dokular.dokuKaldir(this.doku_hgrafik_yolu);
+    gMotor.Dokular.dokuKaldir(this.mToplayiciYolu);
+    gMotor.Dokular.dokuKaldir(this.mPaketYolu);
+    gMotor.Dokular.dokuKaldir(this.mPortalYolu);
     //
     var sonrakiBolum = new MaviSahne();
 
@@ -70,14 +77,18 @@ Oyunum.prototype.baslat = function() {
     this.kamera.arkaPlanRengi = [0.9, 0.9, 0.9, 1];
 
     // 3. beyin yarat
-    this.mBeyin = new Beyin(this.doku_hgrafik_yolu);
+    this.mPaket = new Paket(this.mPaketYolu);
+    this.mPaket.mGorulebilirMi = false;
 
-    this.anaKarakter = new AnaKarakter(this.doku_hgrafik_yolu);
+    this.mToplayici = new DokuObjesi(this.mToplayiciYolu,
+        50, 30, 30, 30);
+
+    this.mPortal = new DokuObjesi(this.mPortalYolu, 70, 30, 10, 10);
 
     // font
     this.mesaj = new FontCizilebilir("Durum Mesaji");
-    this.mesaj.renkKoy([1, 0, 0, 1]);
-    this.mesaj.donusturAl().konumKoy(50, 35);
+    this.mesaj.renkKoy([0, 0, 0, 1]);
+    this.mesaj.donusturAl().konumKoy(1, 2);
     this.mesaj.metinBoyuKoy(3);
 };
 Oyunum.prototype.ciz = function() {
@@ -88,50 +99,41 @@ Oyunum.prototype.ciz = function() {
     this.kamera.bakmaProjMatKur();
 
     // 3. objeleri çiz
-    this.anaKarakter.ciz(this.kamera);
-    this.mBeyin.ciz(this.kamera);
+    this.mToplayici.ciz(this.kamera);
+    this.mPaket.ciz(this.kamera);
+    this.mPortal.ciz(this.kamera);
+    //
     this.mesaj.ciz(this.kamera);
 };
 Oyunum.prototype.guncelle = function() {
-    let mesaj = "Beyin modu: [A: Tuslar, Y: Derhal, K: Yavastan]: ";
+    let mesaj = "carpma yok";
     let oran = 1;
     //
-    this.anaKarakter.guncelle();
+    this.mToplayici.guncelle(
+        gMotor.Girdi.tuslar.Z,
+        gMotor.Girdi.tuslar.S,
+        gMotor.Girdi.tuslar.Q,
+        gMotor.Girdi.tuslar.D,
+    );
+    this.mPortal.guncelle(
+        gMotor.Girdi.tuslar.Yukari,
+        gMotor.Girdi.tuslar.Asagi,
+        gMotor.Girdi.tuslar.Sol,
+        gMotor.Girdi.tuslar.Sag,
+    );
 
-    // kutular
-    let anaKKutu = this.anaKarakter.kutu2dAl();
-    let beyinKutu = this.mBeyin.kutu2dAl();
-
-    switch (this.mMod) {
-        case "A":
-            this.mBeyin.guncelle();
-            break;
-        case "K":
-            oran = 0.02; // yavastan
-            //break;
-        case "Y":
-            if (!anaKKutu.carpmaDurumuAl(beyinKutu)) {
-                this.mBeyin.dondurYonelt(
-                    this.anaKarakter.donusturAl().konumAl(),
-                    oran);
-                OyunObjesi.prototype.guncelle.call(this.mBeyin);
-            }
-            break;
+    let degmeNoktasi = [];
+    if (this.mPortal.piksellerDegdiMi(this.mToplayici, degmeNoktasi)) {
+        //
+        mesaj = "Carpti: (" + degmeNoktasi[0].toString() + " " +
+            degmeNoktasi.toString() + ")";
+        this.mPaket.mGorulebilirMi = true;
+        this.mPaket.donusturAl().konumXKoy(degmeNoktasi[0]);
+        this.mPaket.donusturAl().konumYKoy(degmeNoktasi[1]);
+        console.log(mesaj);
+    } else {
+        //
+        this.mPaket.mGorulebilirMi = false;
     }
-    // kamera karakter durumu
-    let anaKarakter_durumu =
-        this.kamera.gAlanKutusuCarpma(
-            this.anaKarakter.donusturAl(), 0.8);
-    if (gMotor.Girdi.tusBasiliMi(gMotor.Girdi.tuslar.A)) {
-        this.mMod = "A";
-    }
-    if (gMotor.Girdi.tusBasiliMi(gMotor.Girdi.tuslar.Y)) {
-        this.mMod = "Y";
-    }
-    if (gMotor.Girdi.tusBasiliMi(gMotor.Girdi.tuslar.K)) {
-        this.mMod = "K";
-    }
-
-    this.mesaj.metinKoy(mesaj + this.mMod + " Karakter durumu =" +
-        anaKarakter_durumu + "]");
+    this.mesaj.metinKoy(mesaj);
 };
